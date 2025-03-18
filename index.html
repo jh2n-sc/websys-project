@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="d-flex nav-el-space container">
+        <h1 class="title">Name</h1>
+        <ul class="left-side">
+            <li class="active">Home</li>
+            <li>Properties</li>
+            <li>Our Projects</li>
+            <li>FAQs</li>
+            <li>About Us</li>
+        </ul>
+        
+        <button class="btn btn-primary">Contact Us</button>
+    </nav>
+    <!--Body section-->
+    <section class="container d-flex justify-content-center">
+        <div class="grid-container">
+            <div class="box" style="grid-area: box-1;">
+                <h1 class="cta-text">Guiding your path to a new home in the Philippines</h1>
+            </div>
+            <div class="box text-align-right" style="grid-area: box-2;">
+            <div class="d-block text-align-right">
+                <span>2025 Bicol University</span>
+                <br>
+                <span>ALL RIGHTS RESERVED</span>
+            </div>
+            </div>
+            <div class="box main-body-search" style="grid-area: box-3">
+                    <div class="grid-container-search">
+                        <div class="box-search">
+                            <form action="">
+                                <label for="look-for">Looking For</label>
+                                <input class="input-field" type="text" name="look-for" id="look-for" placeholder="What to look for?">
+                            </form>
+                        </div>
+                        <div class="box-search">
+                            <form action="">
+                                <label for="look-for">Type</label>
+                                <select name="" id="" class="input-field" >
+                                    <option value="" disabled selected>Property Type</option>
+                                    <option value="house">Houses</option>
+                                    <option value="condo-appartment">Condos and Apartment</option>
+                                    <option value="commercial-property">Commercial Properties</option>
+                                    <option value="lot-land">Lots and Land</option>
+                                    <option value="rental">Rentals</option>
+                                </select>
+                            </form>
+                        </div>
+                        <div class="box-search">
+                            <form action="">
+                                <label for="look-for">Price</label>
+                                <select name="" id="" class="input-field">
+                                    <option value="" selected disabled>Price</option>
+                                    <option value="5000">5000 &gt;</option>
+                                    <option value="400">5000+</option>
+                                    <option value="5000+">5000+</option>
+                                    <option value="5000+">5000+</option>
+                                    <option value="5000+">5000+</option>
+                                </select>                            
+                            </form>
+                        </div>
+                        <div class="box-search">
+                            <form action="">
+                                <label for="look-for">Location</label>
+                                <select name="" id="" class="input-field">
+                                    <option value="" selected disabled>All Cities</option>
+                                    <option value="manila">Manila</option>
+                                    <option value="albay">Albay</option>
+                                    <option value="naga">Naga</option>
+                                    <option value="tiwi">Tiwi</option>
+                                    <option value="bacacay">Bacacay</option>
+                                    <option value="daraga">Daraga</option>
+                                </select>                            
+                            </form>
+                        </div>
+                        <div class="box-search">
+                            <form action="">
+                                <label for="look-for" style="visibility: hidden;">  hello</label>
+                                <input class="input-field btn btn-primary" type="button" name="look-for" id="look-for" placeholder="What to look for?" value="Search">
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+    <script src="index.js"></script>
+</body>
+</html>
