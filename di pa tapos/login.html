@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title Page</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <nav class="d-flex nav-el-space container">
+        <h1 class="title">Name</h1>
+        <ul class="left-side">
+            <li class="active">Home</li>
+            <li>Properties</li>
+            <li>Our Projects</li>
+            <li>FAQs</li>
+            <li>About Us</li>
+        </ul>
+        <button class="btn btn-primary">Contact Us</button>
+    </nav>
+
+    <!--body-->
+    <section class="container d-flex justify-content-center">
+        <div class="grid-container">
+            <div class="box" style="grid-area: box-1;">
+                <h1 class="cta-text">Guiding your path to a new home in the Philippines</h1>
+            </div>
+            <div class="box text-align-right" style="grid-area: box-2;">
+                <div class="d-block text-align-right">
+                    <span>2025 Bicol University</span>
+                    <br>
+                    <span>ALL RIGHTS RESERVED</span>
+                </div>
+            </div>
+            <div class="box main-body-search" style="grid-area: box-3">
+                <div class="grid-container-search">
+
+                    <!-- login section -->
+                    <form id="loginForm" action="login.php" method="POST" style="width: 100%;">
+                        <div class="box-search">
+                            <label for="email">Email or Username</label>
+                            <input class="input-field" type="text" name="email" id="email" required>
+                        </div>
+                        <div class="box-search">
+                            <label for="password">Password</label>
+                            <div class="password-wrapper">
+                                <input class="input-field" type="password" name="password" id="password" required>
+                                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+                            </div>
+                        </div>
+                        <div class="box-search">
+                            <input class="input-field btn btn-primary" type="submit" value="Login">
+                        </div>
+                        <div class="box-search">
+                            <a href="register.html" class="btn btn-primary" style="text-align:center; text-decoration: none; display: block; padding: 0.75rem;">Register</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        function togglePassword() {
+            const pwd = document.getElementById('password');
+            pwd.type = pwd.type === 'password' ? 'text' : 'password';
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            if (!email || !password) {
+                alert('Please fill out all fields.');
+                e.preventDefault();
+                return;
+            }
+
+            const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!regex.test(email) && email.indexOf(' ') === -1) {
+                alert('Please enter a valid email or username.');
+                e.preventDefault();
+            }
+        });
+    </script>
+</body>
+</html>
