@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>//NAME// Property</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="home.css">
+</head>
+
+<body>
+
+NAV
+<!-- NAV -->
+    <header>
+        <div class="logo">
+            <!-- <img src="/mnt/data/LANDINGPAGE.webp" alt="logo" style="height:40px;"> -->
+            NAME
+        </div>
+
+        <nav id="navbar" class="navbar">
+            <ul>
+                <li>
+                    <button id="close-sidebar-button" onclick="closeSidebar()" aria-label="close sidebar">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                            fill="#c9c9c9">
+                            <path
+                                d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z" />
+                        </svg>
+                    </button>
+                </li>
+                <li><a href="/Home/home.html">Home</a></li>
+                <li><a href="/Buy/buy.html">Buy</a></li>
+                <li><a href="/Sell/sell.html"">Sell</a></li>
+                <li><a href="#">About Us</a></li>
+            </ul>
+        </nav>
+
+        <div class="header-actions">
+            <a href="/Sell/sell.html">Profile</a>
+            <button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false"
+                aria-controls="navbar">
+                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
+                    fill="#c9c9c9">
+                    <path
+                        d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z" />
+                </svg>
+            </button>
+        </div>
+    </header>
+<!-- NAV -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+    HERO SECTION
+    <section class="hero">
+        <div class="hero-text">
+            <h1>Guiding your path <br> to a new home in PILIPINS!!!</h1>
+        </div>
+        <div class="hero-info">
+            <p>©2025 //NAME// RESIDENCE. ALL RIGHTS RESERVED</p>
+            <p>With expert guidance and a deep understanding of PILIPINS!!!'s real estate landscape, we make your
+                journey to a new home seamless and stress-free.</p>
+        </div>
+    </section>
+
+
+
+
+
+
+
+    BANNER
+    <div class="image-banner"
+        style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80');">
+        <div class="search-bar">
+            <div class="input-group">
+                <label for="search-input">Looking For</label>
+                <input type="text" id="search-input" placeholder="What to look for?" />
+            </div>
+
+            <div class="input-group">
+                <label for="property-type">Type</label>
+                <select id="property-type">
+                    <option>Property Type</option>
+                    <option>House</option>
+                    <option>Apartment</option>
+                    <option>Villa</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="price">Price</label>
+                <select id="price">
+                    <option>Price</option>
+                    <option>$100K - $200K</option>
+                    <option>$200K - $500K</option>
+                    <option>$500K+</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="cities">Location</label>
+                <select id="cities">
+                    <option>All Cities</option>
+                    <option>Kanto 10</option>
+                    <option>Baranggay Lovestories</option>
+                    <option>Sitio Pa</option>
+                </select>
+            </div>
+
+            <button>Search</button>
+        </div>
+    </div>
+
+
+
+
+
+
+
+    INTRO
+    <section class="intro-image">
+        <div class="intro-content">
+            <h2>What is //NAME//?</h2>
+            <p>Discover the lifestyle and luxury that //NAME// offers, with bespoke properties designed for comfort,
+                elegance, and modern living in PILIPINS!!!'s prime locations.</p>
+        </div>
+    </section>
+
+
+
+
+    LISTINGS
+     <section class="property-listings">
+    <h2>Explore Our Property Listings</h2>
+    
+    <div class="carousel-wrapper">
+      <button id="prev" class="nav-btn">❮</button>
+      
+      <div class="listings">
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 1">
+          <h3>Griya Asri Tamanseri</h3>
+          <p>Sleman, Yogyakarta</p>
+        </div>
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 2">
+          <h3>Bogor Tropik</h3>
+          <p>Bogor, PILIPINS!!!</p>
+        </div>
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 3">
+          <h3>Pamulih Indah Residence</h3>
+          <p>Batam, PILIPINS!!!</p>
+        </div>
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 4">
+          <h3>Paradise Residence</h3>
+          <p>Jakarta, Indonesia</p>
+        </div>
+        <div class="listing-item">
+          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 5">
+          <h3>Sunset Villa</h3>
+          <p>Bali, Indonesia</p>
+        </div>
+      </div>
+      
+      <button id="next" class="nav-btn">❯</button>
+      
+      <div class="carousel-indicators"></div>
+    </div>
+  </section>
+
+
+
+
+
+
+
+<!-- 
+    Discover //NAME// Property
+    <section class="discover">
+        <h2>Discover //NAME// Property</h2>
+
+        <div class="discover-listings">
+            <div class="discover-item">
+                <img src="https://source.unsplash.com/400x300/?luxury-villa" alt="Discover 1">
+                <h3>Serenity Heights</h3>
+                <p>Bali</p>
+            </div>
+            <div class="discover-item">
+                <img src="https://source.unsplash.com/400x300/?beach-house" alt="Discover 2">
+                <h3>Taman Kelapa Estate</h3>
+                <p>Jakarta Selatan</p>
+            </div>
+            <div class="discover-item">
+                <img src="https://source.unsplash.com/400x300/?modern-home" alt="Discover 3">
+                <h3>Solasta Hills</h3>
+                <p>Sumatera Utara</p>
+            </div>
+        </div>
+    </section> -->
+    
+
+
+
+    INQUIRY
+    <section class="inquiry-section">
+        <div class="inquiry-container">
+            Left Side (Image)
+            <div class="inquiry-image">
+                <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Modern Property">
+            </div>
+
+            Right Side (Form)
+            <div class="inquiry-form-container">
+                <h2>Still haven't found what you're looking for?</h2>
+
+                <form>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" placeholder="First Name">
+                        </div>
+
+                        <div class="input-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" placeholder="Last Name">
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="intent">I Want to</label>
+                        <input type="text" id="intent" placeholder="Buy Property">
+                    </div>
+
+                    <div class="input-group">
+                        <label for="notes">Notes</label>
+                        <textarea id="notes" placeholder="Add your message"></textarea>
+                    </div>
+
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    FAQ
+    <section class="faq-section">
+        <div class="faq-container">
+            Left Column (Heading & Intro)
+            <div class="faq-left">
+                <h2>Frequently Asked<br>Question</h2>
+                <p>Whether you're looking for a modern apartment in the city or a peaceful home in the suburbs, our
+                    listings offer something for everyone.</p>
+            </div>
+
+            Right Column (FAQ Accordions)
+            <div class="faq-right">
+                <div class="faq-item active">
+                    <button class="faq-question">
+                        How do I start the process of buying a property with //NAME//?
+                        <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>At //NAME//, we make it simple for you to find your dream home. Start by browsing our
+                            property listings, and once you've found a property that interests you, contact our team to
+                            schedule a viewing and get expert advice on the next steps.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What types of properties does //NAME// offer?
+                        <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>//NAME// offers a wide range of properties, including apartments, villas, townhouses, and
+                            commercial spaces tailored to fit your lifestyle and investment needs.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can //NAME// assist with property financing or mortgages?
+                        <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes! //NAME// partners with trusted financial institutions to help you secure property
+                            financing and mortgages at competitive rates.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Does //NAME// provide property management services?
+                        <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. //NAME// offers comprehensive property management services, including tenant
+                            screening, rent collection, and maintenance to ensure your investment remains hassle-free.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Are there any fees involved in working with //NAME//?
+                        <span class="arrow">&#9660;</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>//NAME// maintains transparent pricing. Any fees will be clearly outlined and discussed with
+                            you during the consultation process.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-container">
+        <div class="footer-left">©2024 //NAME// RESIDENCE. ALL RIGHTS RESERVED</div>
+        <div class="footer-center">
+        <a href="#">Home</a>
+        <a href="#">Buy</a>
+        <a href="#">Sell</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact Us</a>
+        </div>
+        <div class="footer-right">
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+    </div>
+    </footer>
+    <!-- FOOTER -->
+    
+
+
+
+    <script src="home.js"></script>
+</body>
+
+</html>
