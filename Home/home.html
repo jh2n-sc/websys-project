@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="property-listings.css">
 </head>
 
 <body>
@@ -31,15 +32,15 @@ NAV
                         </svg>
                     </button>
                 </li>
-                <li><a href="/Home/home.html">Home</a></li>
-                <li><a href="/Buy/buy.html">Buy</a></li>
-                <li><a href="/Sell/sell.html"">Sell</a></li>
+                <li><a href="/websysprojbuynsell/websys-project/Home/home.html">Home</a></li>
+                <li><a href="/websysprojbuynsell/websys-project/Buy/buy.php">Buy</a></li>
+                <li><a href="/websysprojbuynsell/websys-project/Sell/sell.html"">Sell</a></li>
                 <li><a href="#">About Us</a></li>
             </ul>
         </nav>
 
         <div class="header-actions">
-            <a href="/Sell/sell.html">Profile</a>
+            <a href="/websysprojbuynsell/websys-project/Profile/Profile.php">Profile</a>
             <button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false"
                 aria-controls="navbar">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
@@ -51,17 +52,6 @@ NAV
         </div>
     </header>
 <!-- NAV -->
-
-
-
-
-
-
-
-
-
-
-
 
 
     HERO SECTION
@@ -144,46 +134,84 @@ NAV
 
 
     LISTINGS
-     <section class="property-listings">
-    <h2>Explore Our Property Listings</h2>
-    
-    <div class="carousel-wrapper">
-      <button id="prev" class="nav-btn">❮</button>
+    <section class="property-listings" aria-label="Property listings carousel">
+        <h1>Explore Our Property Listings</h1>
+        <p class="subtitle">From cozy apartments to spacious family homes, our diverse listings cater to various needs and preferences.</p>
       
-      <div class="listings">
-        <div class="listing-item">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 1">
-          <h3>Griya Asri Tamanseri</h3>
-          <p>Sleman, Yogyakarta</p>
+        <div class="location-selector" role="button" tabindex="0">
+          <i class="fas fa-location-dot" aria-hidden="true"></i>
+          <p>Yogyakarta, pisotoy</p>
         </div>
-        <div class="listing-item">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 2">
-          <h3>Bogor Tropik</h3>
-          <p>Bogor, PILIPINS!!!</p>
-        </div>
-        <div class="listing-item">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 3">
-          <h3>Pamulih Indah Residence</h3>
-          <p>Batam, PILIPINS!!!</p>
-        </div>
-        <div class="listing-item">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 4">
-          <h3>Paradise Residence</h3>
-          <p>Jakarta, Indonesia</p>
-        </div>
-        <div class="listing-item">
-          <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="House 5">
-          <h3>Sunset Villa</h3>
-          <p>Bali, Indonesia</p>
-        </div>
-      </div>
       
-      <button id="next" class="nav-btn">❯</button>
+        <div class="carousel-wrapper">
+          <div class="listings" role="list">
+            <div class="listing-item" role="listitem">
+              <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80" alt="Modern house with garden in Griya Tamansari">
+              <div class="listing-details">
+                <h3 class="listing-name">Griya Tamansari</h3>
+                <div class="listing-location">
+                  <i class="fas fa-location-dot" aria-hidden="true"></i>
+                  <p>Sleman, Yogyakarta</p>
+                </div>
+              </div>
+            </div>
+            <div class="listing-item" role="listitem">
+              <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1950&q=80" alt="Contemporary home with large windows in Griya Asri Tamansari">
+              <div class="listing-details">
+                <h3 class="listing-name">Griya Asri Tamansari</h3>
+                <div class="listing-location">
+                  <i class="fas fa-location-dot" aria-hidden="true"></i>
+                  <p>Sleman, Yogyakarta</p>
+                </div>
+              </div>
+            </div>
+            <div class="listing-item" role="listitem">
+              <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&w=1950&q=80" alt="Elegant luxury home in Permata Indah Residence">
+              <div class="listing-details">
+                <h3 class="listing-name">Permata Indah Residence</h3>
+                <div class="listing-location">
+                  <i class="fas fa-location-dot" aria-hidden="true"></i>
+                  <p>Bantul, Yogyakarta</p>
+                </div>
+              </div>
+            </div>
+            <div class="listing-item" role="listitem">
+              <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1950&q=80" alt="Luxury apartment in Paradise Residence">
+              <div class="listing-details">
+                <h3 class="listing-name">Paradise Residence</h3>
+                <div class="listing-location">
+                  <i class="fas fa-location-dot" aria-hidden="true"></i>
+                  <p>Jakarta, pisotoy</p>
+                </div>
+              </div>
+            </div>
+            <div class="listing-item" role="listitem">
+              <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="Beautiful beachfront villa in Sunset Villa">
+              <div class="listing-details">
+                <h3 class="listing-name">Sunset Villa</h3>
+                <div class="listing-location">
+                  <i class="fas fa-location-dot" aria-hidden="true"></i>
+                  <p>Bali, pisotoy</p>
+                </div>
+              </div>
+            </div>
+          </div>
       
-      <div class="carousel-indicators"></div>
-    </div>
-  </section>
-
+          <div class="carousel-controls">
+            <button id="prev" class="nav-btn" aria-label="Previous slide">
+              <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
+            </button>
+            
+            <div class="carousel-indicators" aria-hidden="true">
+              <!-- Indicators will be generated by JavaScript -->
+            </div>
+            
+            <button id="next" class="nav-btn" aria-label="Next slide">
+              <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
+            </button>
+          </div>
+      </section>
+      
 
 
 
@@ -367,7 +395,9 @@ NAV
 
 
 
-    <script src="home.js"></script>
+    <script src="nav.js"></script>
+    <script src="property-listings.js"></script>
+    <script src="faq.js"></script>
 </body>
 
 </html>

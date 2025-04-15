@@ -18,6 +18,7 @@ $result = $stmt->get_result();
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="buy.css">
+    <link rel="stylesheet" href="buy-listing.css">
 </head>
 
 <body>
@@ -70,43 +71,107 @@ BANNER LISTING/HEADER
 
 
     LISTINGS TITLE
-    <!-- PROPERTY LISTINGS -->
     <section class="property-listings">
     <h2>Discover //NAME// Property</h2>
-    <p>Whether you're looking for a modern apartment in the city or a peaceful home in the suburbs, our listings offer something for everyone.</p>
+    <p>Whether you're looking for a modern apartment in the city or a peaceful home in the suburbs, our listings offer something for everyone.</p> 
     
 
     LISTINGS
     <div class="property-cards">
+    </div>
+    </section>
 
-    
-
-<?php
+    <main class="container">
+        <!-- Properties around $288,700 -->
+        <section>
+            <div class="section-header">
+                <h2>Homes around $288,700</h2>
+                <a href="#" class="view-all">View all in San Antonio, TX</a>
+            </div>
+            <div class="property-grid">
+            <?php
 if ($result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
-        ?>
-    <div class="card">
-        <img src="../php/image.php?listing_id=<?php echo $row["listing_id"];?>">
-        <h2><?php echo "{$row['property_name']}"; ?></h2>
-            <div class="card-content">
-            <h3><?php echo "{$row['property_description']}"; ?></h3>
-            <p>📍 <?php echo "{$row['property_location']}"; ?></p>
-            <div class="property-info">
-            <span><?php echo "{$row['bed_no']}"; ?> beds</span>
-            <span><?php echo "{$row['baths_no']}"; ?> Baths</span>
-            <span><?php echo "{$row['dimensions']}"; ?> m²</span>
+?>
+    <div class="property-card">  DYNAMIC >
+        <div class="property-image">
+            <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
+            <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
+            <button class="favorite-btn" aria-label="Add to favorites">
+                <i class="far fa-heart"></i>
+            </button>
+        </div>
+        <div class="property-details">
+            <div class="property-type">
+                <div class="property-type-indicator"></div>
+                <span><?php echo $row["property_description"]; ?></span>
             </div>
+            <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
+            <div class="property-specs">
+                <span><?php echo $row["bed_no"]; ?> bed</span>
+                <span><?php echo $row["baths_no"]; ?> bath</span>
+                <span><?php echo $row["dimensions"]; ?> m²</span>
+            </div>
+            <div class="property-address"><?php echo $row["property_name"]; ?></div>
+            <div class="property-location"><?php echo $row["property_location"]; ?></div>
         </div>
-        </div>
-		
+    </div>
 <?php
     }
 }
-    ?>
-        <!-- Card 1 SAMPLE -->
+?>
+                <!-- Property 4 -->
+                <div class="property-card">
+                STATIC >
+                    <div class="property-image">
+                        <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
+                        <div class="new-badge">New - 3 hours ago</div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="property-details">
+                        <div class="property-type">
+                            <div class="property-type-indicator"></div>
+                            <span>Single-Family Home</span>
+                        </div>
+                        <div class="property-price">$330,000</div>
+                        <div class="property-specs">
+                            <span>4 bed</span>
+                            <span>2.5 bath</span>
+                            <span>2,545 sqft</span>
+                        </div>
+                        <div class="property-address">10434 Sun Ml</div>
+                        <div class="property-location">San Antonio, TX 78254</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    </div>
-    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 

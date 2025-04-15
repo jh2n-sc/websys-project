@@ -1,20 +1,24 @@
 <?php
-include '../php/db_conn.php';
+include 'db_conn.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];
 
-$sql = "SELECT * FROM accounts WHERE username=? OR email=?";
+// Check if the user exists
+$sql = "SELECT * FROM accounts WHERE username = ?";
 $stmt = $conn->prepare($sql);
-$stmt->bind_param("ss", $username, $username);
+$stmt->bind_param("s", $username);
 $stmt->execute();
 $result = $stmt->get_result();
 
 if ($result->num_rows === 1) {
   $user = $result->fetch_assoc();
-  if (password_verify($password, $user['account_password'])) {
-    header("Location: dashboard.php");
-    exit();
+
+  // Check if passwords match
+  if ($password === $user['account_password']) {
+    session_start();
+    $_SESSION['username'] = $user['username'];
+    header("Location: http://localhost/websysprojbuynsell/websys-project/home/home.html");    exit();
   } else {
     echo "Incorrect password.";
   }
