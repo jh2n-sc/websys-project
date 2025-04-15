@@ -1,3 +1,13 @@
+<?php
+
+include "../php/db_conn.php";
+
+$sql = "SELECT listing_id, property_name, seller_account_id, price, property_type, property_size, property_description, property_location, listing_date, CONCAT(firstname, ' ', lastname) as fullname FROM listings JOIN accounts ON accounts.account_id = listings.seller_account_id ORDER BY listing_id DESC ";
+$stmt = $conn->prepare($sql);
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,12 +78,19 @@ BANNER LISTING/HEADER
 
     LISTINGS
     <div class="property-cards">
-        <!-- Card 1 SAMPLE -->
-        <div class="card">
-        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Property 1">
-        <div class="card-content">
-            <h3>Griya Asri Tumasari</h3>
-            <p>📍 Bogor Tengah</p>
+
+    
+
+<?php
+if ($result->num_rows > 0) {
+    while ($row = $result->fetch_assoc()) {
+        ?>
+    <div class="card">
+        <img src="../php/image.php?listing_id=<?php echo $row["listing_id"];?>">
+        <h2><?php echo "{$row['property_name']}"; ?></h2>
+            <div class="card-content">
+            <h3><?php echo "{$row['property_description']}"; ?></h3>
+            <p>📍 <?php echo "{$row['property_location']}"; ?></p>
             <div class="property-info">
             <span>4 Beds</span>
             <span>2 Baths</span>
@@ -81,34 +98,13 @@ BANNER LISTING/HEADER
             </div>
         </div>
         </div>
-    
-        <!-- Card 2 -->
-        <div class="card">
-        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Property 2">
-        <div class="card-content">
-            <h3>Arjuna Hills Estate</h3>
-            <p>📍 Gunungkidul, Yogyakarta</p>
-            <div class="property-info">
-            <span>3 Beds</span>
-            <span>2 Baths</span>
-            <span>48 m²</span>
-            </div>
-        </div>
-        </div>
-    
-        <!-- Card 3 -->
-        <div class="card">
-        <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Property 3">
-        <div class="card-content">
-            <h3>Nirwana Residence</h3>
-            <p>📍 Semarang Selatan</p>
-            <div class="property-info">
-            <span>5 Beds</span>
-            <span>4 Baths</span>
-            <span>52 m²</span>
-            </div>
-        </div>
-        </div>
+		
+<?php
+    }
+}
+    ?>
+        <!-- Card 1 SAMPLE -->
+
     </div>
     </section>
     
