@@ -1,11 +1,11 @@
 -- tables
-CREATE DATABASE `project_db` COLLATE utf8_general_ci;
+CREATE DATABASE `project_db` COLLATE utf8mb4_general_ci;
 USE `project_db`;
 
 CREATE TABLE accounts (
     account_id int NOT NULL AUTO_INCREMENT,
     username varchar(30) NOT NULL,
-    account_password varchar(200) NOT NULL,
+    account_password varchar(500) NOT NULL,
     firstname varchar(30) NOT NULL,
     lastname varchar(30) NOT NULL,
     birthdate date NOT NULL,
@@ -14,9 +14,9 @@ CREATE TABLE accounts (
     photo LONGBLOB, 
     phone_number varchar(30) NOT NULL,
     CONSTRAINT unique_username UNIQUE (username),
-    CONSTRAINT chk_gender CHECK (gender IN('M', 'F')),
+    CONSTRAINT chk_gender CHECK (gender IN('M', 'F', 'U')),
     CONSTRAINT pk_account_id PRIMARY KEY (account_id)
-) DEFAULT CHARSET=utf8;
+) DEFAULT CHARSET=UTF8MB4;
 
 CREATE TABLE listings (
     listing_id int NOT NULL AUTO_INCREMENT,
@@ -35,4 +35,15 @@ CREATE TABLE listings (
     CONSTRAINT pk_listing_id PRIMARY KEY (listing_id),
     CONSTRAINT chk_price CHECK (price >= 0.0),
     CONSTRAINT fk_seller_account_id FOREIGN KEY (seller_account_id) REFERENCES accounts(account_id)
-)DEFAULT CHARSET=utf8;  
+)DEFAULT CHARSET=utf8MB4;  
+
+
+CREATE TABLE property_more_details (
+    ref_listing_id int NOT NULL,
+    bed_no int,
+    room_no int,
+    baths_no int,
+    dimensions int,
+
+    CONSTRAINT fk_ref_listing_id FOREIGN KEY (ref_listing_id) REFERENCES listings(listing_id)
+)DEFAULT CHARSET=UTF8MB4;

@@ -2,7 +2,7 @@
 
 include "../php/db_conn.php";
 
-$sql = "SELECT listing_id, property_name, seller_account_id, price, property_type, property_size, property_description, property_location, listing_date, CONCAT(firstname, ' ', lastname) as fullname FROM listings JOIN accounts ON accounts.account_id = listings.seller_account_id ORDER BY listing_id DESC ";
+$sql = "SELECT * FROM listings l JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id ORDER BY listing_id DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
@@ -92,9 +92,9 @@ if ($result->num_rows > 0) {
             <h3><?php echo "{$row['property_description']}"; ?></h3>
             <p>📍 <?php echo "{$row['property_location']}"; ?></p>
             <div class="property-info">
-            <span>4 Beds</span>
-            <span>2 Baths</span>
-            <span>40 m²</span>
+            <span><?php echo "{$row['bed_no']}"; ?> beds</span>
+            <span><?php echo "{$row['baths_no']}"; ?> Baths</span>
+            <span><?php echo "{$row['dimensions']}"; ?> m²</span>
             </div>
         </div>
         </div>
