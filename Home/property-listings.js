@@ -86,7 +86,6 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCarousel();
   }
   
-  // Event listeners
   nextBtn.addEventListener('click', () => {
     stopAutoPlay();
     goNext();

@@ -1,6 +1,4 @@
-
-
-    // Navigation functionality
+// Nav
     const openButton = document.getElementById('open-sidebar-button');
     const navbar = document.getElementById('navbar');
 
@@ -32,16 +30,5 @@
 
     // Initialize
     window.addEventListener('resize', handleResize);
-    handleResize(); // Call on load
+    handleResize();
     
-
-
-
-
-
-
-
-
-
-
-

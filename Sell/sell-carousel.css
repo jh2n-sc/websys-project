@@ -43,7 +43,7 @@
   
   .sold-card {
     flex: 0 0 auto;
-    width: 260px; /* increased from 220px */
+    width: 260px;
     border-radius: 12px;
     overflow: hidden;
     background: white;
@@ -58,7 +58,7 @@
   
   .sold-card img {
     width: 100%;
-    height: 170px; /* increased from 140px */
+    height: 170px; 
     object-fit: cover;
   }
   
@@ -67,14 +67,14 @@
   }
   
   .sold-price {
-    font-size: 22px; /* increased from 20px */
+    font-size: 22px;
     font-weight: 800;
     color: #2563eb;
     margin-bottom: 8px;
   }
   
   .sold-address {
-    font-size: 14px; /* increased from 13px */
+    font-size: 14px;
     color: #555;
     line-height: 1.5;
   }

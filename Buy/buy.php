@@ -1,5 +1,4 @@
 <?php
-
 include "../php/db_conn.php";
 
 $sql = "SELECT * FROM listings l JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id ORDER BY listing_id DESC";
@@ -10,7 +9,6 @@ $result = $stmt->get_result();
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -60,23 +58,21 @@ $result = $stmt->get_result();
             </button>
         </div>
     </header>
-<!-- NAV -->
 
 
-BANNER LISTING/HEADER
 <!-- BANNER -->
-<section class="banner">
+<section class="banner">BANNER
     </section>
     
-
-
-    LISTINGS TITLE
+LISTINGS TITLE
+    <!-- LISTINGS TITLE -->
     <section class="property-listings">
     <h2>Discover //NAME// Property</h2>
     <p>Whether you're looking for a modern apartment in the city or a peaceful home in the suburbs, our listings offer something for everyone.</p> 
     
 
-    LISTINGS
+LISTINGS
+    <!-- LISTINGS -->
     <div class="property-cards">
     </div>
     </section>
@@ -88,10 +84,11 @@ BANNER LISTING/HEADER
                 <h2>Homes around $288,700</h2>
                 <a href="#" class="view-all">View all in San Antonio, TX</a>
             </div>
-            <div class="property-grid">
-            <?php
+            <div class="property-grid"> 
+
+<?php
 if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
+while ($row = $result->fetch_assoc()) {
 ?>
     <div class="property-card">  DYNAMIC >
         <div class="property-image">
@@ -120,62 +117,37 @@ if ($result->num_rows > 0) {
     }
 }
 ?>
-                <!-- Property 4 -->
-                <div class="property-card">
-                STATIC >
-                    <div class="property-image">
-                        <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
-                        <div class="new-badge">New - 3 hours ago</div>
-                        <button class="favorite-btn" aria-label="Add to favorites">
-                            <i class="far fa-heart"></i>
-                        </button>
+            <!-- Property 4 -->
+            <div class="property-card">
+            STATIC >
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
+                    <div class="new-badge">New - 3 hours ago</div>
+                    <button class="favorite-btn" aria-label="Add to favorites">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="property-details">
+                    <div class="property-type">
+                        <div class="property-type-indicator"></div>
+                        <span>Single-Family Home</span>
                     </div>
-                    <div class="property-details">
-                        <div class="property-type">
-                            <div class="property-type-indicator"></div>
-                            <span>Single-Family Home</span>
-                        </div>
-                        <div class="property-price">$330,000</div>
-                        <div class="property-specs">
-                            <span>4 bed</span>
-                            <span>2.5 bath</span>
-                            <span>2,545 sqft</span>
-                        </div>
-                        <div class="property-address">10434 Sun Ml</div>
-                        <div class="property-location">San Antonio, TX 78254</div>
+                    <div class="property-price">$330,000</div>
+                    <div class="property-specs">
+                        <span>4 bed</span>
+                        <span>2.5 bath</span>
+                        <span>2,545 sqft</span>
                     </div>
+                    <div class="property-address">10434 Sun Ml</div>
+                    <div class="property-location">San Antonio, TX 78254</div>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
+</main>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-    CONTACT FORM
+CONTACT FORM
     <!-- CONTACT SECTION -->
     <section class="contact-section">
     <div class="contact-info">
@@ -197,9 +169,6 @@ if ($result->num_rows > 0) {
     </form>
     </section>
     
-
-
-
 FAQ
     <!-- FAQ SECTION -->
     <section class="faq-section">

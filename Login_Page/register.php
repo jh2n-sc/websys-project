@@ -21,7 +21,7 @@ $stmt = $conn->prepare($sql);
   $stmt->bind_param("ss", $username, $password);
 
   if ($stmt->execute()) {
-    header("Location: index.html");
+    header("Location: index.php");
     exit();
   } else {
     echo "Error: " . $conn->error;

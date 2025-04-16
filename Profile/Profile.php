@@ -3,13 +3,13 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");  // Redirect to login if not logged in
+    header("Location: http://localhost/websysprojbuynsell/websys-project/Login_Page/index.php");  // Redirect if not logged in
     exit();
 }
 
-// Database connection
+
 $host = "localhost";
-$dbname = "project_db"; // Your database name
+$dbname = "project_db"; 
 $username = "root";
 $password = "";
 
@@ -21,19 +21,18 @@ try {
     die("Connection failed: " . $e->getMessage());
 }
 
-$userId = $_SESSION['user_id'];  // Get the logged-in user's ID
+$userId = $_SESSION['user_id']; 
 
 try {
-    // Fetch user profile data from the accounts table using the logged-in user_id
     $user = [
         'username' => $_SESSION['username'],
         'photo' => $_SESSION['photo'] ?? '',
         'phone_number' => $_SESSION['phone_number'] ?? '',
         'location' => $_SESSION['location'] ?? '',
     ];
-    
 
-    // Get user listings (assuming there's a relationship between the listings table and the accounts table)
+
+    // Get user listings (relationship between the listings table and the accounts table)
     $listingsStmt = $pdo->prepare("SELECT * FROM listings WHERE seller_account_id = :userId ORDER BY listing_date DESC");
     $listingsStmt->bindParam(':userId', $userId, PDO::PARAM_INT);
     $listingsStmt->execute();
@@ -60,7 +59,7 @@ try {
                 <?php if (!empty($user['photo'])): ?>
                     <img src="<?php echo htmlspecialchars($user['photo']); ?>" alt="Profile Image" class="profile-image">
                 <?php else: ?>
-                    <!-- Display initials or default image if no profile image -->
+                    <!-- Display initials or default image if no pic -->
                     <div class="profile-image" style="display: flex; align-items: center; justify-content: center; background-color:rgb(2, 2, 2); color: white; font-size: 40px;">
                         <?php echo htmlspecialchars(strtoupper(substr($user['username'], 0, 1))); ?>
                     </div>
