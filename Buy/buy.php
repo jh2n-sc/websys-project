@@ -105,9 +105,14 @@ while ($row = $result->fetch_assoc()) {
             </div>
             <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
             <div class="property-specs">
-                <span><?php echo $row["bed_no"]; ?> bed</span>
-                <span><?php echo $row["baths_no"]; ?> bath</span>
-                <span><?php echo $row["dimensions"]; ?> m²</span>
+
+                <?php if ($row['bed_no'] > 1) $bedWord = 'beds'; else $bedWord = 'bed'; ?>
+
+                <span><?php echo $row["bed_no"] . " " . $bedWord ?></span>
+
+                <?php if ($row["bath_no"] > 1) $bathWord = 'baths'; else $bathWord = 'bath';  ?>
+                <span><?php echo $row["bath_no"] . " " . $bathWord ?></span>
+                <span><?php echo $row["size_msq"]; ?> m²</span>
             </div>
             <div class="property-address"><?php echo $row["property_name"]; ?></div>
             <div class="property-location"><?php echo $row["property_location"]; ?></div>

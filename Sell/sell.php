@@ -1,3 +1,20 @@
+<?php
+
+include_once '../php/db_conn.php';
+session_start();
+
+// Check if the user is logged in
+if (!isset($_SESSION['user_id'])) {
+   // header("Location: ../Login_Page/index.php");  // Redirect if not logged in
+    //exit();
+}
+$stmt = $conn->prepare("SELECT * from listings WHERE property_status = 'sold'");
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 

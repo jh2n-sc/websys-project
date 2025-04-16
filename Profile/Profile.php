@@ -1,42 +1,33 @@
 <?php
-session_start();
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
+include_once '../php/db_conn.php';
+
+session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: http://localhost/websysprojbuynsell/websys-project/Login_Page/index.php");  // Redirect if not logged in
+    header("Location: ../Login_Page/index.php");  // Redirect if not logged in
     exit();
 }
 
-
-$host = "localhost";
-$dbname = "project_db"; 
-$username = "root";
-$password = "";
-
-try {
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-} catch (PDOException $e) {
-    die("Connection failed: " . $e->getMessage());
-}
-
-$userId = $_SESSION['user_id']; 
+$userId =(int) $_SESSION['user_id']; 
 
 try {
     $user = [
-        'username' => $_SESSION['username'],
+        'account' => $_SESSION['username'],
         'photo' => $_SESSION['photo'] ?? '',
         'phone_number' => $_SESSION['phone_number'] ?? '',
-        'location' => $_SESSION['location'] ?? '',
     ];
 
-
     // Get user listings (relationship between the listings table and the accounts table)
-    $listingsStmt = $pdo->prepare("SELECT * FROM listings WHERE seller_account_id = :userId ORDER BY listing_date DESC");
-    $listingsStmt->bindParam(':userId', $userId, PDO::PARAM_INT);
+    $listingsStmt = $conn->prepare("SELECT * FROM listings WHERE seller_account_id = ? ORDER BY listing_date DESC");
+   $listingsStmt->bind_param('i', $userId);
     $listingsStmt->execute();
-} catch (PDOException $e) {
+
+    $result = $listingsStmt->get_result();
+} catch (mysqli_sql_exception $e) {
     die("Query failed: " . $e->getMessage());
 }
 ?>
@@ -57,7 +48,7 @@ try {
         <div class="profile-header">
             <div class="profile-image">
                 <?php if (!empty($user['photo'])): ?>
-                    <img src="<?php echo htmlspecialchars($user['photo']); ?>" alt="Profile Image" class="profile-image">
+                    <img src="../php/profile_image.php?account_id=<?php echo $userId?>" alt="Profile Image" class="profile-image">
                 <?php else: ?>
                     <!-- Display initials or default image if no pic -->
                     <div class="profile-image" style="display: flex; align-items: center; justify-content: center; background-color:rgb(2, 2, 2); color: white; font-size: 40px;">
@@ -66,14 +57,14 @@ try {
                 <?php endif; ?>
             </div>
             <div class="profile-info">
-                <h1><?php echo htmlspecialchars($user['username']); ?></h1>
+                <h1><?php echo htmlspecialchars($_SESSION['username']); ?></h1>
                 <div class="profile-details">
-                    <p>Email: <?php echo htmlspecialchars($user['email']); ?></p>
+                    <p>Email: <?php echo htmlspecialchars($_SESSION['email']);?></p>
                     <?php if (!empty($user['phone_number'])): ?>
                         <p>Phone: <?php echo htmlspecialchars($user['phone_number']); ?></p>
                     <?php endif; ?>
                     <?php if (!empty($user['location'])): ?>
-                        <p>Location: <?php echo htmlspecialchars($user['location']); ?></p>
+                        <p>Location: <?php echo htmlspecialchars($_SESSION['location']); ?></p>
                     <?php endif; ?>
                 </div>
                 <div class="profile-actions">
@@ -89,12 +80,12 @@ try {
             <a href="create_listing.php" class="btn">Create New Listing</a>
         </div>
 
-        <?php if ($listingsStmt->rowCount() > 0): ?>
+        <?php if ($result->num_rows > 0): ?>
             <div class="listings-container">
-                <?php while ($listing = $listingsStmt->fetch()): ?>
+                <?php while ($listing = $result->fetch_assoc()): ?>
                     <div class="listing-card">
                         <?php if (!empty($listing['property_photo'])): ?>
-                            <img src="<?php echo htmlspecialchars($listing['property_photo']); ?>" alt="<?php echo htmlspecialchars($listing['property_name']); ?>" class="listing-image">
+                            <img src="../php/image.php?listing_id=<?php echo $listing['listing_id']?>" alt="<?php echo htmlspecialchars($listing['property_name']); ?>" class="listing-image">
                         <?php else: ?>
                             <div class="listing-image" style="background-color: #ddd; display: flex; align-items: center; justify-content: center;">
                                 <span>No Image</span>
