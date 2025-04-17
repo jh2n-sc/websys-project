@@ -18,6 +18,7 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="buy.css">
     <link rel="stylesheet" href="buy-listing.css">
     <link rel="stylesheet" href="popover.css">
+    <link rel="stylesheet" href="buy-filter.css">
 </head>
 
 <body>
@@ -85,20 +86,143 @@ LISTINGS TITLE
 
 LISTINGS
     <!-- LISTINGS -->
-    <div class="property-cards">
-    </div>
-    </section>
+    <div class="page-container">
+        <!-- New filter sidebar -->
+        <aside class="filters-sidebar">
+            <div class="filters-header">
+                <h3>Filter Properties</h3>
+                <button id="clear-filters" class="clear-filters-btn">Clear All</button>
+            </div>
 
-    <main class="container">
-        <!-- Properties around $288,700 -->
+            <!-- Search Box -->
+            <div class="filter-section">
+                <div class="search-container">
+                    <input type="text" id="property-search" placeholder="Search locations, addresses...">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+        <!-- Price Range -->
+        <div class="filter-section">
+            <h4 class="filter-title">Price Range</h4>
+            <div class="price-inputs">
+                <div class="price-input">
+                    <label for="min-price">Min</label>
+                    <input type="text" id="min-price" placeholder="$0">
+                </div>
+                <div class="price-input">
+                    <label for="max-price">Max</label>
+                    <input type="text" id="max-price" placeholder="No Max">
+                </div>
+            </div>
+            <div class="range-slider">
+                <input type="range" id="price-range" min="0" max="1000000" step="10000" value="500000">
+            </div>
+        </div>
+
+        <!-- Property Type -->
+        <div class="filter-section">
+            <h4 class="filter-title">Property Type</h4>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="property-type" value="house">
+                    <span class="checkbox-custom"></span>
+                    Houses
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="property-type" value="condo">
+                    <span class="checkbox-custom"></span>
+                    Condos
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="property-type" value="townhouse">
+                    <span class="checkbox-custom"></span>
+                    Townhouses
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="property-type" value="land">
+                    <span class="checkbox-custom"></span>
+                    Land
+                </label>
+            </div>
+        </div>
+
+        <!-- Bedrooms -->
+        <div class="filter-section">
+            <h4 class="filter-title">Bedrooms</h4>
+            <div class="button-group">
+                <button class="filter-btn">Any</button>
+                <button class="filter-btn">1+</button>
+                <button class="filter-btn">2+</button>
+                <button class="filter-btn">3+</button>
+                <button class="filter-btn">4+</button>
+                <button class="filter-btn">5+</button>
+            </div>
+        </div>
+
+        <!-- Bathrooms -->
+        <div class="filter-section">
+            <h4 class="filter-title">Bathrooms</h4>
+            <div class="button-group">
+                <button class="filter-btn">Any</button>
+                <button class="filter-btn">1+</button>
+                <button class="filter-btn">2+</button>
+                <button class="filter-btn">3+</button>
+                <button class="filter-btn">4+</button>
+            </div>
+        </div>
+
+        <!-- Home Features -->
+        <div class="filter-section">
+            <h4 class="filter-title">Home Features</h4>
+            <div class="checkbox-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" name="features" value="pool">
+                    <span class="checkbox-custom"></span>
+                    Swimming Pool
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="features" value="garage">
+                    <span class="checkbox-custom"></span>
+                    Garage
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="features" value="garden">
+                    <span class="checkbox-custom"></span>
+                    Garden
+                </label>
+                <label class="checkbox-label">
+                    <input type="checkbox" name="features" value="aircon">
+                    <span class="checkbox-custom"></span>
+                    Air Conditioning
+                </label>
+            </div>
+        </div>
+
+        <!-- Apply Filters Button -->
+        <button class="apply-filters-btn">Apply Filters</button>
+    </aside>
+
+
+
+
+
+
+
+
+
+
+        <main class="container">
         <section>
             <div class="section-header">
                 <h2>Homes around $288,700</h2>
                 <a href="#" class="view-all">View all in San Antonio, TX</a>
             </div>
             <div class="property-grid"> 
-                    
-    <?php
+                
+                <?php
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
     ?>
@@ -135,7 +259,7 @@ LISTINGS
                 <div class="property-location"><?php echo $row["property_location"]; ?></div>
             </div>
         </div>
-    <?php
+        <?php
         }
     }
     ?>
@@ -151,10 +275,10 @@ LISTINGS
         'https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80'
         )">
             
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
-                    <div class="new-badge">New - 3 hours ago</div>
-                    <button class="favorite-btn" aria-label="Add to favorites">
+            <div class="property-image">
+                <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
+                <div class="new-badge">New - 3 hours ago</div>
+                <button class="favorite-btn" aria-label="Add to favorites">
                         <i class="far fa-heart"></i>
                     </button>
                 </div>
@@ -163,7 +287,7 @@ LISTINGS
                         <div class="property-type-indicator"></div>
                         <span>Single-Family Home</span>
                     </div>
-                    <div class="property-price">$330,000</div>
+                    <div class="property-price">₱3,330,000</div>
                     <div class="property-specs">
                         <span>4 bed</span>
                         <span>2.5 bath</span>
@@ -201,25 +325,25 @@ LISTINGS
                                 <div class="property-address" id="popover-property-address"></div>
                                 <div class="property-location" id="popover-property-location"></div>
                                 <div class="listing-date">Listed on: <span id="popover-listing-date"></span></div>
-
-
-                    <div class="property-actions">
-                    <button class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
-                        <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
-                    </button>
-
-                    <button class="buy-btn" onclick="handleFakeAction('buy')">
-                        <i class="fa-solid fa-cart-shopping"></i> Buy
-                    </button>
-                </div>
-
-                <div class="fake-message-form">
+                                
+                                
+                                <div class="property-actions">
+                                    <button class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
+                                        <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
+                                    </button>
+                                    
+                                    <button class="buy-btn" onclick="handleFakeAction('buy')">
+                                        <i class="fa-solid fa-cart-shopping"></i> Buy
+                                    </button>
+                                </div>
+                                
+                                <div class="fake-message-form">
                     <textarea placeholder="Your message"></textarea>
                     <button onclick="handleFakeAction('message')">Send Message</button>
                 </div>
 
 
-
+                
                 <div id="wishlist-confirmation" class="mini-popover">
                     <i class="fa-solid fa-heart wishlist-popover-icon"></i>
                     <p>Added to your wishlist!</p>
@@ -235,18 +359,19 @@ LISTINGS
                     <i class="fas fa-check-circle wishlist-popover-icon"></i>
                     <p>Message sent!</p>
                 </div>
-
+                
             </div>
         </div>
     </div>
+</div>
 </div>
 
 CONTACT FORM
     <!-- CONTACT SECTION -->
     <section class="contact-section">
-    <div class="contact-info">
-        <h2>Still haven't found what you're looking for?</h2>
-        <p>Let us know your preferences, and we'll help you find the perfect home.</p>
+        <div class="contact-info">
+            <h2>Still haven't found what you're looking for?</h2>
+            <p>Let us know your preferences, and we'll help you find the perfect home.</p>
     </div>
     <form class="contact-form">
         <div class="form-row">
@@ -309,6 +434,7 @@ FAQ
 
     <script src="buy.js"></script>
     <script src="popover.js"></script>
+    <script src="buy-filter.js"></script>
 
 
 
