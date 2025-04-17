@@ -62,7 +62,7 @@ $result = $stmt->get_result();
 
 
 BANNER
-<!-- BANNER -->
+    <!-- BANNER -->
     <section class="banner">
         <div class="banner-content">
             <h1 class="banner-title">
@@ -76,7 +76,7 @@ BANNER
 
 
 LISTINGS TITLE
-<!-- LISTINGS TITLE -->
+    <!-- LISTINGS TITLE -->
     <section class="listing-title">
         <h2 class="section-heading">Discover Your Ideal Property</h2>
         <p class="section-description">From luxury apartments to cozy homes, browse our diverse listings that cater to all your needs and preferences. Your perfect property is just a few clicks away.</p>
