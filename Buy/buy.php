@@ -61,15 +61,26 @@ $result = $stmt->get_result();
     </header>
 
 
+BANNER
 <!-- BANNER -->
-<section class="banner">BANNER
+    <section class="banner">
+        <div class="banner-content">
+            <h1 class="banner-title">
+                <span class="white-text">FIND YOUR DREAM</span> <span class="yellow-text">PROPERTY IN //NAME//</span>
+            </h1>
+            <p class="banner-subtitle">Explore the best homes, apartments, and properties tailored to your needs in PILIPINS!</p>
+            <a href="#property-listings" class="cta-button">Explore Listings</a>
+        </div>
     </section>
-    
+
+
+
 LISTINGS TITLE
-    <!-- LISTINGS TITLE -->
-    <section class="property-listings">
-    <h2>Discover //NAME// Property</h2>
-    <p>Whether you're looking for a modern apartment in the city or a peaceful home in the suburbs, our listings offer something for everyone.</p> 
+<!-- LISTINGS TITLE -->
+    <section class="listing-title">
+        <h2 class="section-heading">Discover Your Ideal Property</h2>
+        <p class="section-description">From luxury apartments to cozy homes, browse our diverse listings that cater to all your needs and preferences. Your perfect property is just a few clicks away.</p>
+    </section>
     
 
 LISTINGS
