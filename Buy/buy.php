@@ -17,6 +17,7 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="buy.css">
     <link rel="stylesheet" href="buy-listing.css">
+    <link rel="stylesheet" href="popover.css">
 </head>
 
 <body>
@@ -85,41 +86,60 @@ LISTINGS
                 <a href="#" class="view-all">View all in San Antonio, TX</a>
             </div>
             <div class="property-grid"> 
-
-<?php
-if ($result->num_rows > 0) {
-while ($row = $result->fetch_assoc()) {
-?>
-    <div class="property-card">  DYNAMIC >
-        <div class="property-image">
-            <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
-            <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
-            <button class="favorite-btn" aria-label="Add to favorites">
-                <i class="far fa-heart"></i>
-            </button>
-        </div>
-        <div class="property-details">
-            <div class="property-type">
-                <div class="property-type-indicator"></div>
-                <span><?php echo $row["property_description"]; ?></span>
+                    
+    <?php
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+    ?>
+        <div class="property-card" onclick="showPropertyDetails(
+            '<?php echo $row["property_name"]; ?>',
+            '<?php echo $row["price"]; ?>',
+            '<?php echo $row["bed_no"]; ?>',
+            '<?php echo $row["baths_no"]; ?>',
+            '<?php echo $row["dimensions"]; ?>',
+            '<?php echo $row["property_location"]; ?>',
+            '<?php echo date("F j, Y", strtotime($row["listing_date"])); ?>',
+            '<?php echo $row["property_description"]; ?>',
+            '../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>'
+        )">
+            <div class="property-image">
+                <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
+                <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
+                <button class="favorite-btn" aria-label="Add to favorites">
+                    <i class="far fa-heart"></i>
+                </button>
             </div>
-            <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
-            <div class="property-specs">
-                <span><?php echo $row["bed_no"]; ?> bed</span>
-                <span><?php echo $row["baths_no"]; ?> bath</span>
-                <span><?php echo $row["dimensions"]; ?> m²</span>
+            <div class="property-details">
+                <div class="property-type">
+                    <div class="property-type-indicator"></div>
+                    <span><?php echo $row["property_description"]; ?></span>
+                </div>
+                <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
+                <div class="property-specs">
+                    <span><?php echo $row["bed_no"]; ?> bed</span>
+                    <span><?php echo $row["baths_no"]; ?> bath</span>
+                    <span><?php echo $row["dimensions"]; ?> m²</span>
+                </div>
+                <div class="property-address"><?php echo $row["property_name"]; ?></div>
+                <div class="property-location"><?php echo $row["property_location"]; ?></div>
             </div>
-            <div class="property-address"><?php echo $row["property_name"]; ?></div>
-            <div class="property-location"><?php echo $row["property_location"]; ?></div>
         </div>
-    </div>
-<?php
+    <?php
+        }
     }
-}
-?>
-            <!-- Property 4 -->
-            <div class="property-card">
-            STATIC >
+    ?>
+        <div class="property-card" onclick="showPropertyDetails(
+        '10434 Sun Ml',
+        '330000',
+        '4',
+        '2.5',
+        '2,545',
+        'San Antonio, TX 78254',
+        '3 hours ago',
+        'Single-Family Home',
+        'https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80'
+        )">
+            
                 <div class="property-image">
                     <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
                     <div class="new-badge">New - 3 hours ago</div>
@@ -146,6 +166,69 @@ while ($row = $result->fetch_assoc()) {
     </section>
 </main>
 
+                <!-- Property Popover  -->
+                <div id="property-popover" class="popover-overlay">
+                    <div class="popover-content">
+                        <button class="close-popover" onclick="hidePropertyDetails()">&times;</button>
+                        <div class="popover-header">
+                            <h2>Property Details</h2>
+                        </div>
+                        <div class="popover-body">
+                            <div class="popover-image">
+                                <img id="popover-property-image" src="" alt="Property Image">
+                            </div>
+                            <div class="popover-details">
+                                <div class="property-type">
+                                    <span id="popover-property-type"></span>
+                                </div>
+                                <div class="property-price" id="popover-property-price"></div>
+                                <div class="property-specs">
+                                    <span id="popover-property-beds"></span>
+                                    <span id="popover-property-baths"></span>
+                                    <span id="popover-property-size"></span>
+                                </div>
+                                <div class="property-address" id="popover-property-address"></div>
+                                <div class="property-location" id="popover-property-location"></div>
+                                <div class="listing-date">Listed on: <span id="popover-listing-date"></span></div>
+
+
+                    <div class="property-actions">
+                    <button class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
+                        <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
+                    </button>
+
+                    <button class="buy-btn" onclick="handleFakeAction('buy')">
+                        <i class="fa-solid fa-cart-shopping"></i> Buy
+                    </button>
+                </div>
+
+                <div class="fake-message-form">
+                    <textarea placeholder="Your message"></textarea>
+                    <button onclick="handleFakeAction('message')">Send Message</button>
+                </div>
+
+
+
+                <div id="wishlist-confirmation" class="mini-popover">
+                    <i class="fa-solid fa-heart wishlist-popover-icon"></i>
+                    <p>Added to your wishlist!</p>
+                </div>
+
+
+                <div id="buy-confirmation" class="mini-popover">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <p>Thank you! We'll contact you shortly to proceed with your purchase.</p>
+                </div>
+
+                <div class="mini-popover" id="messageSentPopover">
+                    <i class="fas fa-check-circle wishlist-popover-icon"></i>
+                    <p>Message sent!</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 CONTACT FORM
     <!-- CONTACT SECTION -->
@@ -217,8 +300,17 @@ FAQ
     
 
 
-
     <script src="buy.js"></script>
+    <script src="popover.js"></script>
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

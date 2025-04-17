@@ -17,9 +17,9 @@ if ($result->num_rows === 1) {
   // Check if passwords match
   if ($password === $user['account_password']) {
     session_start();
-    $_SESSION['user_id'] = $user['account_id']; 
+    $_SESSION['user_id'] = $user['account_id'];
     $_SESSION['username'] = $user['username'];
-    $_SESSION['email'] = $user['email'];
+    $_SESSION['email'] = $user['email'];  
     $_SESSION['photo'] = $user['photo'];
     $_SESSION['phone_number'] = $user['phone_number'];
     $_SESSION['location'] = $user['location'];
@@ -32,4 +32,3 @@ if ($result->num_rows === 1) {
 } else {
   echo "User not found.";
 }
-?>

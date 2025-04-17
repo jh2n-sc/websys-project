@@ -1,0 +1,253 @@
+/* Popover Styles */
+.popover-overlay {
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.popover-content {
+    background-color: white;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 1000px; /* previously 800px */
+    max-height: 95vh; /* increased height */
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    animation: popoverFadeIn 0.3s ease;
+}
+
+
+@keyframes popoverFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.close-popover {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+    z-index: 2;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.close-popover:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.popover-header {
+    padding: 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.popover-header h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #222;
+    font-weight: 600;
+}
+
+.popover-body {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 24px;
+    padding: 24px;
+}
+
+.popover-image {
+    height: 100%;   
+}
+
+.popover-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.popover-details {
+    font-size: 16px;
+    color: #555;
+}
+
+.property-price {
+    font-size: 28px;
+    font-weight: 700;
+    color: #111;
+    margin-bottom: 14px;
+}
+
+.property-specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    margin-bottom: 20px;
+}
+
+.property-specs span {
+    font-size: 15px;
+}
+
+.property-address,
+.property-location {
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 6px;
+}
+
+.listing-date {
+    color: #666;
+    font-size: 14px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #eee;
+}
+
+.property-actions {
+    display: flex;
+    gap: 14px;
+    margin: 28px 0 20px;
+}
+
+.property-actions button {
+    flex: 1;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.wishlist-btn {
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+.wishlist-btn:hover {
+    background-color: #eee;
+}
+
+.wishlist-btn .heart-icon {
+    color: #888;
+    font-size: 18px;
+    transition: color 0.3s ease;
+}
+
+.wishlist-btn.active .heart-icon {
+    color: #e63946;
+}
+
+.buy-btn {
+    background-color: #0071e3;
+    color: white;
+}
+
+.buy-btn:hover {
+    background-color: #005bb5;
+}
+
+.fake-message-form {
+    border-top: 1px solid #eee;
+    padding-top: 24px;
+}
+
+.fake-message-form h3 {
+    font-size: 17px;
+    margin-bottom: 12px;
+    font-weight: 600;
+    color: #333;
+}
+
+.fake-message-form input,
+.fake-message-form textarea,
+.fake-message-form button {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+    margin-bottom: 12px;
+    background-color: #f9f9f9;
+    color: #888;
+}
+
+.fake-message-form button {
+    background-color: #0071e3;
+    color: white;
+}
+
+/* Popover Message */
+.mini-popover {
+    display: none;
+    position: fixed;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 26px 36px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 2000;
+    text-align: center;
+    animation: fadeSlideIn 0.3s ease;
+    width: 90%;
+    max-width: 380px;
+}
+
+.mini-popover i {
+    font-size: 32px;
+    margin-bottom: 14px;
+}
+
+.mini-popover p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+
+.wishlist-popover-icon {
+    color: #e63946;
+}
+
+@keyframes fadeSlideIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+    }
+}

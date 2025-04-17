@@ -37,6 +37,7 @@ handleResize();
 openButton.addEventListener('click', openSidebar);
 closeButton.addEventListener('click', closeSidebar);
 
+
 // Favorite buttons 
 const favoriteButtons = document.querySelectorAll('.favorite-btn');
 favoriteButtons.forEach(button => {
@@ -52,4 +53,5 @@ favoriteButtons.forEach(button => {
         }
     });
 });
+
 });
