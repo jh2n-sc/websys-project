@@ -155,3 +155,100 @@
     font-size: 13px;
     color: #888;
 }
+
+/* Banner section */
+.banner {
+    background: url('ememe.jpg'); 
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: #ffffff;
+    text-align: left; 
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-content {
+    max-width: 700px; 
+    position: relative;
+    z-index: 1;
+    padding: 20px;
+    padding-left: 60px;
+    margin-top: 80px;
+}
+
+.banner-title {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.white-text {
+    color: #ffffff;
+}
+
+.yellow-text {
+    color: #ecae2b; 
+}
+
+.banner-subtitle {
+    font-size: 1.6rem;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    background-color: #1f2f89;
+    color: #ffffff;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #215897;
+}
+
+
+/* Listings Title Section */
+.listing-title {
+    background-color: #f7f7f7;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.section-heading {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #333333;
+    margin-bottom: 1rem;
+}
+
+.section-description {
+    font-size: 1.2rem;
+    color: #666666;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+    .banner-title {
+        font-size: 2.5rem;
+    }
+
+    .banner-subtitle {
+        font-size: 1.2rem;
+    }
+
+    .section-heading {
+        font-size: 2rem;
+    }
+
+    .section-description {
+        font-size: 1rem;
+    }
+}
+
