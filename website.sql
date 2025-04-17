@@ -1,5 +1,5 @@
 -- tables
-CREATE DATABASE `project_db` COLLATE utf8mb4_general_ci;
+CREATE DATABASE `project_db` COLLATE utf8mb4_0900_ai_ci;
 USE `project_db`;
 
 CREATE TABLE accounts (
@@ -23,7 +23,7 @@ CREATE TABLE listings (
     seller_account_id int NOT NULL,
     property_name varchar(50) NOT NULL,
     property_details varchar(200),
-    price float NOT NULL,
+    price decimal(15, 2) NOT NULL,
     property_type varchar(50) NOT NULL,
     property_size varchar(100) NOT NULL,
     property_description varchar(200) NOT NULL,
@@ -40,10 +40,10 @@ CREATE TABLE listings (
 
 CREATE TABLE property_more_details (
     ref_listing_id int NOT NULL,
-    bed_no int,
-    room_no int,
-    baths_no int,
-    dimensions int,
+    bed_no varchar(30),
+    room_no varchar(30),
+    bath_no varchar(30),
+    size_msq varchar(30),
 
     CONSTRAINT fk_ref_listing_id FOREIGN KEY (ref_listing_id) REFERENCES listings(listing_id)
 )DEFAULT CHARSET=UTF8MB4;

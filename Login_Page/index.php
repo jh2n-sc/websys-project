@@ -2,7 +2,7 @@
 session_start();
 // Check if the user is logged in
 if (isset($_SESSION['user_id'])) {
-  header("Location: http://localhost/websysprojbuynsell/websys-project/Profile/Profile.php");
+  header("Location: ../Profile/Profile.php");
   exit();
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-include 'db_conn.php';
+include '../php/db_conn.php';
 
 $username = $_POST['username'];
 $password = $_POST['password'];
@@ -24,7 +24,7 @@ if ($result->num_rows === 1) {
     $_SESSION['phone_number'] = $user['phone_number'];
     $_SESSION['location'] = $user['location'];
 
-    header("Location: http://localhost/websysprojbuynsell/websys-project/home/home.html");
+    header("Location: ../Home/home.html");
     exit();
   } else {
     echo "Incorrect password.";

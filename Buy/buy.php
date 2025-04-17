@@ -275,10 +275,6 @@ FAQ
     </section>
     
 
-
-
-
-
     <!-- FOOTER -->
     <footer class="footer">
     <div class="footer-container">
