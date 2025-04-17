@@ -54,14 +54,14 @@ function setupPriceRange() {
     
     priceRange.addEventListener('input', function() {
         const value = parseInt(this.value);
-        minPrice.value = '$' + Math.floor(value * 0.5).toLocaleString();
-        maxPrice.value = '$' + value.toLocaleString();
+        minPrice.value = '₱' + Math.floor(value * 0.5).toLocaleString();
+        maxPrice.value = '₱' + value.toLocaleString();
     });
     
     // Initialize with default values
     const defaultValue = parseInt(priceRange.value);
-    minPrice.placeholder = '$0';
-    maxPrice.placeholder = '$' + defaultValue.toLocaleString();
+    minPrice.placeholder = '₱0';
+    maxPrice.placeholder = '₱' + defaultValue.toLocaleString();
 }
 
 // Demo filter application (in real app would connect to your PHP backend)
