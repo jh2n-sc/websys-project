@@ -39,3 +39,4 @@ function closeSidebar() {
 
 window.addEventListener('resize', handleResize);
 handleResize();
+

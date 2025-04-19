@@ -286,123 +286,300 @@ SELL
 
 
 
-
-
-
-
-
-
-        
-<!-- Recently Sold -->
-      <section class="sold-section">
-        <div class="sold-header">
-          <h2>Recently Sold</h2>
-          <a href="#" class="sold-view-all">View full archive</a>
+  <!-- Recently Sold Section -->
+  <section class="sold-section">
+    <div class="sold-container">
+      <div class="sold-header">
+        <div class="sold-title-container">
+          <div class="sold-subtitle">Real Estate Success</div>
+          <h2>Recently Sold Properties</h2>
         </div>
+        <a href="#" class="sold-view-all">View full archive</a>
+      </div>
       
+      <div class="sold-carousel-container">
+        <div class="sold-controls">
+          <button class="sold-arrow sold-prev">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button class="sold-arrow sold-next">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+        
         <div class="sold-carousel">
           <!-- Sold Property 1 -->
           <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
             <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
+              <div class="sold-price">₱2,450,000 <span class="sold-price-highlight">20% Above Market</span></div>
               <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">3</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">2</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">1,450</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
             </div>
           </div>
-
-          <!-- Sold Property 1 -->
-          <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
-            <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
-              <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
-            </div>
-          </div>
-
-          <!-- Sold Property 1 -->
-          <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
-            <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
-              <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
-            </div>
-          </div>
-
-          <!-- Sold Property 1 -->
-          <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
-            <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
-              <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
-            </div>
-          </div>
-
-          <!-- Sold Property 1 -->
-          <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
-            <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
-              <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
-            </div>
-          </div>
-
-          <!-- Sold Property 1 -->
-          <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
-            <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
-              <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
-            </div>
-          </div>
-
-          <!-- Sold Property 1 -->
-          <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
-            <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
-              <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
-            </div>
-          </div>
-
-          <!-- Sold Property 1 -->
-          <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
-            <div class="sold-info">
-              <div class="sold-price">₱2,450,000</div>
-              <div class="sold-address">2911 Quiet Plain Dr, San Antonio</div>
-            </div>
-          </div>
-      
+          
           <!-- Sold Property 2 -->
           <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
             <div class="sold-info">
-              <div class="sold-price">₱3,100,000</div>
+              <div class="sold-price">₱3,100,000 <span class="sold-price-highlight">15% Above Market</span></div>
               <div class="sold-address">1234 Oak Street, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">4</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">3</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">2,100</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
             </div>
           </div>
-      
+
           <!-- Sold Property 3 -->
           <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
             <div class="sold-info">
-              <div class="sold-price">₱4,200,000</div>
-              <div class="sold-address">4820 Stone Ridge, San Antonio</div>
+              <div class="sold-price">₱4,750,000 <span class="sold-price-highlight">30% Above Market</span></div>
+              <div class="sold-address">578 Pine Valley Road, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">5</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">4</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">3,200</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
             </div>
           </div>
-      
+
           <!-- Sold Property 4 -->
           <div class="sold-card">
-            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=800&q=80" alt="Sold Land">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1518780664697-55e3ad937233?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
             <div class="sold-info">
-              <div class="sold-price">₱1,850,000</div>
-              <div class="sold-address">123 West Lane, San Antonio</div>
+              <div class="sold-price">₱1,875,000 <span class="sold-price-highlight">Fast Sale</span></div>
+              <div class="sold-address">123 Meadow Lane, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">2</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">1</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">980</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
-      
 
+          <!-- Sold Property 5 -->
+          <div class="sold-card">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
+            <div class="sold-info">
+              <div class="sold-price">₱5,200,000 <span class="sold-price-highlight">Luxury Home</span></div>
+              <div class="sold-address">427 Highland Avenue, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">6</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">5</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">4,350</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sold Property 6 -->
+          <div class="sold-card">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
+            <div class="sold-info">
+              <div class="sold-price">₱2,960,000 <span class="sold-price-highlight">10% Above Market</span></div>
+              <div class="sold-address">815 Sunshine Road, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">4</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">3</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">2,100</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sold Property 7 -->
+          <div class="sold-card">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1576941089067-2de3c901e126?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
+            <div class="sold-info">
+              <div class="sold-price">₱1,650,000 <span class="sold-price-highlight">Townhouse</span></div>
+              <div class="sold-address">942 Central Avenue, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">3</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">2</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">1,340</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sold Property 8 -->
+          <div class="sold-card">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
+            <div class="sold-info">
+              <div class="sold-price">₱3,400,000 <span class="sold-price-highlight">Waterfront</span></div>
+              <div class="sold-address">76 Lake View Drive, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">4</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">3</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">2,780</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sold Property 9 -->
+          <div class="sold-card">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1513584684374-8bab748fbf90?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
+            <div class="sold-info">
+              <div class="sold-price">₱1,290,000 <span class="sold-price-highlight">First-time Buyer</span></div>
+              <div class="sold-address">534 Maple Court, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">2</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">1</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">925</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Sold Property 10 -->
+          <div class="sold-card">
+            <div class="sold-image-container">
+              <div class="sold-tag">Sold</div>
+              <img src="https://images.unsplash.com/photo-1505843513577-22bb7d21e455?auto=format&fit=crop&w=800&q=80" alt="Sold Home">
+            </div>
+            <div class="sold-info">
+              <div class="sold-price">₱7,250,000 <span class="sold-price-highlight">Estate</span></div>
+              <div class="sold-address">1290 Hilltop Road, San Antonio</div>
+              <div class="sold-details">
+                <div class="sold-detail">
+                  <div class="sold-detail-value">7</div>
+                  <div class="sold-detail-label">Beds</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">6</div>
+                  <div class="sold-detail-label">Baths</div>
+                </div>
+                <div class="sold-detail">
+                  <div class="sold-detail-value">5,800</div>
+                  <div class="sold-detail-label">Sq Ft</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+        <div class="sold-progress">
+          <div class="sold-progress-bar" style="width: 20%;"></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
 
 
@@ -454,5 +631,6 @@ FAQ
 
 <script src="sell.js"></script>
 <script src="sell-form.js"></script>
+<script src="sell-carousel.js"></script>
 </body>
 </html>

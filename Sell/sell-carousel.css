@@ -1,81 +1,418 @@
-/* Recently Sold Section */
+/* Enhanced Recently Sold Section */
 .sold-section {
-    padding: 40px 20px;
-    background-color: #f9fafb;
-  }
-  
-  .sold-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
+  padding: 5rem 0;
+  text-align: center;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0;
+  overflow: hidden;
+  background-color: #f8fafc;
+  position: relative;
+}
+
+.sold-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(37, 99, 235, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(37, 99, 235, 0.05) 0%, transparent 50%);
+  z-index: 0;
+}
+
+.sold-container {
+  position: relative;
+  z-index: 1;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+.sold-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 3rem;
+  padding: 0 3rem;
+}
+
+.sold-title-container {
+  text-align: left;
+}
+
+.sold-subtitle {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 0.5rem;
+}
+
+.sold-header h2 {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #111827;
+  line-height: 1.2;
+  margin: 0;
+}
+
+.sold-view-all {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #2563eb;
+  text-decoration: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 3rem;
+  transition: all 0.3s ease;
+  background-color: rgba(37, 99, 235, 0.08);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sold-view-all:hover {
+  background-color: rgba(37, 99, 235, 0.15);
+  transform: translateY(-2px);
+}
+
+.sold-view-all::after {
+  content: '→';
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.sold-view-all:hover::after {
+  transform: translateX(3px);
+}
+
+/* Carousel Controls */
+.sold-controls {
+  display: flex;
+  gap: 1rem;
+  position: absolute;
+  top: 3rem;
+  right: 3rem;
+  z-index: 10;
+}
+
+.sold-arrow {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: white;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #111827;
+}
+
+.sold-arrow:hover {
+  background-color: #2563eb;
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(37, 99, 235, 0.25);
+}
+
+.sold-arrow:active {
+  transform: translateY(0);
+}
+
+.sold-arrow svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+/* Carousel Scroll Layout */
+.sold-carousel-container {
+  position: relative;
+  overflow: hidden;
+  padding: 1rem 0;
+}
+
+.sold-carousel {
+  display: flex;
+  gap: 2rem;
+  padding: 1.5rem 3rem;
+  overflow-x: auto;
+  scroll-behavior: smooth; /* Changed from smooth to auto to let our JS handle animation */
+  scroll-snap-type: x mandatory;
+  position: relative;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  will-change: transform, scroll-position;
+}
+
+.sold-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.sold-card {
+  flex: 0 0 auto;
+  width: 400px;
+  margin-right: 0;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+  scroll-snap-align: start;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transform-origin: center bottom;
+}
+
+.sold-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.sold-image-container {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.sold-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.7s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.sold-card:hover img {
+  transform: scale(1.08);
+}
+
+.sold-tag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: #2563eb;
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sold-info {
+  padding: 1.5rem;
+  text-align: left;
+  position: relative;
+}
+
+.sold-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #111827;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+}
+
+.sold-price-highlight {
+  color: #2563eb;
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: rgba(37, 99, 235, 0.1);
+  padding: 0.25rem 0.75rem;
+  border-radius: 1rem;
+}
+
+.sold-address {
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.sold-details {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 1rem;
+  border-top: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.sold-detail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sold-detail-value {
+  font-weight: 700;
+  color: #111827;
+  margin-bottom: 0.25rem;
+}
+
+.sold-detail-label {
+  font-size: 0.75rem;
+}
+
+/* Progress indicator */
+.sold-progress {
+  width: 100%;
+  height: 4px;
+  background-color: #e5e7eb;
+  border-radius: 2px;
+  margin: 2rem auto 0;
+  max-width: 200px;
+  position: relative;
+  overflow: hidden;
+}
+
+.sold-progress-bar {
+  position: absolute;
+  height: 100%;
+  background-color: #2563eb;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+  .sold-card {
+    width: 350px;
   }
   
   .sold-header h2 {
-    font-size: 24px;
-    font-weight: 700;
-    color: #222;
+    font-size: 2.25rem;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .sold-header {
+    padding: 0 2rem;
   }
   
-  .sold-view-all {
-    font-size: 14px;
-    color: #2563eb;
-    text-decoration: none;
-  }
-  
-  .sold-view-all:hover {
-    text-decoration: underline;
-  }
-  
-  /* Carousel Scroll Layout */
-  .sold-carousel {
-    display: flex;
-    gap: 24px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 10px;
-    padding-top: 10px;
-  }
-  
-  .sold-carousel::-webkit-scrollbar {
-    display: none;
+  .sold-header h2 {
+    font-size: 2rem;
   }
   
   .sold-card {
-    flex: 0 0 auto;
-    width: 260px;
-    border-radius: 12px;
-    overflow: hidden;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
-    scroll-snap-align: start;
-    transition: transform 0.2s ease;
+    width: 300px;
   }
   
-  .sold-card:hover {
-    transform: translateY(-4px);
+  .sold-image-container {
+    height: 220px;
   }
   
-  .sold-card img {
-    width: 100%;
-    height: 170px; 
-    object-fit: cover;
+  .sold-controls {
+    top: 2.5rem;
+    right: 2rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .sold-section {
+    padding: 4rem 0;
+  }
+  
+  .sold-carousel {
+    gap: 1.5rem;
+    padding: 1rem 2rem;
+  }
+
+  .sold-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .sold-view-all {
+    align-self: flex-start;
+  }
+  
+  .sold-header h2 {
+    font-size: 1.75rem;
+  }
+  
+  .sold-card {
+    width: 280px;
+  }
+  
+  .sold-image-container {
+    height: 200px;
   }
   
   .sold-info {
-    padding: 16px;
+    padding: 1.25rem;
   }
   
   .sold-price {
-    font-size: 22px;
-    font-weight: 800;
-    color: #2563eb;
-    margin-bottom: 8px;
+    font-size: 1.25rem;
+  }
+  
+  .sold-controls {
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .sold-section {
+    padding: 3rem 0;
+  }
+  
+  .sold-carousel {
+    gap: 1rem;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .sold-header {
+    padding: 0 1.5rem;
+  }
+  
+  .sold-subtitle {
+    font-size: 0.75rem;
+  }
+  
+  .sold-header h2 {
+    font-size: 1.5rem;
+  }
+
+  .sold-card {
+    width: 240px;
+  }
+  
+  .sold-image-container {
+    height: 180px;
+  }
+  
+  .sold-price {
+    font-size: 1.125rem;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .sold-price-highlight {
+    margin-left: 0;
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
   }
   
   .sold-address {
-    font-size: 14px;
-    color: #555;
-    line-height: 1.5;
+    font-size: 0.875rem;
   }
   
+  .sold-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
