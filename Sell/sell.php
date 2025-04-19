@@ -17,7 +17,6 @@ $result = $stmt->get_result();
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -30,6 +29,12 @@ $result = $stmt->get_result();
 </head>
 
 <body>
+  <!-- Loading Screen -->
+  <div id="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
 
 <!-- NAV -->
 <header>
@@ -628,6 +633,13 @@ FAQ
     </div>
   </div>
 </footer>
+
+<script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('page-loader');
+      loader.classList.add('fade-out');
+    });
+</script>
 
 <script src="sell.js"></script>
 <script src="sell-form.js"></script>

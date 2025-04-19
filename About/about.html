@@ -9,6 +9,25 @@
     <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
 </head>
 <body>
+
+
+
+
+
+
+
+
+
+<!-- Loading Screen -->
+<div id="page-loader">
+    <div class="loader-content">
+      <div class="loader-spinner"></div>
+    </div>
+  </div>
+
+
+
+    
     <div class="about">
     <div class="title">
         <h2>About Us</h2>
@@ -79,5 +98,17 @@
         <div class="tech-item"><i class="devicon-css3-plain colored"></i></div>
     </div>
 </div>
+
+
+
+
+
+<script>
+    window.addEventListener('load', () => {
+      const loader = document.getElementById('page-loader');
+      loader.classList.add('fade-out');
+    });
+</script>
+
 </body>
 </html>
