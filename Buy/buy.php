@@ -24,6 +24,13 @@ $result = $stmt->get_result();
 
 <body>
 
+    <!-- Loading Screen -->
+    <div id="page-loader">
+    <div class="loader-content">
+        <div class="loader-spinner"></div>
+    </div>
+    </div>
+
     <!-- NAV -->
     <header>
         <div class="logo">

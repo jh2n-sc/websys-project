@@ -634,12 +634,7 @@ FAQ
   </div>
 </footer>
 
-<script>
-    window.addEventListener('load', () => {
-      const loader = document.getElementById('page-loader');
-      loader.classList.add('fade-out');
-    });
-</script>
+
 
 <script src="sell.js"></script>
 <script src="sell-form.js"></script>

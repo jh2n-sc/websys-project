@@ -37,6 +37,5 @@ function closeSidebar() {
   navbar.setAttribute('inert', '');
 }
 
-window.addEventListener('resize', handleResize);
-handleResize();
+
 
