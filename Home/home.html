@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="home.css">
     <link rel="stylesheet" href="property-listings.css">
+    <link rel="stylesheet" href="faq.css">k
 </head>
 
 <body>
@@ -206,7 +207,6 @@ LISTINGS
       </section>
       
 
-
 INQUIRY
     <!-- INQUIRY -->
     <section class="inquiry-section">
@@ -250,83 +250,159 @@ INQUIRY
     </section>
 
 
-
-
-
-
-FAQ
-    <!-- FAQ -->
+ <!-- FAQ Section -->
     <section class="faq-section">
         <div class="faq-container">
-            Left Column (Heading & Intro)
-            <div class="faq-left">
-                <h2>Frequently Asked<br>Question</h2>
-                <p>Whether you're looking for a modern apartment in the city or a peaceful home in the suburbs, our
-                    listings offer something for everyone.</p>
+            <div class="faq-header">
+                <div class="faq-subtitle">Knowledge Base</div>
+                <h2 class="faq-title">Frequently Asked Questions</h2>
+                <p class="faq-description">Get answers to the most common questions about our real estate services, property buying process, and investment opportunities.</p>
             </div>
 
-            Right Column (FAQ Accordions)
-            <div class="faq-right">
-                <div class="faq-item active">
-                    <button class="faq-question">
-                        How do I start the process of buying a property with //NAME//?
-                        <span class="arrow">&#9660;</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>At //NAME//, we make it simple for you to find your dream home. Start by browsing our
-                            property listings, and once you've found a property that interests you, contact our team to
-                            schedule a viewing and get expert advice on the next steps.</p>
+            <div class="faq-search">
+                <div class="faq-search-icon"><i class="fa-solid fa-magnifying-glass"></i></div>
+                <input type="text" placeholder="Search for questions or keywords..." id="faqSearch">
+            </div>
+
+            <div class="faq-layout">
+                <!-- FAQ Categories -->
+                <div class="faq-categories">
+                    <div class="faq-category active" data-category="buying">
+                        <div class="faq-category-icon"><i class="fa-solid fa-house"></i></div>
+                        <span class="faq-category-text">Buying Property</span>
+                    </div>
+                    <div class="faq-category" data-category="selling">
+                        <div class="faq-category-icon"><i class="fa-solid fa-peso-sign"></i></div>
+                        <span class="faq-category-text">Selling Property</span>
+                    </div>
+                    <div class="faq-category" data-category="financing">
+                        <div class="faq-category-icon"><i class="fa-solid fa-credit-card"></i></div>
+                        <span class="faq-category-text">Financing Options</span>
+                    </div>
+                    <div class="faq-category" data-category="management">
+                        <div class="faq-category-icon"><i class="fa-solid fa-wrench"></i></div>
+                        <span class="faq-category-text">Property Management</span>
+                    </div>
+                    <div class="faq-category" data-category="investment">
+                        <div class="faq-category-icon"><i class="fa-solid fa-piggy-bank"></i></div>
+                        <span class="faq-category-text">Investment Advice</span>
                     </div>
                 </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        What types of properties does //NAME// offer?
-                        <span class="arrow">&#9660;</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>//NAME// offers a wide range of properties, including apartments, villas, townhouses, and
-                            commercial spaces tailored to fit your lifestyle and investment needs.</p>
+                <!-- FAQ Questions -->
+                <div class="faq-questions" id="buyingQuestions">
+                    <div class="faq-item active">
+                        <button class="faq-question">
+                            How do I start the process of buying a property?
+                            <span class="faq-indicator"><i class="fa-solid fa-angle-down"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>The home buying process typically follows these key steps:</p>
+                            <ul>
+                                <li><strong>Define your needs:</strong> Determine your budget, preferred locations, and must-have features.</li>
+                                <li><strong>Get pre-approved for financing:</strong> Speak with lenders to understand how much you can borrow.</li>
+                                <li><strong>Work with an agent:</strong> Our expert agents will help you find properties that match your criteria.</li>
+                                <li><strong>View properties:</strong> We'll arrange personalized tours of homes that meet your requirements.</li>
+                                <li><strong>Make an offer:</strong> Once you find the right property, we'll help you prepare and submit a compelling offer.</li>
+                                <li><strong>Complete due diligence:</strong> Conduct inspections and review all property documents.</li>
+                                <li><strong>Close the deal:</strong> Finalize paperwork, secure financing, and receive the keys to your new home!</li>
+                            </ul>
+                            <p>Our dedicated team will guide you through each step to ensure a smooth and successful purchase.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What should I look for when viewing a property?
+                            <span class="faq-indicator"><i class="fa-solid fa-angle-down"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>When viewing a property, pay attention to these important factors:</p>
+                            <ul>
+                                <li><strong>Location and neighborhood:</strong> Assess the surrounding area, proximity to amenities, schools, transportation, and safety.</li>
+                                <li><strong>Structural integrity:</strong> Check for signs of damage, water issues, or foundation problems.</li>
+                                <li><strong>Space and layout:</strong> Consider if the floor plan meets your needs and lifestyle requirements.</li>
+                                <li><strong>Natural light and orientation:</strong> Notice how light enters the property throughout the day.</li>
+                                <li><strong>Systems and appliances:</strong> Examine the condition of HVAC, electrical, plumbing, and included appliances.</li>
+                                <li><strong>Storage space:</strong> Evaluate if there's sufficient storage for your belongings.</li>
+                                <li><strong>Noise levels:</strong> Pay attention to sounds from neighbors, streets, or other potential disturbances.</li>
+                                <li><strong>Future potential:</strong> Consider possibilities for renovation or expansion if relevant to your plans.</li>
+                            </ul>
+                            <p>Our agents accompany you during viewings to help identify important features and potential concerns that might not be immediately obvious.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How much do I need for a down payment?
+                            <span class="faq-indicator"><i class="fa-solid fa-angle-down"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>Down payment requirements vary based on several factors:</p>
+                            <ul>
+                                <li><strong>Conventional loans:</strong> Typically require 5-20% of the purchase price</li>
+                                <li><strong>FHA loans:</strong> May allow down payments as low as 3.5%</li>
+                                <li><strong>VA loans:</strong> Often require no down payment for eligible veterans</li>
+                                <li><strong>USDA loans:</strong> May offer 0% down payment options in eligible rural areas</li>
+                                <li><strong>First-time homebuyer programs:</strong> Special programs may offer down payment assistance</li>
+                            </ul>
+                            <p>The ideal down payment amount depends on your financial situation, available cash reserves, and long-term goals. A larger down payment generally means a lower monthly mortgage payment and better loan terms. Our financial advisors can help you determine the best approach for your specific circumstances.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            How long does the buying process typically take?
+                            <span class="faq-indicator"><i class="fa-solid fa-angle-down"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>The timeline for buying a property typically ranges from 30-90 days from offer acceptance to closing, though this can vary based on several factors:</p>
+                            <ul>
+                                <li><strong>Financing type:</strong> Cash purchases can close faster than mortgaged transactions</li>
+                                <li><strong>Property type:</strong> Single-family homes often process quicker than condos or co-ops</li>
+                                <li><strong>Market conditions:</strong> Hot markets may create backlogs with lenders and inspectors</li>
+                                <li><strong>Inspection findings:</strong> Issues requiring repairs can extend timelines</li>
+                                <li><strong>Title issues:</strong> Resolving unexpected liens or claims can cause delays</li>
+                            </ul>
+                            <p>Our experienced team works diligently to expedite the process while ensuring all necessary steps are properly completed. We'll provide you with a realistic timeline based on your specific situation and keep you informed throughout the entire journey.</p>
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question">
+                            What additional costs should I budget for beyond the purchase price?
+                            <span class="faq-indicator"><i class="fa-solid fa-angle-down"></i></span>
+                        </button>
+                        <div class="faq-answer">
+                            <p>When buying a property, it's important to budget for these additional costs:</p>
+                            <ul>
+                                <li><strong>Closing costs:</strong> Typically 2-5% of the loan amount, including loan origination fees, appraisal fees, title insurance, and legal fees</li>
+                                <li><strong>Home inspection:</strong> 300-500 depending on property size and location</li>
+                                <li><strong>Property taxes:</strong> Varies by location, often prorated at closing</li>
+                                <li><strong>Homeowners insurance:</strong> Average annual premium ranges from 800-1,500</li>
+                                <li><strong>Moving expenses:</strong> 1,000-5,000 depending on distance and volume</li>
+                                <li><strong>Home repairs/improvements:</strong> Budget 1-3% of home value annually</li>
+                                <li><strong>HOA fees:</strong> If applicable, can range from 100-700+ monthly</li>
+                                <li><strong>Utilities setup:</strong> Deposits and transfer fees may apply</li>
+                            </ul>
+                            <p>We recommend setting aside 1-3% of your home's value in an emergency fund for unexpected repairs or maintenance needs. Our team can help you create a comprehensive budget tailored to your specific property.</p>
+                        </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Can //NAME// assist with property financing or mortgages?
-                        <span class="arrow">&#9660;</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Yes! //NAME// partners with trusted financial institutions to help you secure property
-                            financing and mortgages at competitive rates.</p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Does //NAME// provide property management services?
-                        <span class="arrow">&#9660;</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>Absolutely. //NAME// offers comprehensive property management services, including tenant
-                            screening, rent collection, and maintenance to ensure your investment remains hassle-free.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="faq-item">
-                    <button class="faq-question">
-                        Are there any fees involved in working with //NAME//?
-                        <span class="arrow">&#9660;</span>
-                    </button>
-                    <div class="faq-answer">
-                        <p>//NAME// maintains transparent pricing. Any fees will be clearly outlined and discussed with
-                            you during the consultation process.</p>
-                    </div>
+            <div class="faq-cta">
+                <h3>Still Have Questions?</h3>
+                <p>Our real estate experts are ready to provide personalized answers to your specific questions and guide you through every step of your property journey.</p>
+                <div class="faq-cta-buttons">
+                    <a href="#contact" class="btn btn-primary">Contact an Expert</a>
+                    <a href="#schedule" class="btn btn-outline">Schedule a Consultation</a>
                 </div>
             </div>
         </div>
     </section>
 
+    
 <!-- FOOTER -->
 <footer class="footer">
     <div class="footer-container">
