@@ -20,6 +20,7 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="buy-listing.css">
     <link rel="stylesheet" href="popover.css">
     <link rel="stylesheet" href="buy-filter.css">
+    <link rel="stylesheet" href="testimonials.css">
 </head>
 
 <body>
@@ -396,28 +397,182 @@ $result = $stmt->get_result();
         </form>
     </section>
 
-    FAQ
-    <!-- FAQ SECTION -->
-    <section class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-item">
-            <h3>How do I start the process of buying a property with //NAME//?</h3>
-            <p>At //NAME//, we make it simple for you to find your dream home...</p>
-        </div>
-        <div class="faq-item">
-            <h3>What types of properties does //NAME// offer?</h3>
-        </div>
-        <div class="faq-item">
-            <h3>Can //NAME// assist with property financing or mortgages?</h3>
-        </div>
-        <div class="faq-item">
-            <h3>Does //NAME// provide property management services?</h3>
-        </div>
-        <div class="faq-item">
-            <h3>Are there any fees involved in working with //NAME//?</h3>
-        </div>
-    </section>
 
+
+
+    TESTIMONIALS
+    <section class="testimonial-section" id="testimonialSection">
+    <div class="testimonial-bg-pattern"></div>
+    
+    
+    <div class="testimonial-container">
+        <div class="testimonial-header">
+            <div class="testimonial-title-wrapper">
+                <span class="testimonial-eyebrow">Client Experiences</span>
+                <h2 class="testimonial-heading">What our clients say about their journey with us</h2>
+                <p class="testimonial-description">Discover the real stories behind our success. Our clients share their experiences and how we've helped them find their perfect properties.</p>
+            </div>
+            
+            <div class="testimonial-controls-header">
+                <div class="testimonial-counter">
+                    <span class="testimonial-counter-current" id="currentSlide">01</span>
+                    <span>/</span>
+                    <span id="totalSlides">05</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-gallery" id="testimonialGallery">
+            <div class="testimonial-item active" data-index="1">
+                
+                <div class="testimonial-content">
+                    <div class="testimonial-quote">
+                        <div class="testimonial-quote-mark">"</div>
+                        <p class="testimonial-text">The entire process was seamless from start to finish. Their attention to detail and understanding of my needs made finding my dream home feel effortless. I couldn't be happier with the result.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="/api/placeholder/100/100" alt="Alexandra Rivera">
+                        </div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Alexandra Rivera</div>
+                            <div class="testimonial-position">First-time Homeowner</div>
+                            <div class="testimonial-rating">
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-item" data-index="2">
+                <div class="testimonial-content">
+                    <div class="testimonial-quote">
+                        <div class="testimonial-quote-mark">"</div>
+                        <p class="testimonial-text">As an investor with a portfolio spanning multiple cities, I needed a partner who understood market trends across regions. Their data-driven approach and market intelligence gave me the edge I needed.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="/api/placeholder/100/100" alt="Marcus Johnson">
+                        </div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Marcus Johnson</div>
+                            <div class="testimonial-position">Property Investor</div>
+                            <div class="testimonial-rating">
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-item" data-index="3">
+                <div class="testimonial-content">
+                    <div class="testimonial-quote">
+                        <div class="testimonial-quote-mark">"</div>
+                        <p class="testimonial-text">The virtual tours feature saved me countless hours. Being able to explore properties in detail remotely meant I only visited homes that truly matched my criteria. This technology is game-changing.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="/api/placeholder/100/100" alt="Sophia Chen">
+                        </div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Sophia Chen</div>
+                            <div class="testimonial-position">Tech Executive</div>
+                            <div class="testimonial-rating">
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-item" data-index="4">
+                <div class="testimonial-content">
+                    <div class="testimonial-quote">
+                        <div class="testimonial-quote-mark">"</div>
+                        <p class="testimonial-text">We were nervous about selling our family home of 25 years, but their compassionate approach made the transition smooth. They found buyers who appreciated the home's history as much as we did.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="/api/placeholder/100/100" alt="Robert & Elizabeth Davis">
+                        </div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">Robert & Elizabeth Davis</div>
+                            <div class="testimonial-position">Home Sellers</div>
+                            <div class="testimonial-rating">
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-item" data-index="5">
+                <div class="testimonial-content">
+                    <div class="testimonial-quote">
+                        <div class="testimonial-quote-mark">"</div>
+                        <p class="testimonial-text">Finding commercial property that aligned with our brand values and growth trajectory seemed impossible until we connected with this team. Their commercial insights transformed our business location strategy.</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">
+                            <img src="/api/placeholder/100/100" alt="James Wilson">
+                        </div>
+                        <div class="testimonial-info">
+                            <div class="testimonial-name">James Wilson</div>
+                            <div class="testimonial-position">Business Owner</div>
+                            <div class="testimonial-rating">
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                                <span class="testimonial-star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-bottom">
+            <div class="testimonial-progress">
+                <div class="testimonial-progress-bar" id="progressBar"></div>
+            </div>
+            
+            <!-- Prev Button -->
+            <div class="testimonial-navigation">
+                <div class="testimonial-nav-btn prev" id="prevBtn" aria-label="Previous testimonial">
+                <button">
+                <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
+                </button>
+                </div>
+
+                <!-- Next Button -->
+                <div class="testimonial-nav-btn next" id="nextBtn" aria-label="Next testimonial">
+                    <button">
+                    <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -425,9 +580,8 @@ $result = $stmt->get_result();
             <div class="footer-left">©2024 //NAME// RESIDENCE. ALL RIGHTS RESERVED</div>
             <div class="footer-center">
                 <a href="#">Home</a>
-                <a href="#">Properties</a>
-                <a href="#">Our Projects</a>
-                <a href="#">FAQs</a>
+                <a href="#">Buy</a>
+                <a href="#">Sell</a>
                 <a href="#">About Us</a>
             </div>
             <div class="footer-right">
@@ -443,14 +597,7 @@ $result = $stmt->get_result();
     <script src="buy.js"></script>
     <script src="popover.js"></script>
     <script src="buy-filter.js"></script>
-
-
-
-
-
-
-
-
+    <script src="testimonials.js"></script>
 
 </body>
 
