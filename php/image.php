@@ -7,8 +7,11 @@ if (isset($_GET['listing_id'])) {
     $statement->execute() or die("<b>Error:</b> Problem on Retrieving Image BLOB<br/>" . mysqli_connect_error());
     $result = $statement->get_result();
 
-    $row = $result->fetch_assoc();
-    header("Content-type: " . $row[".jpg"]);
-    echo $row["property_photo"];
+    if ($row = $result->fetch_assoc()) {
+        header("Content-type: image/jpeg"); 
+        echo $row["property_photo"];
+    } else {
+        echo "No image found.";
+    }
 }
 ?>

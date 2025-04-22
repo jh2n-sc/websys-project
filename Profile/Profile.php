@@ -1,3 +1,12 @@
+
+
+
+
+<!-- LAGYAN OG OUT  -->
+
+
+
+
 <?php
 //ini_set('display_errors', 1);
 //ini_set('display_startup_errors', 1);
@@ -93,7 +102,7 @@ try {
                         <?php endif; ?>
                         <div class="listing-details">
                             <h3 class="listing-title"><?php echo htmlspecialchars($listing['property_name']); ?></h3>
-                            <p class="listing-type"><?php echo htmlspecialchars($listing['property_type']); ?> | Size: <?php echo htmlspecialchars($listing['property_size']); ?> sqft</p>
+                            <p class="listing-type"><?php echo htmlspecialchars($listing['property_type']); ?> | Size: <?php echo htmlspecialchars($listing['dimensions']); ?> sqft</p>
                             <p class="listing-price">$<?php echo number_format($listing['price'], 2); ?></p>
                             <p class="listing-location"><?php echo htmlspecialchars($listing['property_location']); ?></p>
                             <?php if (isset($listing['property_description'])): ?>
