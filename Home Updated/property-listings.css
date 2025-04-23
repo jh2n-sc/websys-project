@@ -1,0 +1,253 @@
+.property-listings {
+  padding: 4rem 0;
+  text-align: center;
+  width: 100%;
+  max-width: 100vw;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.property-listings h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.property-listings p.subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 2.5rem;
+  max-width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.location-selector {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.25rem;
+  border-radius: 2rem;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  margin-bottom: 2.5rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.location-selector:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+.location-selector i {
+  color: black;
+}
+
+.location-selector p {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 10rem 1rem 12rem;
+}
+
+.listings {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: nowrap; 
+  gap: 15rem;
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+  will-change: transform;
+}
+
+.listing-item {
+  position: relative;
+  width: 300px;
+  flex: 0 0 auto;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+}
+
+.listing-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.listing-item.active {
+  transform: scale(2);
+  z-index: 2;
+}
+
+.listing-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.listing-item:hover img {
+  transform: scale(1.1);
+}
+
+.listing-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2), transparent);
+  color: white;
+  text-align: left;
+}
+
+.listing-name {
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.325rem;
+}
+
+.listing-location {
+  display: flex;
+  align-items: center;
+  gap: 0.325rem;
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.85);
+}
+
+.listing-location i {
+  font-size: 0.75rem;
+}
+
+/* Navigation buttons */
+.nav-btn {
+  background: white;
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  position: absolute;
+  z-index: 3;
+  transition: all 0.3s ease;
+  color: black;
+  top: auto;
+  bottom: 1rem; 
+  transform: none;
+}
+
+.nav-btn:hover {
+  background: black;
+  color: white;
+}
+
+.nav-btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+#prev {
+  left: 20%;
+}
+
+#next {
+  right: 20%;
+}
+
+/* Indicators */
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  position: absolute;
+  bottom: 1rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+.indicator {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background-color: #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background-color: black;
+  transform: scale(1.3);
+}
+
+
+@media screen and (max-width: 992px) {
+  .property-listings h1 {
+    font-size: 2rem;
+  }
+  
+  .listing-item {
+    width: 270px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .listings {
+    gap: 10rem;
+  }
+
+  .property-listings h1 {
+    font-size: 1.75rem;
+  }
+  
+  .property-listings p.subtitle {
+    max-width: 90%;
+  }
+  
+  .listing-item {
+    width: 240px;
+  }
+  
+  .nav-btn {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .listings {
+    gap: 6rem;
+  }
+
+  .property-listings {
+    padding: 2rem 0;
+  }
+  
+  .listing-item {
+    width: 160px;
+    height: 200px;
+  }
+  
+  .nav-btn {
+    width: 2rem;
+    height: 2rem;
+    font-size: 0.875rem;
+  }
+}
