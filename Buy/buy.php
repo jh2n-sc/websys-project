@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>//NAME// Property</title>
+    <title>BUY</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="buy.css">
@@ -239,7 +239,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <main class="container">
             <section>
                 <div class="section-header">
-                    <h2>Homes around $288,700</h2>
+                    <h2>Homes around ₱resyong pang masa</h2>
                     <a href="#" class="view-all">View all in San Antonio, TX</a>
                 </div>
                 <div class="property-grid">

@@ -1,59 +1,16 @@
-// FAQ section
-        document.addEventListener('DOMContentLoaded', function() {
-            // Handle FAQ item clicks
-            const faqItems = document.querySelectorAll('.faq-item');
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                question.addEventListener('click', () => {
-                    // Toggle active class for clicked item
-                    item.classList.toggle('active');
-                    
-                    // Close other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item && otherItem.classList.contains('active')) {
-                            otherItem.classList.remove('active');
-                        }
-                    });
-                });
-            });
+// Wait for DOM to be fully loaded
+document.addEventListener('DOMContentLoaded', function() {
+    // Initialize FAQ functionality
+    initFAQ();
+    
+    // Initialize navigation highlighting
+    initNavHighlighting();
+    
+    // Initialize form submission handling
+    initFormHandling();
+});
 
-            // Handle category switching
-            const categories = document.querySelectorAll('.faq-category');
-            categories.forEach(category => {
-                category.addEventListener('click', () => {
-                    // Remove active class from all categories
-                    categories.forEach(cat => cat.classList.remove('active'));
-                    
-                    // Add active class to clicked category
-                    category.classList.add('active');
-                    
-                    // Here you would typically implement logic to show/hide questions
-                    // based on selected category
-                    const categoryName = category.getAttribute('data-category');
-                    console.log(`Category selected: ${categoryName}`);
-                    // For a complete implementation, you would fetch or display
-                    // questions related to the selected category
-                });
-            });
-
-            // Handle search functionality
-            const searchInput = document.getElementById('faqSearch');
-            searchInput.addEventListener('input', function() {
-                const searchTerm = this.value.toLowerCase();
-                
-                faqItems.forEach(item => {
-                    const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
-                    const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
-                    
-                    if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-
+// Handle page loader
 window.addEventListener('load', () => {
     const loader = document.getElementById('page-loader');
     setTimeout(() => {
@@ -61,7 +18,67 @@ window.addEventListener('load', () => {
     }, 500);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
+// Initialize FAQ functionality
+function initFAQ() {
+    // Handle FAQ item clicks
+    const faqItems = document.querySelectorAll('.faq-item');
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        if (question) {
+            question.addEventListener('click', () => {
+                // Toggle active class for clicked item
+                item.classList.toggle('active');
+                
+                // Close other items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        }
+    });
+
+    // Handle category switching
+    const categories = document.querySelectorAll('.faq-category');
+    categories.forEach(category => {
+        category.addEventListener('click', () => {
+            // Remove active class from all categories
+            categories.forEach(cat => cat.classList.remove('active'));
+            
+            // Add active class to clicked category
+            category.classList.add('active');
+            
+            // Logic to show/hide questions based on selected category
+            const categoryName = category.getAttribute('data-category');
+            console.log(`Category selected: ${categoryName}`);
+            // For a complete implementation, you would fetch or display
+            // questions related to the selected category
+        });
+    });
+
+    // Handle search functionality
+    const searchInput = document.getElementById('faqSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            faqItems.forEach(item => {
+                const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
+                const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
+                
+                if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    }
+}
+
+// Initialize navigation highlighting
+function initNavHighlighting() {
     const links = document.querySelectorAll('nav ul li a');
     const currentPath = window.location.pathname.split('/').pop(); 
 
@@ -72,27 +89,64 @@ document.addEventListener('DOMContentLoaded', () => {
             link.classList.add('active');
         }
     });
-});
+}
+
+
+// Initialize form handling
+function initFormHandling() {
+    const inquiryForm = document.getElementById('inquiry-form');
+    
+    if (inquiryForm) {
+        inquiryForm.addEventListener('submit', handleMessageSent);
+    }
+}
+
+
+
+
+
+
+
+
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('inquiryForm');
-    const popover = document.getElementById('messageSentPopover');
-
-    form.addEventListener('submit', function(e) {
-        e.preventDefault(); // Prevent page reload
-        
-        // Make sure popover is visible
-        popover.style.display = 'block';
-        popover.style.opacity = '1';
-
-        // Re-trigger animation
-        popover.classList.remove('show');
-        void popover.offsetWidth; 
-        popover.classList.add('show');
-
-        setTimeout(function() {
-            popover.style.display = 'none';
-            popover.style.opacity = '0';
-        }, 3000);
-    });
+    // Initialize popover as hidden
+    const messageSentPopover = document.getElementById('messageSentPopover');
+    if (messageSentPopover) {
+        messageSentPopover.style.display = 'none';
+    }
+    
+    // Add form submission handler
+    const inquiryForm = document.getElementById('inquiry-form');
+    if (inquiryForm) {
+        inquiryForm.addEventListener('submit', handleMessageSent);
+    }
 });
+
+function handleMessageSent(event) {
+    event.preventDefault(); // Prevent actual form submission
+    
+    const messageSentPopover = document.getElementById('messageSentPopover');
+    
+    if (messageSentPopover) {
+        // Show the popover with flex display and centered items
+        messageSentPopover.style.display = 'flex';
+        messageSentPopover.style.alignItems = 'center';
+        messageSentPopover.style.animation = 'slideInDown 0.3s ease-out';
+        
+        // Hide after 3 seconds with slide-out animation
+        setTimeout(() => {
+            messageSentPopover.style.animation = 'slideOutUp 0.3s ease-out';
+            
+            // Wait for animation to complete before hiding
+            setTimeout(() => {
+                messageSentPopover.style.display = 'none';
+                
+                // Reset the form
+                event.target.reset();
+            }, 300);
+        }, 3000);
+    }
+}
