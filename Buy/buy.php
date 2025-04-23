@@ -63,15 +63,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </svg>
                     </button>
                 </li>
-                <li><a href="/Home/home.html">Home</a></li>
-                <li><a href="/Buy/listing.html">Buy</a></li>
-                <li><a href="/Sell/sell.html"">Sell</a></li>
-                <li><a href=" #">About Us</a></li>
+                <li><a href="../Home/home.html">Home</a></li>
+                <li><a href="../Buy/buy.php">Buy</a></li>
+                <li><a href="../Sell/sell.php"">Sell</a></li>
+                <li><a href="../About/about.html">About Us</a></li>
             </ul>
         </nav>
 
         <div class="header-actions">
-            <a href="#">Contact Us</a>
+            <a href="../Profile/Profile.php">Profile</a>
             <button id="open-sidebar-button" aria-label="open sidebar" aria-expanded="false"
                 aria-controls="navbar">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
@@ -602,10 +602,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="footer-container">
             <div class="footer-left">©2024 //NAME// RESIDENCE. ALL RIGHTS RESERVED</div>
             <div class="footer-center">
-                <a href="#">Home</a>
-                <a href="#">Buy</a>
-                <a href="#">Sell</a>
-                <a href="#">About Us</a>
+                <a href="../Home/home.html">Home</a>
+                <a href="../Buy/buy.php">Buy</a>
+                <a href="../Sell/sell.php">Sell</a>
+                <a href="../About/about.html">About Us</a>
             </div>
             <div class="footer-right">
                 <a href="#"><i class="fab fa-twitter"></i></a>

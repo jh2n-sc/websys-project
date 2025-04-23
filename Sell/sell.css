@@ -5,9 +5,9 @@
   }
   
   html {
-    font-family: Verdana;
+    font-family: 'Inter', sans-serif;
     color: var(--text-color);
-  }
+}
 
   body {
   background-color: #fff;
@@ -89,6 +89,11 @@ nav ul li a {
 nav ul li a:hover {
     background-color: #000;
     color: white;
+}
+
+nav ul li a.active {
+  background-color: #000;
+  color: white;
 }
 
 .header-actions {
@@ -291,26 +296,3 @@ color: #888;
     text-align: center;
 }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

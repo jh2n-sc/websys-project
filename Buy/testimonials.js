@@ -1,3 +1,4 @@
+  // -------------------- Testimonials --------------------
 document.addEventListener('DOMContentLoaded', function() {
     // Elements
     const testimonialSection = document.getElementById('testimonialSection');

@@ -1,3 +1,4 @@
+  // -------------------- Popover --------------------
 
 // Show property details in popover
 function showPropertyDetails(id, name, price, beds, baths, size, location, date, type, imageUrl) {
@@ -12,41 +13,35 @@ function showPropertyDetails(id, name, price, beds, baths, size, location, date,
     document.getElementById('popover-property-location').textContent = location;
     document.getElementById('popover-listing-date').textContent = date;
     document.getElementById('popover-property-image').src = imageUrl;
+    
     // Show the popover
     document.getElementById('property-popover').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; // Prevent scrolling behind popover
-}
+    document.body.style.overflow = 'hidden'; 
 
 // Hide property details popover
 function hidePropertyDetails() {
     document.getElementById('property-popover').style.display = 'none';
-    document.body.style.overflow = 'auto'; // Re-enable scrolling
+    document.body.style.overflow = 'auto'; 
 }
 
-// Close popover when clicking outside the content
 document.getElementById('property-popover').addEventListener('click', function(e) {
     if (e.target === this) {
         hidePropertyDetails();
     }
 });
 
-// Close popover when pressing ESC key
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         hidePropertyDetails();
     }
 });
 
-
-
-
-
+  // -------------------- Fake notif --------------------
 
 function handleFakeAction(type, button = null) {
     let popoverId = "";
     
     if (type === "wishlist") {
-        // Add active styling + icon change
         button.classList.add("active");
         const icon = button.querySelector(".heart-icon");
         icon.classList.remove("fa-regular");
@@ -65,4 +60,4 @@ function handleFakeAction(type, button = null) {
             el.style.display = "none";
         }, 2000);
     }
-}
+}}

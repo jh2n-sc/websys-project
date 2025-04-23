@@ -1,4 +1,6 @@
-// Function to handle filter button toggling
+  // -------------------- Filter  --------------------
+
+// toggling
 function setupFilterButtons() {
     const filterButtons = document.querySelectorAll('.filter-btn');
     
@@ -18,7 +20,7 @@ function setupFilterButtons() {
     });
 }
 
-// Handle clear filters button
+// clear filters 
 function setupClearFilters() {
     const clearButton = document.getElementById('clear-filters');
     if (!clearButton) return;
@@ -81,3 +83,4 @@ document.addEventListener('DOMContentLoaded', function() {
     setupPriceRange();
     setupApplyFilters();
 });
+
