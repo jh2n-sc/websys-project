@@ -25,7 +25,7 @@ CREATE TABLE listings (
     property_details varchar(200),
     price decimal(15, 2) NOT NULL,
     property_type varchar(50) NOT NULL,
-    property_size varchar(100) NOT NULL,
+    property_dimension varchar(100) NOT NULL,
     property_description varchar(200) NOT NULL,
     property_status varchar(20) NOT NULL,
     property_location varchar(100) NOT NULL,

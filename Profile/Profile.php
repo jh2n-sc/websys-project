@@ -12,13 +12,17 @@
 //ini_set('display_startup_errors', 1);
 //error_reporting(E_ALL);
 
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 include_once '../php/db_conn.php';
 
 session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: ../Login_Page/index.php");  // Redirect if not logged in
-    exit();
+    die();
 }
 
 $userId =(int) $_SESSION['user_id']; 
@@ -61,7 +65,7 @@ try {
                 <?php else: ?>
                     <!-- Display initials or default image if no pic -->
                     <div class="profile-image" style="display: flex; align-items: center; justify-content: center; background-color:rgb(2, 2, 2); color: white; font-size: 40px;">
-                        <?php echo htmlspecialchars(strtoupper(substr($user['username'], 0, 1))); ?>
+                        <?php echo htmlspecialchars(strtoupper(substr($_SESSION['username'], 0, 1))); ?>
                     </div>
                 <?php endif; ?>
             </div>
@@ -79,6 +83,7 @@ try {
                 <div class="profile-actions">
                     <a href="edit_profile.php">Edit Profile</a>
                     <a href="settings.php">Settings</a>
+                    <a href="logout.php?logout=1">Logout</a>
                 </div>
             </div>
         </div>
@@ -102,7 +107,7 @@ try {
                         <?php endif; ?>
                         <div class="listing-details">
                             <h3 class="listing-title"><?php echo htmlspecialchars($listing['property_name']); ?></h3>
-                            <p class="listing-type"><?php echo htmlspecialchars($listing['property_type']); ?> | Size: <?php echo htmlspecialchars($listing['dimensions']); ?> sqft</p>
+                            <p class="listing-type"><?php echo htmlspecialchars($listing['property_type']); ?> | Size: <?php echo htmlspecialchars($listing['property_dimension']); ?> sqft</p>
                             <p class="listing-price">$<?php echo number_format($listing['price'], 2); ?></p>
                             <p class="listing-location"><?php echo htmlspecialchars($listing['property_location']); ?></p>
                             <?php if (isset($listing['property_description'])): ?>

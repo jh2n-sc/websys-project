@@ -5,8 +5,8 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-   // header("Location: ../Login_Page/index.php");  // Redirect if not logged in
-    //exit();
+   header("Location: ../Login_Page/index.php");  // Redirect if not logged in
+  exit();
 }
 $stmt = $conn->prepare("SELECT * from listings WHERE property_status = 'sold'");
 $stmt->execute();
@@ -151,7 +151,9 @@ SELL
         <p>Fill out the form below to get started</p>
       </div>
       
-      <form class="contact-form" id="propertyForm">
+      <form class="contact-form" id="propertyForm" method="POST" action="upload.php" enctype="multipart/form-data">
+      <!-- Omit
+      
         <div class="form-row double">
           <div class="form-group">
             <label class="required-label">Full Name</label>
@@ -171,13 +173,20 @@ SELL
             <input type="email" id="email" name="email">
             <div class="error-message" id="emailError"></div>
           </div>
-        </div>
+        </div> -->
         
         <div class="form-row">
           <div class="form-group">
             <label class="required-label">Property Location</label>
             <input type="text" id="propertyLocation" name="location" placeholder="Street address, City, State, ZIP" required>
             <div class="error-message" id="locationError"></div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="required-label">Property Name</label>
+            <input type="text" id="propertyName" name="name" placeholder="Example Property" required>
+            <div class="error-message" id=""></div>
           </div>
         </div>
         
@@ -236,7 +245,19 @@ SELL
             <div class="error-message" id="bathroomsError"></div>
           </div>
         </div>
+        <div class="form-row double">
+          <div class="form-group">
+            <label class="required-label">Size #x#</label>
+            <input type="number" id="size1M" name="size1M" placeholder="" required>
+            <div class="error-message" id="dimensionsError"></div>
+          </div>
+          <div class="form-group">
+            <label style="visibility: hidden">Another size  </label>
+            <input type="number" id="size2M" name="size2M" placeholder="">
+          </div>
+        </div>
         
+<!-- I think square feet should be omitted. since we can derive the size of the property from the dimension(above)-->
         <div class="form-row double">
           <div class="form-group">
             <label class="required-label">Square Feet</label>
@@ -263,7 +284,7 @@ SELL
               <div class="upload-icon">📷</div>
               <p class="upload-text">Drag & drop photos here or <span>browse files</span></p>
               <p class="upload-text" style="font-size: 0.8rem; margin-top: 0.5rem;">Add up to 10 high-quality photos (Max 5MB each)</p>
-              <input type="file" id="propertyPhotos" name="photos" accept="image/*" multiple style="display: none;">
+              <input type="file" id="propertyPhotos" name="propertyPhotos" accept="image/*" style="display: none;" >
             </div>
             <div class="thumbnails" id="thumbnailsContainer"></div>
           </div>

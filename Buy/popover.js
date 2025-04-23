@@ -1,7 +1,8 @@
 
 // Show property details in popover
-function showPropertyDetails(name, price, beds, baths, size, location, date, type, imageUrl) {
+function showPropertyDetails(id, name, price, beds, baths, size, location, date, type, imageUrl) {
     // Update popover content
+    document.getElementById('property-ID').value = id;
     document.getElementById('popover-property-type').textContent = type;
     document.getElementById('popover-property-price').textContent = '₱' + parseFloat(price).toLocaleString();
     document.getElementById('popover-property-beds').textContent = beds + ' bed';
@@ -11,7 +12,6 @@ function showPropertyDetails(name, price, beds, baths, size, location, date, typ
     document.getElementById('popover-property-location').textContent = location;
     document.getElementById('popover-listing-date').textContent = date;
     document.getElementById('popover-property-image').src = imageUrl;
-    
     // Show the popover
     document.getElementById('property-popover').style.display = 'flex';
     document.body.style.overflow = 'hidden'; // Prevent scrolling behind popover

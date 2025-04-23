@@ -1,10 +1,23 @@
 <?php
 include "../php/db_conn.php";
 
-$sql = "SELECT * FROM listings l JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id ORDER BY listing_id DESC";
+$sql = "SELECT * FROM listings l  JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id 
+WHERE l.property_status != 'sold'
+ORDER BY listing_id DESC";
 $stmt = $conn->prepare($sql);
 $stmt->execute();
 $result = $stmt->get_result();
+
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (isset($_POST['buy'])) {
+        $id = (int) $_POST['property_ID'];
+        $sql = "UPDATE listings SET property_status = 'sold' WHERE listing_id = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -236,16 +249,17 @@ $result = $stmt->get_result();
                         while ($row = $result->fetch_assoc()) {
                     ?>
                             <div class="property-card" onclick="showPropertyDetails(
+                            '<?php echo $row["listing_id"]; ?>',
             '<?php echo $row["property_name"]; ?>',
             '<?php echo $row["price"]; ?>',
             '<?php echo $row["bed_no"]; ?>',
             '<?php echo $row["baths_no"]; ?>',
-            '<?php echo $row["dimensions"]; ?>',
+            '<?php echo $row["property_dimension"]; ?>',
             '<?php echo $row["property_location"]; ?>',
             '<?php echo date("F j, Y", strtotime($row["listing_date"])); ?>',
             '<?php echo $row["property_description"]; ?>',
             '../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>'
-        )">
+                        )">
                                 <div class="property-image">
                                     <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
                                     <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
@@ -261,8 +275,8 @@ $result = $stmt->get_result();
                                     <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
                                     <div class="property-specs">
                                         <span><?php echo $row["bed_no"]; ?> bed</span>
-                                        <span><?php echo $row["baths_no"]; ?> bath</span>
-                                        <span><?php echo $row["dimensions"]; ?> m²</span>
+                                        <span><?php echo $row["bath_no"]; ?> bath</span>
+                                        <span><?php echo $row["property_dimension"]; ?> m²</span>
                                     </div>
                                     <div class="property-address"><?php echo $row["property_name"]; ?></div>
                                     <div class="property-location"><?php echo $row["property_location"]; ?></div>
@@ -273,6 +287,7 @@ $result = $stmt->get_result();
                     }
                     ?>
                     <div class="property-card" onclick="showPropertyDetails(
+                    '0',
         '10434 Sun Ml',
         '330000',
         '4',
@@ -312,6 +327,7 @@ $result = $stmt->get_result();
 
         <!-- Property Popover  -->
         <div id="property-popover" class="popover-overlay">
+
             <div class="popover-content">
                 <button class="close-popover" onclick="hidePropertyDetails()">&times;</button>
                 <div class="popover-header">
@@ -327,6 +343,7 @@ $result = $stmt->get_result();
                         </div>
                         <div class="property-price" id="popover-property-price"></div>
                         <div class="property-specs">
+                            
                             <span id="popover-property-beds"></span>
                             <span id="popover-property-baths"></span>
                             <span id="popover-property-size"></span>
@@ -334,17 +351,23 @@ $result = $stmt->get_result();
                         <div class="property-address" id="popover-property-address"></div>
                         <div class="property-location" id="popover-property-location"></div>
                         <div class="listing-date">Listed on: <span id="popover-listing-date"></span></div>
-
-
-                        <div class="property-actions">
-                            <button class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
-                                <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
-                            </button>
-
-                            <button class="buy-btn" onclick="handleFakeAction('buy')">
-                                <i class="fa-solid fa-cart-shopping"></i> Buy
-                            </button>
-                        </div>
+                        
+                        
+                        
+                        
+                        
+                        <form action="" method="POST" class>
+                            <input type="text" name="property_ID" style="display: none; visibility: hidden;" id="property-ID" value="100">
+                            <div class="property-actions">
+                                <button class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
+                                    <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
+                                </button>
+                                <button type="submit" name="buy" class="buy-btn" onclick="handleFakeAction('buy')">
+                                     <i class="fa-solid fa-cart-shopping"></i> Buy
+                                </button>
+                            </div>
+                        </form>
+                        
 
                         <div class="fake-message-form">
                             <textarea placeholder="Your message"></textarea>

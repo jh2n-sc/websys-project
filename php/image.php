@@ -13,5 +13,6 @@ if (isset($_GET['listing_id'])) {
     } else {
         echo "No image found.";
     }
+    exit;
 }
 ?>

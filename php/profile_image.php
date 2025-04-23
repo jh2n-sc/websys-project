@@ -12,7 +12,8 @@ if (isset($_GET['account_id'])) {
         header("Content-type: image/jpeg"); 
         echo $row["photo"];
     } else {
-        echo "No image found.";
+        echo 'image not found';
     }
+    exit;
 }
 ?>
