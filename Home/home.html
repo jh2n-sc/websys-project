@@ -207,47 +207,72 @@ LISTINGS
       </section>
       
 
-INQUIRY
-    <!-- INQUIRY -->
-    <section class="inquiry-section">
+      
+
+
+
+      INQUIRY
+      <section class="inquiry-section">
         <div class="inquiry-container">
-            Left Side (Image)
+            <!-- Left Side (Image) -->
             <div class="inquiry-image">
                 <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be" alt="Modern Property">
             </div>
-
-            Right Side (Form)
+    
+            <!-- Right Side (Form) -->
             <div class="inquiry-form-container">
+                <!-- Corner L designs -->
+                <div class="corner-design top-right"></div>
+                <div class="corner-design bottom-left"></div>
+                
                 <h2>Still haven't found what you're looking for?</h2>
-
-                <form>
+    
+                <form id="inquiryForm">
                     <div class="form-row">
                         <div class="input-group">
-                            <label for="first-name">First Name</label>
                             <input type="text" id="first-name" placeholder="First Name">
                         </div>
-
+    
                         <div class="input-group">
-                            <label for="last-name">Last Name</label>
                             <input type="text" id="last-name" placeholder="Last Name">
                         </div>
                     </div>
-
+    
                     <div class="input-group">
-                        <label for="intent">I Want to</label>
-                        <input type="text" id="intent" placeholder="Buy Property">
+                        <input type="text" id="intent" placeholder="I Want to">
                     </div>
-
+    
                     <div class="input-group">
-                        <label for="notes">Notes</label>
-                        <textarea id="notes" placeholder="Add your message"></textarea>
+                        <textarea id="notes" placeholder="Notes"></textarea>
                     </div>
-
-                    <button type="submit">Submit</button>
+    
+                    <button type="submit">SUBMIT</button>
                 </form>
             </div>
         </div>
+        <div class="mini-popover" id="messageSentPopover">
+            <i class="fas fa-check-circle wishlist-popover-icon"></i>
+            <p>Message sent!</p>
+        </div>
     </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  <!-- FAQ Section -->
