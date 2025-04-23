@@ -58,7 +58,7 @@ $result = $stmt->get_result();
         </nav>
 
         <div class="header-actions">
-            <a href="#">Contact Us</a>
+            <a href="../Profile/Profile.php">Profile</a>
             <button id="open-sidebar-button" aria-label="open sidebar" aria-expanded="false"
                 aria-controls="navbar">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"

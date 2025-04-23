@@ -1,3 +1,4 @@
+  // -------------------- Sell Form --------------------
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('propertyForm');
 
