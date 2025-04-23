@@ -60,3 +60,15 @@ window.addEventListener('load', () => {
         loader.classList.add('fade-out');
     }, 500);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+    const links = document.querySelectorAll('nav ul li a');
+    const currentPath = window.location.pathname;
+
+    links.forEach(link => {
+        const href = link.getAttribute('href');
+        if (href === currentPath) {
+            link.classList.add('active');
+        }
+    });
+});

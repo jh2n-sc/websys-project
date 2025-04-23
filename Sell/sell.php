@@ -50,7 +50,7 @@ $result = $stmt->get_result();
       </li>
       <li><a href="/Home/home.html">Home</a></li>
       <li><a href="/Buy/listing.html">Buy</a></li>
-      <li><a href="/Sell/sell.html"">Sell</a></li>
+      <li><a href="/websysprojbuynsell/websys-project/Sell/sell.php">Sell</a></li>
       <li><a href="#">About Us</a></li>
     </ul>
   </nav>
@@ -244,7 +244,7 @@ SELL
             <div class="error-message" id="dimensionsError"></div>
           </div>
           <div class="form-group">
-            <label>Asking Price ($)</label>
+            <label>Asking Price (₱)</label>
             <input type="number" id="price" name="price" placeholder="Your expected selling price">
           </div>
         </div>
@@ -269,8 +269,14 @@ SELL
           </div>
         </div>
         
-        <button type="submit" id="submitButton">Submit Property Listing</button>
+      <button type="submit" id="submitButton">Submit Property Listing</button>
       </form>
+
+      <div class="mini-popover" id="messageSentPopover">
+      <i class="fas fa-check-circle wishlist-popover-icon"></i>
+      <p>Property listing submitted!</p>
+      </div>
+
     </section>
   </div>
 </div>

@@ -354,3 +354,43 @@
       grid-template-columns: 1fr;
     }
   }
+
+  .mini-popover {
+    position: fixed;
+    top: 18%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    padding: 26px 36px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    z-index: 2000;
+    text-align: center;
+    width: 90%;
+    max-width: 380px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  
+  .mini-popover.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  
+  .mini-popover i {
+    font-size: 32px;
+    margin-bottom: 14px;
+  }
+  
+  .mini-popover p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+  }
+  
+  .wishlist-popover-icon {
+    color: #e63946;
+  }
+  

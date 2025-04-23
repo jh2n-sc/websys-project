@@ -88,6 +88,12 @@ nav ul li a:hover {
     color: white;
 }
 
+nav ul li a.active {
+    background-color: black;
+    color: white;
+}
+
+
 .header-actions {
     margin-right: 50px;
     display: flex;

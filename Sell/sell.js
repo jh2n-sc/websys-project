@@ -1,16 +1,22 @@
-const faqItems = document.querySelectorAll('.faq-item');
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('nav ul li a');
+  const currentPath = window.location.pathname;
 
-faqItems.forEach(item => {
-  const question = item.querySelector('.faq-question');
-  question.addEventListener('click', () => {
-    item.classList.toggle('active');
-    faqItems.forEach(otherItem => {
-      if (otherItem !== item) {
-        otherItem.classList.remove('active');
+  links.forEach(link => {
+      const href = link.getAttribute('href');
+      if (href === currentPath) {
+          link.classList.add('active');
       }
-    });
   });
 });
+
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('page-loader');
+    setTimeout(() => {
+        loader.classList.add('fade-out');
+    }, 100);
+  });
+  
 
 const openButton = document.getElementById('open-sidebar-button');
 const navbar = document.getElementById('navbar');
@@ -36,6 +42,3 @@ function closeSidebar() {
   openButton.setAttribute('aria-expanded', 'false');
   navbar.setAttribute('inert', '');
 }
-
-
-

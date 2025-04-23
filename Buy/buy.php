@@ -51,7 +51,7 @@ $result = $stmt->get_result();
                     </button>
                 </li>
                 <li><a href="/Home/home.html">Home</a></li>
-                <li><a href="/Buy/listing.html">Buy</a></li>
+                <li><a href="/websysprojbuynsell/websys-project/Buy/buy.php">Buy</a></li>
                 <li><a href="/Sell/sell.html"">Sell</a></li>
                 <li><a href=" #">About Us</a></li>
             </ul>

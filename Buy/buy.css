@@ -88,6 +88,13 @@ nav ul li a:hover {
     color: white;
 }
 
+
+nav ul li a.active {
+    background-color: black;
+    color: white;
+}
+
+
 .header-actions {
     margin-right: 50px;
     display: flex;
@@ -324,102 +331,3 @@ nav ul li a:hover {
     }
     }
 
-
-
-    /* Add this to your existing CSS */
-.popover-overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-    align-items: center;
-    justify-content: center;
-}
-
-.popover-content {
-    background-color: white;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 90vh;
-    overflow-y: auto;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-.close-popover {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: #666;
-}
-
-.popover-header {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.popover-header h2 {
-    margin: 0;
-    font-size: 22px;
-    color: #222;
-}
-
-.popover-body {
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.popover-image {
-    height: 250px;
-    overflow: hidden;
-    border-radius: 4px;
-}
-
-.popover-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.popover-details {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.popover-details .property-price {
-    font-size: 24px;
-    font-weight: 700;
-    color: #111;
-}
-
-.popover-details .property-specs {
-    display: flex;
-    gap: 15px;
-    color: #555;
-}
-
-.popover-details .property-address {
-    font-weight: 500;
-    color: #333;
-}
-
-.popover-details .property-location {
-    color: #666;
-}
-
-.listing-date {
-    color: #666;
-    font-size: 14px;
-}
