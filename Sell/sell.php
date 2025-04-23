@@ -152,29 +152,6 @@ SELL
       </div>
       
       <form class="contact-form" id="propertyForm" method="POST" action="upload.php" enctype="multipart/form-data">
-      <!-- Omit
-      
-        <div class="form-row double">
-          <div class="form-group">
-            <label class="required-label">Full Name</label>
-            <input type="text" id="fullName" name="fullName" required>
-            <div class="error-message" id="fullNameError"></div>
-          </div>
-          <div class="form-group">
-            <label class="required-label">Contact Number</label>
-            <input type="tel" id="contactNumber" name="contactNumber" required>
-            <div class="error-message" id="contactNumberError"></div>
-          </div>
-        </div>
-        
-        <div class="form-row">
-          <div class="form-group">
-            <label>Email Address</label>
-            <input type="email" id="email" name="email">
-            <div class="error-message" id="emailError"></div>
-          </div>
-        </div> -->
-        
         <div class="form-row">
           <div class="form-group">
             <label class="required-label">Property Location</label>
@@ -247,7 +224,7 @@ SELL
         </div>
         <div class="form-row double">
           <div class="form-group">
-            <label class="required-label">Size #x#</label>
+            <label class="required-label">Size # x #</label>
             <input type="number" id="size1M" name="size1M" placeholder="" required>
             <div class="error-message" id="dimensionsError"></div>
           </div>
@@ -256,19 +233,12 @@ SELL
             <input type="number" id="size2M" name="size2M" placeholder="">
           </div>
         </div>
-        
-<!-- I think square feet should be omitted. since we can derive the size of the property from the dimension(above)-->
-        <div class="form-row double">
-          <div class="form-group">
-            <label class="required-label">Square Feet</label>
-            <input type="number" id="squareFeet" name="dimensions" placeholder="Total square footage" required>
-            <div class="error-message" id="dimensionsError"></div>
-          </div>
+
           <div class="form-group">
             <label>Asking Price (₱)</label>
             <input type="number" id="price" name="price" placeholder="Your expected selling price">
           </div>
-        </div>
+        
         
         <div class="form-row">
           <div class="form-group">

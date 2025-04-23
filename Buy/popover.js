@@ -1,7 +1,7 @@
-  // -------------------- Popover --------------------
-
+// -------------------- Popover --------------------
 // Show property details in popover
 function showPropertyDetails(id, name, price, beds, baths, size, location, date, type, imageUrl) {
+    
     // Update popover content
     document.getElementById('property-ID').value = id;
     document.getElementById('popover-property-type').textContent = type;
@@ -16,7 +16,8 @@ function showPropertyDetails(id, name, price, beds, baths, size, location, date,
     
     // Show the popover
     document.getElementById('property-popover').style.display = 'flex';
-    document.body.style.overflow = 'hidden'; 
+    document.body.style.overflow = 'hidden';
+}
 
 // Hide property details popover
 function hidePropertyDetails() {
@@ -24,40 +25,66 @@ function hidePropertyDetails() {
     document.body.style.overflow = 'auto'; 
 }
 
-document.getElementById('property-popover').addEventListener('click', function(e) {
-    if (e.target === this) {
-        hidePropertyDetails();
-    }
-});
-
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        hidePropertyDetails();
-    }
-});
-
-  // -------------------- Fake notif --------------------
-
-function handleFakeAction(type, button = null) {
-    let popoverId = "";
+// For handling fake actions (wishlist, buy, message)
+function handleFakeAction(action, button) {
+    event.preventDefault(); // Prevent form submission
     
-    if (type === "wishlist") {
-        button.classList.add("active");
-        const icon = button.querySelector(".heart-icon");
-        icon.classList.remove("fa-regular");
-        icon.classList.add("fa-solid");
-        popoverId = "wishlist-confirmation";
-    } else if (type === "buy") {
-        popoverId = "buy-confirmation";
-    } else if (type === "message") {
-        popoverId = "messageSentPopover";
-    }
-
-    const el = document.getElementById(popoverId);
-    if (el) {
-        el.style.display = "block";
+    if (action === 'wishlist') {
+        button.classList.toggle('active');
+        document.getElementById('wishlist-confirmation').style.display = 'block';
         setTimeout(() => {
-            el.style.display = "none";
+            document.getElementById('wishlist-confirmation').style.display = 'none';
+        }, 2000);
+    } else if (action === 'buy') {
+        document.getElementById('buy-confirmation').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('buy-confirmation').style.display = 'none';
+        }, 2000);
+    } else if (action === 'message') {
+        document.getElementById('messageSentPopover').style.display = 'block';
+        setTimeout(() => {
+            document.getElementById('messageSentPopover').style.display = 'none';
         }, 2000);
     }
-}}
+}
+
+// Add this code to ensure events are properly set up when the page loads
+document.addEventListener('DOMContentLoaded', function() {
+    // Fix for close button
+    const closeButton = document.querySelector('.close-popover');
+    if (closeButton) {
+        closeButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            hidePropertyDetails();
+        });
+    }
+    
+    // Close on clicking overlay
+    const popoverOverlay = document.getElementById('property-popover');
+    if (popoverOverlay) {
+        popoverOverlay.addEventListener('click', function(e) {
+            if (e.target === this) {
+                hidePropertyDetails();
+            }
+        });
+    }
+    
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            hidePropertyDetails();
+        }
+    });
+    
+    // Stop property card click events from propagating to parent elements
+    const propertyCards = document.querySelectorAll('.property-card');
+    propertyCards.forEach(card => {
+        // Prevent favorite button clicks from triggering the card's onclick
+        const favoriteBtn = card.querySelector('.favorite-btn');
+        if (favoriteBtn) {
+            favoriteBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+            });
+        }
+    });
+});

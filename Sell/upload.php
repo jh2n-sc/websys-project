@@ -11,7 +11,7 @@
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $seller_account_id = $_SESSION['user_id'];
         $property_name = $_POST['name'];
-        $property_details = $_POST['description'];
+        $property_description = $_POST['property_description'];
         $sq_ft = $_POST['dimensions'];
         $price = $_POST['price'];
         $bed_no = $_POST['bed_no'];
