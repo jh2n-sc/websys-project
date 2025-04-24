@@ -56,7 +56,7 @@ function handleBuyAction(button) {
     }, 2000);
 }
 
-// Add this code to ensure events are properly set up when the page loads
+// events set when page loads
 document.addEventListener('DOMContentLoaded', function() {
     // Check if a purchase was just made
     if (sessionStorage.getItem('justPurchased') === 'true') {
@@ -72,10 +72,10 @@ document.addEventListener('DOMContentLoaded', function() {
         `;
         document.body.appendChild(notification);
         
-        // Clear the flag so it doesn't show again on subsequent page loads
+        // Clear flag 
         sessionStorage.removeItem('justPurchased');
         
-        // Remove the notification after a few seconds
+    
         setTimeout(() => {
             document.body.removeChild(notification);
         }, 3000);
