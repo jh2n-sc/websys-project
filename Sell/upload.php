@@ -8,29 +8,31 @@
 
 
     $fail = false;
-    if($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $seller_account_id = $_SESSION['user_id'];
-        $property_name = $_POST['name'];
-        $property_description = $_POST['property_description'];
-        $sq_ft = $_POST['dimensions'];
-        $price = $_POST['price'];
-        $bed_no = $_POST['bed_no'];
-        $room_no =  $_POST['room_no'];
-        $bath_no = $_POST['baths_no'];
-        $dim1 = $_POST['size1M'];
-        $dim2 = $_POST['size2M'];
-        $finDimension = $dim1 .'x'.$dim2;
-        $property_type = $_POST['propertyType'];
+        $property_name = $_POST['name'] ?? '';
+        $property_type = $_POST['property_type'] ?? ''; 
+        $price = $_POST['price'] ?? '';
+        $bed_no = $_POST['bed_no'] ?? '';
+        $room_no =  $_POST['room_no'] ?? '';
+        $bath_no = $_POST['baths_no'] ?? '';
+        $dim1 = $_POST['size1M'] ?? 0;
+        $dim2 = $_POST['size2M'] ?? 0;
+        $finDimension = $dim1 . 'x' . $dim2;
         $property_status = 'listed';
-        $property_location = $_POST['location'];
-        $tmpPhoto = $_FILES['propertyPhotos']['tmp_name'];
+        $property_location = $_POST['location'] ?? '';
         $listingDate = date("Y-m-d");
-        if ($_FILES['propertyPhotos']['error'] === UPLOAD_ERR_OK && isset($_FILES['propertyPhotos']))
-        {
+        
+        $property_details = $_POST['description'] ?? 'No description provided';
+    
+        $photo = null;
+        if (isset($_FILES['propertyPhotos']) && $_FILES['propertyPhotos']['error'] === UPLOAD_ERR_OK) {
+            $tmpPhoto = $_FILES['propertyPhotos']['tmp_name'];
             $photo = file_get_contents($tmpPhoto);
         }
-
+    
         $property_size = ((int)$dim1) * ((int)$dim2);
+    
         
         $stmt = $conn->prepare("INSERT INTO listings (seller_account_id, property_name, property_details, price, property_type, property_dimension, property_description, property_status, property_location, listing_date, property_photo) 
         VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?); ");

@@ -243,7 +243,7 @@ SELL
         <div class="form-row">
           <div class="form-group">
             <label>Property Description</label>
-            <textarea id="description" name="description" rows="4" placeholder="Share special features, renovations, or other details that make your property stand out"></textarea>
+            <textarea id="description" name="property_description" rows="4" placeholder="Share special features, renovations, or other details that make your property stand out"></textarea>
           </div>
         </div>
         
