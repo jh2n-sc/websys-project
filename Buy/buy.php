@@ -16,8 +16,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt = $conn->prepare($sql);
         $stmt->bind_param('i', $id);
         $stmt->execute();
+
+        // 👇 Force full reload to refresh updated data (clears POST + avoids cache)
+        header("Location: " . $_SERVER['PHP_SELF']);
+        exit();
     }
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -357,7 +362,7 @@ if ($result->num_rows > 0) {
                                 <button class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
                                     <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
                                 </button>
-                                <button type="submit" name="buy" class="buy-btn" onclick="handleFakeAction('buy')">
+                                <button type="submit" name="buy" class="buy-btn" onclick="handleBuyAction(this)"">
                                     <i class="fa-solid fa-cart-shopping"></i> Buy
                                 </button>
                             </div>

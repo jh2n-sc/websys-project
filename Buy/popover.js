@@ -26,19 +26,12 @@ function hidePropertyDetails() {
 }
 
 // For handling fake actions (wishlist, buy, message)
-function handleFakeAction(action, button) {
-    event.preventDefault(); // Prevent form submission
-    
+function handleFakeAction(action, button) {    
     if (action === 'wishlist') {
         button.classList.toggle('active');
         document.getElementById('wishlist-confirmation').style.display = 'block';
         setTimeout(() => {
             document.getElementById('wishlist-confirmation').style.display = 'none';
-        }, 2000);
-    } else if (action === 'buy') {
-        document.getElementById('buy-confirmation').style.display = 'block';
-        setTimeout(() => {
-            document.getElementById('buy-confirmation').style.display = 'none';
         }, 2000);
     } else if (action === 'message') {
         document.getElementById('messageSentPopover').style.display = 'block';
@@ -48,8 +41,46 @@ function handleFakeAction(action, button) {
     }
 }
 
+// Handle buy action
+function handleBuyAction(button) {
+    // Show confirmation message
+    document.getElementById('buy-confirmation').style.display = 'block';
+    
+    // Store in sessionStorage that a purchase was just made
+    sessionStorage.setItem('justPurchased', 'true');
+    
+    const form = button.closest('form');
+    
+    setTimeout(() => {
+        form.submit();
+    }, 2000);
+}
+
 // Add this code to ensure events are properly set up when the page loads
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if a purchase was just made
+    if (sessionStorage.getItem('justPurchased') === 'true') {
+        // Create and show a fixed position notification
+        const notification = document.createElement('div');
+        notification.innerHTML = `
+            <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 15px; 
+            border-radius: 5px; box-shadow: 0 2px 10px rgba(0,0,0,0.2); z-index: 9999; display: flex; align-items: center;">
+            <i class="fa-solid fa-circle-check" style="margin-right: 10px;"></i>
+            <p style="margin: 0;">Thank you! We'll contact you shortly to proceed with your purchase.</p>
+            </div>
+
+        `;
+        document.body.appendChild(notification);
+        
+        // Clear the flag so it doesn't show again on subsequent page loads
+        sessionStorage.removeItem('justPurchased');
+        
+        // Remove the notification after a few seconds
+        setTimeout(() => {
+            document.body.removeChild(notification);
+        }, 3000);
+    }
+    
     // Fix for close button
     const closeButton = document.querySelector('.close-popover');
     if (closeButton) {
