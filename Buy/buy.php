@@ -439,7 +439,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="/api/placeholder/100/100" alt="Alexandra Rivera">
+                                <img src="../Assets/alexandrar.jpg" alt="Alexandra Rivera">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Alexandra Rivera</div>
@@ -464,7 +464,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="/api/placeholder/100/100" alt="Marcus Johnson">
+                                <img src="../Assets/marcusj.jpg" alt="Marcus Johnson">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Marcus Johnson</div>
@@ -489,7 +489,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="/api/placeholder/100/100" alt="Sophia Chen">
+                                <img src="../Assets/sophiachen.jpg" alt="Sophia Chen">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Sophia Chen</div>
@@ -514,7 +514,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="/api/placeholder/100/100" alt="Robert & Elizabeth Davis">
+                                <img src="../Assets/robert.jpg" alt="Robert & Elizabeth Davis">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Robert & Elizabeth Davis</div>
@@ -539,7 +539,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="/api/placeholder/100/100" alt="James Wilson">
+                                <img src="../Assets/james.jpg" alt="James Wilson">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">James Wilson</div>
