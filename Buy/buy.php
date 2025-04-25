@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param('i', $id);
         $stmt->execute();
 
-        // 👇 Force full reload to refresh updated data (clears POST + avoids cache)
+        // 👇 clear Post
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     }
@@ -114,14 +114,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     LISTINGS
     <!-- LISTINGS -->
     <div class="page-container">
-        <!-- New filter sidebar -->
         <aside class="filters-sidebar">
             <div class="filters-header">
                 <h3>Filter Properties</h3>
                 <button id="clear-filters" class="clear-filters-btn">Clear All</button>
             </div>
 
-            <!-- Search Box -->
             <div class="filter-section">
                 <div class="search-container">
                     <input type="text" id="property-search" placeholder="Search locations, addresses...">
@@ -131,7 +129,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <!-- Price Range -->
             <div class="filter-section">
                 <h4 class="filter-title">Price Range</h4>
                 <div class="price-inputs">
@@ -149,7 +146,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <!-- Property Type -->
             <div class="filter-section">
                 <h4 class="filter-title">Property Type</h4>
                 <div class="checkbox-group">
@@ -176,7 +172,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <!-- Bedrooms -->
             <div class="filter-section">
                 <h4 class="filter-title">Bedrooms</h4>
                 <div class="button-group">
@@ -189,7 +184,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <!-- Bathrooms -->
             <div class="filter-section">
                 <h4 class="filter-title">Bathrooms</h4>
                 <div class="button-group">
@@ -201,7 +195,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <!-- Home Features -->
             <div class="filter-section">
                 <h4 class="filter-title">Home Features</h4>
                 <div class="checkbox-group">
@@ -228,17 +221,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <!-- Apply Filters Button -->
             <button class="apply-filters-btn">Apply Filters</button>
         </aside>
-
-
-
-
-
-
-
-
 
 
         <main class="container">
@@ -246,63 +230,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <div class="section-header">
                     <h2>Homes around ₱resyong pang masa</h2>
                     <a href="#" class="view-all">View all in San Antonio, TX</a>
+
+                <?php
+                if ($result->num_rows > 0) {
+                    while ($row = $result->fetch_assoc()) {
+                ?>
+                        <div class="property-card" onclick="showPropertyDetails(
+                '<?php echo $row['listing_id']; ?>',
+                '<?php echo addslashes($row['property_name']); ?>',
+                '<?php echo $row['price']; ?>',
+                '<?php echo $row['bed_no']; ?>',
+                '<?php echo $row['bath_no']; ?>',
+                '<?php echo addslashes($row['property_dimension']); ?>',
+                '<?php echo addslashes($row['property_location']); ?>',
+                '<?php echo addslashes(date('F j, Y', strtotime($row['listing_date']))); ?>',
+                '<?php echo addslashes($row['property_description']); ?>',
+                '../php/image.php?listing_id=<?php echo $row['listing_id']; ?>'
+                )">
+                            <div class="property-image">
+                                <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
+                                <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
+                                <button class="favorite-btn" aria-label="Add to favorites">
+                                    <i class="far fa-heart"></i>
+                                </button>
+                            </div>
+                            <div class="property-details">
+                                <div class="property-type">
+                                    <div class="property-type-indicator"></div>
+                                    <span><?php echo $row["property_description"]; ?></span>
+                                </div>
+                                <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
+                                <div class="property-specs">
+                                    <span><?php echo $row["bed_no"]; ?> bed</span>
+                                    <span><?php echo $row["bath_no"]; ?> bath</span>
+                                    <span><?php echo $row["property_dimension"]; ?> m²</span>
+                                </div>
+                                <div class="property-address"><?php echo $row["property_name"]; ?></div>
+                                <div class="property-location"><?php echo $row["property_location"]; ?></div>
+                            </div>
+                        </div>
+                <?php
+                    }
+                }
+                ?>
                 </div>
                 <div class="property-grid">
-
-<?php
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-?>
-        <div class="property-card" onclick="showPropertyDetails(
-'<?php echo $row['listing_id']; ?>',
-'<?php echo addslashes($row['property_name']); ?>',
-'<?php echo $row['price']; ?>',
-'<?php echo $row['bed_no']; ?>',
-'<?php echo $row['bath_no']; ?>',
-'<?php echo addslashes($row['property_dimension']); ?>',
-'<?php echo addslashes($row['property_location']); ?>',
-'<?php echo addslashes(date('F j, Y', strtotime($row['listing_date']))); ?>',
-'<?php echo addslashes($row['property_description']); ?>',
-'../php/image.php?listing_id=<?php echo $row['listing_id']; ?>'
-)">
-            <div class="property-image">
-                <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
-                <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
-                <button class="favorite-btn" aria-label="Add to favorites">
-                    <i class="far fa-heart"></i>
-                </button>
-            </div>
-            <div class="property-details">
-                <div class="property-type">
-                    <div class="property-type-indicator"></div>
-                    <span><?php echo $row["property_description"]; ?></span>
-                </div>
-                <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
-                <div class="property-specs">
-                    <span><?php echo $row["bed_no"]; ?> bed</span>
-                    <span><?php echo $row["bath_no"]; ?> bath</span>
-                    <span><?php echo $row["property_dimension"]; ?> m²</span>
-                </div>
-                <div class="property-address"><?php echo $row["property_name"]; ?></div>
-                <div class="property-location"><?php echo $row["property_location"]; ?></div>
-            </div>
-        </div>
-<?php
-    }
-}
-?>
                     <div class="property-card" onclick="showPropertyDetails(
                     '0',
-        '10434 Sun Ml',
-        '330000',
-        '4',
-        '2.5',
-        '2,545',
-        'San Antonio, TX 78254',
-        '3 hours ago',
-        'Single-Family Home',
-        'https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80'
-        )">
+                    '10434 Sun Ml',
+                    '330000',
+                    '4',
+                    '2.5',
+                    '2,545',
+                    'San Antonio, TX 78254',
+                    '3 hours ago',
+                    'Single-Family Home',
+                    'https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80'
+                    )">
 
                         <div class="property-image">
                             <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">

@@ -1,16 +1,4 @@
-
-
-
-
-<!-- LAGYAN OG OUT  -->
-
-
-
-
 <?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -21,7 +9,7 @@ include_once '../php/db_conn.php';
 session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login_Page/index.php");  // Redirect if not logged in
+    header("Location: ../Login_Page/index.php");  // Redirect if not 
     die();
 }
 

@@ -13,8 +13,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 ?>
 
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -271,22 +269,6 @@ SELL
     </section>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   <!-- Recently Sold Section -->
   <section class="sold-section">
@@ -583,17 +565,6 @@ SELL
     </div>
   </section>
 
-
-
-
-
-
-
-
-
-
-
-
 FAQ
 <!-- SELL FAQ -->
 <section class="faq-section">
@@ -635,5 +606,6 @@ FAQ
 <script src="sell.js"></script>
 <script src="sell-form.js"></script>
 <script src="sell-carousel.js"></script>
+
 </body>
 </html>

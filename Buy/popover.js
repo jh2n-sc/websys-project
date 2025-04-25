@@ -43,10 +43,10 @@ function handleFakeAction(action, button) {
 
 // Handle buy action
 function handleBuyAction(button) {
-    // Show confirmation message
+    // confirm
     document.getElementById('buy-confirmation').style.display = 'block';
     
-    // Store in sessionStorage that a purchase was just made
+    // Store in sessionStorage 
     sessionStorage.setItem('justPurchased', 'true');
     
     const form = button.closest('form');
@@ -58,9 +58,9 @@ function handleBuyAction(button) {
 
 // events set when page loads
 document.addEventListener('DOMContentLoaded', function() {
-    // Check if a purchase was just made
+    // Checkpurchase
     if (sessionStorage.getItem('justPurchased') === 'true') {
-        // Create and show a fixed position notification
+        // notif
         const notification = document.createElement('div');
         notification.innerHTML = `
             <div style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background-color: #4CAF50; color: white; padding: 15px; 
