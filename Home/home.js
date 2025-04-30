@@ -10,13 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initFormHandling();
 });
 
-// Handle page loader
-window.addEventListener('load', () => {
-    const loader = document.getElementById('page-loader');
-    setTimeout(() => {
-        loader.classList.add('fade-out');
-    }, 500);
-});
+
 
 // Initialize FAQ functionality
 function initFAQ() {

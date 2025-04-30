@@ -4,48 +4,17 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ABOUT</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <link rel="stylesheet" href="about.css" />
 </head>
 <body>
 
-  <!-- Loading Screen -->
-  <div id="page-loader">
-    <div class="loader-content">
-      <div class="loader-spinner"></div>
-    </div>
-  </div>
+  <!-- Loader -->
+  <?php include '../Components/loader.php'; ?>
+  <!-- NAV -->
+  <?php include '../Components/navbar.php'; ?>
 
-  <!-- Header -->
-  <header>
-    <div class="logo">NAME</div>
-
-    <nav id="navbar" class="navbar">
-      <ul>
-        <li>
-          <button id="close-sidebar-button" aria-label="close sidebar">
-            <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9">
-              <path d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z"/>
-            </svg>
-          </button>
-        </li>
-        <li><a href="../Home/home.html">Home</a></li>
-        <li><a href="../Buy/buy.php">Buy</a></li>
-        <li><a href="../Sell/sell.php">Sell</a></li>
-        <li><a href="../About/about.html">About Us</a></li>
-      </ul>
-    </nav>
-    
-    <div class="header-actions">
-      <a href="../Profile/Profile.php">Profile</a>
-      <button id="open-sidebar-button" aria-label="open sidebar" aria-expanded="false" aria-controls="navbar">
-        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px" fill="#c9c9c9">
-          <path d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z"/>
-        </svg>
-      </button>
-    </div>
-  </header>
 
   <!-- About Section -->
   <div class="about">
@@ -53,7 +22,7 @@
       <h2>About Us</h2>
     </div>
     <div class="descript">
-      <p>NAME – your trusted platform for seamless property buying and selling. Whether you're searching for your dream home, looking to invest, 
+      <p>KABALAYAN – your trusted platform for seamless property buying and selling. Whether you're searching for your dream home, looking to invest, 
         or aiming to sell quickly for the best price, we connect you to verified listings and expert tools. With advanced search filters, real-time alerts, 
         and a network of trusted agents, we make every transaction simple, transparent, and stress-free. Experience the future of real estate – where smart
         deals happen faster.</p>
@@ -65,7 +34,7 @@
     <h2>Meet Our Team</h2>
     <div class="team-grid">
       <div class="team-member">
-        <img src="Jerve.jpg" alt="Jerve" class="member-photo">
+        <img src="../Assets/Jerve.jpg" alt="Jerve" class="member-photo">
         <div class="member-name">Sean Jerve Rebancos</div>
         <div class="member-title">Student</div>
         <div class="member-location">Daraga, Albay</div>
@@ -77,13 +46,13 @@
         <div class="member-location">Legazpi City</div>
       </div>
       <div class="team-member">
-        <img src="kiel.jpg" alt="Kiel" class="member-photo">
+        <img src="../Assets/kiel.jpg" alt="Kiel" class="member-photo">
         <div class="member-name">Kiel Hedrix Relos</div>
         <div class="member-title">Student</div>
         <div class="member-location">Legazpi City</div>
       </div>
       <div class="team-member">
-        <img src="Kevin.jpg" alt="Kevin" class="member-photo">
+        <img src="../Assets/Kevin.jpg" alt="Kevin" class="member-photo">
         <div class="member-name">John Kevin Tamayo</div>
         <div class="member-title">Student</div>
         <div class="member-location">Mayon, Daraga Albay</div>
@@ -113,6 +82,10 @@
     </div>
   </div>
 
+  <?php include '../Components/footer.php'; ?>
+
+  
   <script src="about.js"></script>
+
 </body>
 </html>

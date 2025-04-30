@@ -10,41 +10,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    // -------------------- Sidebar --------------------
-    const openButton = document.getElementById('open-sidebar-button');
-    const closeButton = document.getElementById('close-sidebar-button');
-    const navbar = document.getElementById('navbar');
-
-    function handleResize() {
-        if (window.innerWidth <= 768) {
-            navbar.classList.remove('show');
-            openButton.setAttribute('aria-expanded', 'false');
-            if (!navbar.hasAttribute('inert')) {
-                navbar.setAttribute('inert', '');
-            }
-        } else {
-            navbar.removeAttribute('inert');
-        }
-    }
-
-    function openSidebar() {
-        navbar.classList.add('show');
-        openButton.setAttribute('aria-expanded', 'true');
-        navbar.removeAttribute('inert');
-    }
-
-    function closeSidebar() {
-        navbar.classList.remove('show');
-        openButton.setAttribute('aria-expanded', 'false');
-        navbar.setAttribute('inert', '');
-    }
-
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    openButton.addEventListener('click', openSidebar);
-    closeButton.addEventListener('click', closeSidebar);
-
     // -------------------- Favorite Buttons --------------------
     const favoriteButtons = document.querySelectorAll('.favorite-btn');
     favoriteButtons.forEach(button => {
@@ -55,12 +20,4 @@ document.addEventListener('DOMContentLoaded', function () {
             icon.classList.toggle('far', !this.classList.contains('active'));
         });
     });
-});
-
-// -------------------- Page Loader --------------------
-window.addEventListener('load', () => {
-    const loader = document.getElementById('page-loader');
-    setTimeout(() => {
-        loader.classList.add('fade-out');
-    }, 500); // Keep this consistent with home.js
 });

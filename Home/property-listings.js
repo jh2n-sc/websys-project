@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', () => {
   const wrapper = document.querySelector('.carousel-wrapper');
   const listings = document.querySelector('.listings');

@@ -13,66 +13,23 @@
 </head>
 
 <body>
-    <!-- Loading Screen -->
-    <div id="page-loader">
-    <div class="loader-content">
-        <div class="loader-spinner"></div>
-    </div>
-    </div>
+    <!-- Loader -->
+    <?php include '../Components/loader.php'; ?>
+    <!-- Navbar -->
+    <?php include '../Components/navbar.php'; ?>
 
-<!-- NAV -->
-    <header>
-        <div class="logo">
-            <!-- <img src="/mnt/data/LANDINGPAGE.webp" alt="logo" style="height:40px;"> -->
-            NAME
-        </div>
-
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li>
-                    <button id="close-sidebar-button" onclick="closeSidebar()" aria-label="close sidebar">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
-                            fill="#c9c9c9">
-                            <path
-                                d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z" />
-                        </svg>
-                    </button>
-                </li>
-                <li><a href="../Home/home.html">Home</a></li>
-                <li><a href="../Buy/buy.php">Buy</a></li>
-                <li><a href="../Sell/sell.php">Sell</a></li>
-                <li><a href="../About/about.html">About Us</a></li>
-            </ul>
-        </nav>
-
-        <div class="header-actions">
-            <a href="../Profile/Profile.php">Profile</a>
-            <button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false"
-                aria-controls="navbar">
-                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
-                    fill="#c9c9c9">
-                    <path
-                        d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z" />
-                </svg>
-            </button>
-        </div>
-    </header>
-
-
-HERO SECTION
     <!-- HERO SECTION -->
     <section class="hero">
         <div class="hero-text">
             <h1>Guiding your path <br> to a new home in Albay.</h1>
         </div>
         <div class="hero-info">
-            <p>©2025 NAME. ALL RIGHTS RESERVED</p>
+            <p>©2025 KABALAYAN. ALL RIGHTS RESERVED</p>
             <p>With expert guidance and a deep understanding of Albay!'s real estate landscape, we make your
                 journey to a new home seamless and stress-free.</p>
         </div>
     </section>
 
-BANNER  
     <!-- BANNER -->
     <div class="image-banner"
         style="background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80');">
@@ -112,20 +69,27 @@ BANNER
         </div>
     </div>
 
-INTRO
     <!-- INTRO -->
-    <section class="intro-image">
+<section class="intro-image">
+    <div class="overlay"></div>
+    
+    <div class="header-container">
+        <span class="pre-heading">Welcome to</span>
+        <h1>KABALAYAN</h1>
+    </div>
+    
+    <div class="info-container">
         <div class="intro-content">
-            <h2>What is NAME?</h2>
-            <p>Discover the lifestyle and luxury that NAME offers, with bespoke properties designed for comfort,
+            <p>Discover the lifestyle and luxury that we offer, with bespoke properties designed for comfort,
                 elegance, and modern living in Albay's prime locations.</p>
+            <a href="#listings" class="cta-button">Explore Our Properties</a>
         </div>
-    </section>
+    </div>
+</section>
 
 
-    LISTINGS
     <!-- LISTINGS -->
-    <section class="property-listings" aria-label="Property listings carousel">
+    <section id="listings" class="property-listings" aria-label="Property listings carousel">
         <h1>Explore Our Property Listings</h1>
         <p class="subtitle">From cozy apartments to spacious family homes, our diverse listings cater to various needs and preferences.</p>
 
@@ -203,9 +167,6 @@ INTRO
     </section>
 
 
-    
-
-    INQUIRY
     <!-- INQUIRY -->
     <section class="inquiry-section">
         <div class="inquiry-container">
@@ -251,8 +212,7 @@ INTRO
             </div>
     </section>
 
-FAQ
- <!-- FAQ Section -->
+    <!-- FAQ Section -->
     <section class="faq-section">
         <div class="faq-container">
             <div class="faq-header">
@@ -404,23 +364,7 @@ FAQ
         </div>
     </section>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-left">©2024 //NAME// ALL RIGHTS RESERVED</div>
-        <div class="footer-center">
-        <a href="../Home/home.html">Home</a>
-        <a href="../Buy/buy.php">Buy</a>
-        <a href="../Sell/sell.php">Sell</a>
-        <a href="../About/about.html">About Us</a>
-        </div>
-        <div class="footer-right">
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
-    </div>
-    </footer>
+    <?php include '../Components/footer.php'; ?>
     
     <script src="home.js"></script>
     <script src="nav.js"></script>

@@ -7,6 +7,7 @@ box-sizing: border-box;
 html {
     font-family: 'Inter', sans-serif;
     color: var(--text-color);
+    scroll-behavior: smooth;
 }
 
 body {
@@ -202,7 +203,7 @@ margin-bottom: 10px;
     position: relative;
     background-size: auto;
     background-position: center;
-    height: 50vh;
+    height: 65vh;
     overflow: hidden;
     border-radius: 16px;
     margin: 40px 40px;
@@ -345,11 +346,10 @@ margin-bottom: 10px;
 /* HERO */
 
 
-
-
 /* INTRO */
 .intro-image {
-    margin-top: 5%;
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100vh; 
     background-image: url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1950&q=80');
@@ -357,33 +357,179 @@ margin-bottom: 10px;
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px 20px;
     color: white;
-    text-align: center;
+    overflow: hidden;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.5) 25%,
+    rgba(0, 0, 0, 0) 50%,
+    rgba(0, 0, 0, 0.5) 75%,
+    rgba(0, 0, 0, 0.7) 100%);  
+    z-index: 1;
+}
+
+.header-container {
+    position: absolute;
+    top: 10%;
+    left: 8%;
+    z-index: 2;
+    text-align: left;
+    max-width: 500px;
+    animation: slideInLeft 1.2s ease-out;
+}
+
+.info-container {
+    position: absolute;
+    bottom: 15%;
+    right: 8%;
+    z-index: 2;
+    text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    max-width: 600px;
+    animation: slideInRight 1.2s ease-out;
 }
 
 .intro-content {
-    background-color: rgba(0, 0, 0, 0.4); 
-    padding: 30px;
-    border-radius: 12px;
-    max-width: 800px;
+    background-color: transparent; 
+    padding: 35px 40px;
 }
 
-.intro-content h2 {
-    font-size: 36px;
-    font-weight: 700;
-    margin-bottom: 20px;
+.pre-heading {
+    display: block;
+    font-size: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+    color: #e0e0e0;
 }
+
+.header-container h1 {
+    font-size: 76px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6);
+    color: #ffffff;
+    line-height: 1.1;
+    position: relative;
+}
+
+
 
 .intro-content p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #f1f1f1;
+    font-size: 22px;
+    line-height: 1.7;
+    font-weight: 400;
+    color: #ffffff;
+    margin: 0 0 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
-/* INTRO */
+
+.cta-button {
+    display: inline-block;
+    padding: 14px 32px;
+    background: linear-gradient(to right, #ffffff, #f0f0f0);
+    color: #333;
+    text-decoration: none;
+    font-size: 17px;
+    font-weight: 600;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, #f0f0f0, #ffffff);
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 992px) {
+    .header-container {
+        top: 8%;
+        left: 5%;
+    }
+    .header-container h1 {
+        font-size: 60px;
+    }
+    .info-container {
+        bottom: 10%;
+        right: 5%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        top: 10%;
+        left: 5%;
+        max-width: 90%;
+    }
+    .pre-heading {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+    .header-container h1 {
+        font-size: 48px;
+    }
+    .info-container {
+        position: absolute;
+        bottom: 10%;
+        right: 0;
+        left: 0;
+        max-width: 100%;
+        padding: 0 5%;
+        text-align: center;
+    }
+    .intro-content {
+        width: 100%;
+        text-align: center;
+        border-left: none;
+        border-top: 2px solid rgba(255, 255, 255, 0.7);
+    }
+    .intro-content p {
+        font-size: 18px;
+    }
+    .cta-button {
+        padding: 12px 25px;
+        font-size: 16px;
+    }
+}
 
 /* Discover Section */
 .discover {

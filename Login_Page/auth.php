@@ -24,7 +24,7 @@ if ($result->num_rows === 1) {
     $_SESSION['phone_number'] = $user['phone_number'];
     $_SESSION['location'] = $user['location'];
 
-    header("Location: ../Home/home.html");
+    header("Location: ../Home/home.php");
     exit();
   } else {
     echo "Incorrect password.";

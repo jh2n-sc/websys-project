@@ -42,54 +42,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-
-    <!-- Loading Screen -->
-    <div id="page-loader">
-        <div class="loader-content">
-            <div class="loader-spinner"></div>
-        </div>
-    </div>
-
-    <!-- NAV -->
-    <header>
-        <div class="logo">
-            <!-- <img src="/mnt/data/LANDINGPAGE.webp" alt="logo" style="height:40px;"> LOGO TO BE UPLOADED -->
-            NAME
-        </div>
-
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li>
-                    <button id="close-sidebar-button" aria-label="close sidebar">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
-                            fill="#c9c9c9">
-                            <path
-                                d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z" />
-                        </svg>
-                    </button>
-                </li>
-                <li><a href="../Home/home.html">Home</a></li>
-                <li><a href="../Buy/buy.php">Buy</a></li>
-                <li><a href="../Sell/sell.php"">Sell</a></li>
-                <li><a href=" ../About/about.html">About Us</a></li>
-            </ul>
-        </nav>
-
-        <div class="header-actions">
-            <a href="../Profile/Profile.php">Profile</a>
-            <button id="open-sidebar-button" aria-label="open sidebar" aria-expanded="false"
-                aria-controls="navbar">
-                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
-                    fill="#c9c9c9">
-                    <path
-                        d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z" />
-                </svg>
-            </button>
-        </div>
-    </header>
+    <!-- Loader -->
+    <?php include '../Components/loader.php'; ?>
+    <!-- Navbar -->
+    <?php include '../Components/navbar.php'; ?>
 
 
-    BANNER
+
+    
     <!-- BANNER -->
     <section class="banner">
         <div class="banner-content">
@@ -100,18 +60,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <a href="#property-listings" class="cta-button">Explore Listings</a>
         </div>
     </section>
-
-
-
-    LISTINGS TITLE
+    
+    
+    
+    
+    
     <!-- LISTINGS TITLE -->
     <section class="listing-title">
         <h2 class="section-heading">Discover Your Ideal Property</h2>
         <p class="section-description">From luxury apartments to cozy homes, browse our diverse listings that cater to all your needs and preferences. Your perfect property is just a few clicks away.</p>
     </section>
-
-
-    LISTINGS
     <!-- LISTINGS -->
     <div class="page-container">
         <aside class="filters-sidebar">
@@ -226,93 +184,95 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
         <main class="container">
-            <section>
-                <div class="section-header">
-                    <h2>Homes around ₱resyong pang masa</h2>
-                    <a href="#" class="view-all">View all in San Antonio, TX</a>
+    <section>
+        <div class="section-header">
+            <h2>Homes around ₱resyong pang masa</h2>
+            <a href="#" class="view-all">View all in San Antonio, TX</a>
+        </div>
 
-                <?php
-                if ($result->num_rows > 0) {
-                    while ($row = $result->fetch_assoc()) {
-                ?>
-                        <div class="property-card" onclick="showPropertyDetails(
-                '<?php echo $row['listing_id']; ?>',
-                '<?php echo addslashes($row['property_name']); ?>',
-                '<?php echo $row['price']; ?>',
-                '<?php echo $row['bed_no']; ?>',
-                '<?php echo $row['bath_no']; ?>',
-                '<?php echo addslashes($row['property_dimension']); ?>',
-                '<?php echo addslashes($row['property_location']); ?>',
-                '<?php echo addslashes(date('F j, Y', strtotime($row['listing_date']))); ?>',
-                '<?php echo addslashes($row['property_description']); ?>',
-                '../php/image.php?listing_id=<?php echo $row['listing_id']; ?>'
+        <div class="property-grid">
+            <?php
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+            ?>
+                <div class="property-card" onclick="showPropertyDetails(
+                    '<?php echo $row['listing_id']; ?>',
+                    '<?php echo addslashes($row['property_name']); ?>',
+                    '<?php echo $row['price']; ?>',
+                    '<?php echo $row['bed_no']; ?>',
+                    '<?php echo $row['bath_no']; ?>',
+                    '<?php echo addslashes($row['property_dimension']); ?>',
+                    '<?php echo addslashes($row['property_location']); ?>',
+                    '<?php echo addslashes(date('F j, Y', strtotime($row['listing_date']))); ?>',
+                    '<?php echo addslashes($row['property_description']); ?>',
+                    '../php/image.php?listing_id=<?php echo $row['listing_id']; ?>'
                 )">
-                            <div class="property-image">
-                                <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
-                                <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
-                                <button class="favorite-btn" aria-label="Add to favorites">
-                                    <i class="far fa-heart"></i>
-                                </button>
-                            </div>
-                            <div class="property-details">
-                                <div class="property-type">
-                                    <div class="property-type-indicator"></div>
-                                    <span><?php echo $row["property_description"]; ?></span>
-                                </div>
-                                <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
-                                <div class="property-specs">
-                                    <span><?php echo $row["bed_no"]; ?> bed</span>
-                                    <span><?php echo $row["bath_no"]; ?> bath</span>
-                                    <span><?php echo $row["property_dimension"]; ?> m²</span>
-                                </div>
-                                <div class="property-address"><?php echo $row["property_name"]; ?></div>
-                                <div class="property-location"><?php echo $row["property_location"]; ?></div>
-                            </div>
+                    <div class="property-image">
+                        <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
+                        <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
+                        <button class="favorite-btn" aria-label="Add to favorites">
+                            <i class="far fa-heart"></i>
+                        </button>
+                    </div>
+                    <div class="property-details">
+                        <div class="property-type">
+                            <div class="property-type-indicator"></div>
+                            <span><?php echo $row["property_description"]; ?></span>
                         </div>
-                <?php
-                    }
-                }
-                ?>
-                </div>
-                <div class="property-grid">
-                    <div class="property-card" onclick="showPropertyDetails(
-                    '0',
-                    '10434 Sun Ml',
-                    '330000',
-                    '4',
-                    '2.5',
-                    '2,545',
-                    'San Antonio, TX 78254',
-                    '3 hours ago',
-                    'Single-Family Home',
-                    'https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80'
-                    )">
-
-                        <div class="property-image">
-                            <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
-                            <div class="new-badge">New - 3 hours ago</div>
-                            <button class="favorite-btn" aria-label="Add to favorites">
-                                <i class="far fa-heart"></i>
-                            </button>
+                        <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
+                        <div class="property-specs">
+                            <span><?php echo $row["bed_no"]; ?> bed</span>
+                            <span><?php echo $row["bath_no"]; ?> bath</span>
+                            <span><?php echo $row["property_dimension"]; ?> m²</span>
                         </div>
-                        <div class="property-details">
-                            <div class="property-type">
-                                <div class="property-type-indicator"></div>
-                                <span>Single-Family Home</span>
-                            </div>
-                            <div class="property-price">₱3,330,000</div>
-                            <div class="property-specs">
-                                <span>4 bed</span>
-                                <span>2.5 bath</span>
-                                <span>2,545 sqft</span>
-                            </div>
-                            <div class="property-address">10434 Sun Ml</div>
-                            <div class="property-location">San Antonio, TX 78254</div>
-                        </div>
+                        <div class="property-address"><?php echo $row["property_name"]; ?></div>
+                        <div class="property-location"><?php echo $row["property_location"]; ?></div>
                     </div>
                 </div>
-            </section>
-        </main>
+            <?php
+                }
+            }
+            ?>
+
+            <!-- Static property card -->
+            <div class="property-card" onclick="showPropertyDetails(
+                '0',
+                '10434 Sun Ml',
+                '330000',
+                '4',
+                '2.5',
+                '2,545',
+                'San Antonio, TX 78254',
+                '3 hours ago',
+                'Single-Family Home',
+                'https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80'
+            )">
+                <div class="property-image">
+                    <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
+                    <div class="new-badge">New - 3 hours ago</div>
+                    <button class="favorite-btn" aria-label="Add to favorites">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="property-details">
+                    <div class="property-type">
+                        <div class="property-type-indicator"></div>
+                        <span>Single-Family Home</span>
+                    </div>
+                    <div class="property-price">₱3,330,000</div>
+                    <div class="property-specs">
+                        <span>4 bed</span>
+                        <span>2.5 bath</span>
+                        <span>2,545 sqft</span>
+                    </div>
+                    <div class="property-address">10434 Sun Ml</div>
+                    <div class="property-location">San Antonio, TX 78254</div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
 
         <!-- Property Popover  -->
         <div id="property-popover" class="popover-overlay">
@@ -407,7 +367,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 
-    TESTIMONIALS
     <section class="testimonial-section" id="testimonialSection">
         <div class="testimonial-bg-pattern"></div>
 
@@ -581,23 +540,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-left">©2024 //NAME// RESIDENCE. ALL RIGHTS RESERVED</div>
-            <div class="footer-center">
-                <a href="../Home/home.html">Home</a>
-                <a href="../Buy/buy.php">Buy</a>
-                <a href="../Sell/sell.php">Sell</a>
-                <a href="../About/about.html">About Us</a>
-            </div>
-            <div class="footer-right">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
+    
+    <?php include '../Components/footer.php'; ?>
+    
 
 
 
