@@ -17,7 +17,6 @@
     <!-- Navbar -->
     <header>
     <div class="logo">
-        <!-- <img src="/mnt/data/LANDINGPAGE.webp" alt="logo" style="height:40px;"> -->
         KABALAYAN
     </div>
 
