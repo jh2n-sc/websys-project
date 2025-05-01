@@ -1,12 +1,72 @@
 <?php
 include "../php/db_conn.php";
 
-$sql = "SELECT * FROM listings l  JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id 
-WHERE l.property_status != 'sold'
-ORDER BY listing_id DESC";
-$stmt = $conn->prepare($sql);
-$stmt->execute();
-$result = $stmt->get_result();
+if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
+    $sql = "SELECT * FROM listings l 
+            JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id 
+            WHERE l.property_status != 'sold'";
+
+    $types = "";
+    $params = [];
+
+    if (isset($_GET['search'])) {
+        $searchStr = $_GET['search'];
+        $sql .= " AND (property_name LIKE ? OR property_location LIKE ? OR property_description LIKE ?)";
+        $types .= "sss";
+        $params[] = "%" . $searchStr . "%";
+        $params[] = "%" . $searchStr . "%";
+        $params[] = "%" . $searchStr . "%";
+    }
+
+    if (isset($_GET['price_min']) && isset($_GET['price_max'])) {
+        $priceMin = $_GET['price_min'];
+        $priceMax = $_GET['price_max'];
+        $sql .= " AND price BETWEEN ? AND ?";
+        $types .= "dd";
+        $params[] = $priceMin;
+        $params[] = $priceMax;
+    }
+
+    if (isset($_GET['property_type'])) {
+        $propertyType = $_GET['property_type'];
+        $sql .= " AND property_description IN (" . implode(',', array_fill(0, count($propertyType), '?')) . ")";
+        $types .= str_repeat('s', count($propertyType));
+        $params = array_merge($params, $propertyType);
+    }
+
+    if (isset($_GET['features'])) {
+        $features = $_GET['features'];
+        $sql .= " AND property_details IN (" . implode(',', array_fill(0, count($features), '?')) . ")";
+        $types .= str_repeat('s', count($features));
+        $params = array_merge($params, $features);
+    }
+
+    if (isset($_GET['bedrooms'])) {
+        $bedrooms = $_GET['bedrooms'];
+        $sql .= " AND bed_no = ?";
+        $types .= "s";
+        $params[] = $bedrooms;
+    }
+    if (isset($_GET['bathrooms'])) {
+        $bathrooms = $_GET['bathrooms'];
+        $sql .= " AND bath_no = ?";
+        $types .= "s";
+        $params[] = $bathrooms;
+    }
+
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param($types, ...$params);
+    $stmt->execute();
+    $result = $stmt->get_result();
+}
+else {
+    $sql = "SELECT * FROM listings l  JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id 
+    WHERE l.property_status != 'sold'
+    ORDER BY listing_date DESC";
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
+}
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -22,30 +82,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 }
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BUY</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="buy.css">
-    <link rel="stylesheet" href="buy-listing.css">
-    <link rel="stylesheet" href="popover.css">
-    <link rel="stylesheet" href="buy-filter.css">
-    <link rel="stylesheet" href="testimonials.css">
+    <link rel="stylesheet" href="../styles/buy.css">
+    <link rel="stylesheet" href="../styles/buy-listing.css">
+    <link rel="stylesheet" href="../styles/popover.css">
+    <link rel="stylesheet" href="../styles/buy-filter.css">
+    <link rel="stylesheet" href="../styles/testimonials.css">
 </head>
 
 <body>
     <!-- Loader -->
-    <?php include '../Components/loader.php'; ?>
+    <?php include '../Includes/loader.php'; ?>
     <!-- Navbar -->
-    <?php include '../Components/navbar.php'; ?>
+    <?php include '../Includes/navbar.php'; ?>
 
 
 
@@ -77,7 +135,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Filter Properties</h3>
                 <button id="clear-filters" class="clear-filters-btn">Clear All</button>
             </div>
-
+        
             <div class="filter-section">
                 <div class="search-container">
                     <input type="text" id="property-search" placeholder="Search locations, addresses...">
@@ -108,22 +166,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h4 class="filter-title">Property Type</h4>
                 <div class="checkbox-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" name="property-type" value="house">
+                        <input type="checkbox" name="property-type" value="House">
                         <span class="checkbox-custom"></span>
                         Houses
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="property-type" value="condo">
+                        <input type="checkbox" name="property-type" value="Condo">
                         <span class="checkbox-custom"></span>
                         Condos
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="property-type" value="townhouse">
+                        <input type="checkbox" name="property-type" value="Townhouse">
                         <span class="checkbox-custom"></span>
                         Townhouses
                     </label>
                     <label class="checkbox-label">
-                        <input type="checkbox" name="property-type" value="land">
+                        <input type="checkbox" name="property-type" value="Land">
                         <span class="checkbox-custom"></span>
                         Land
                     </label>
@@ -183,6 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </aside>
 
 
+
         <main class="container">
     <section>
         <div class="section-header">
@@ -235,7 +294,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ?>
 
             <!-- Static property card -->
-            <div class="property-card" onclick="showPropertyDetails(
+            <!-- <div class="property-card" onclick="showPropertyDetails(
                 '0',
                 '10434 Sun Ml',
                 '330000',
@@ -268,7 +327,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="property-address">10434 Sun Ml</div>
                     <div class="property-location">San Antonio, TX 78254</div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 </main>
@@ -303,20 +362,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         <form action="" method="POST" class>
                             <input type="text" name="property_ID" style="display: none; visibility: hidden;" id="property-ID" value="100">
                             <div class="property-actions">
-                                <button class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
-                                    <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
-                                </button>
-                                <button type="submit" name="buy" class="buy-btn" onclick="handleBuyAction(this)"">
+                                <button type="submit" name="buy" class="buy-btn" onclick="handleBuyAction(this)">
                                     <i class="fa-solid fa-cart-shopping"></i> Buy
                                 </button>
                             </div>
                         </form>
 
-
+                        <div class="property-actions">
+                            <button type="button" class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
+                                <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
+                            </button>
+                        </div>
+                        
                         <div class="fake-message-form">
                             <textarea placeholder="Your message"></textarea>
-                            <button onclick="handleFakeAction('message')">Send Message</button>
+                            <button type="button" onclick="handleFakeAction('message')">Send Message</button>
                         </div>
+
 
 
 
@@ -326,10 +388,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
 
 
-                        <div id="buy-confirmation" class="mini-popover">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <p>Thank you! We'll contact you shortly to proceed with your purchase.</p>
-                        </div>
+                        <div id="buy-confirmation" class="mini-popover"></div>
 
                         <div class="mini-popover" id="messageSentPopover">
                             <i class="fas fa-check-circle wishlist-popover-icon"></i>
@@ -342,31 +401,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </div>
 
-    CONTACT FORM
-    <!-- CONTACT SECTION -->
-    <section class="contact-section">
-        <div class="contact-info">
-            <h2>Still haven't found what you're looking for?</h2>
-            <p>Let us know your preferences, and we'll help you find the perfect home.</p>
-        </div>
-        <form class="contact-form">
-            <div class="form-row">
-                <input type="text" placeholder="First Name" required />
-                <input type="text" placeholder="Last Name" required />
-            </div>
-            <div class="form-row">
-                <input type="text" placeholder="What are you looking for?" required />
-            </div>
-            <div class="form-row">
-                <textarea placeholder="Notes"></textarea>
-            </div>
-            <button type="submit">Submit</button>
-        </form>
-    </section>
+    <?php include '../Includes/contact.php'; ?>
 
-
-
-
+    <!-- Testimonial -->
     <section class="testimonial-section" id="testimonialSection">
         <div class="testimonial-bg-pattern"></div>
 
@@ -398,7 +435,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="../Assets/alexandrar.jpg" alt="Alexandra Rivera">
+                                <img src="../Assets/images/alexandrar.jpg" alt="Alexandra Rivera">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Alexandra Rivera</div>
@@ -423,7 +460,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="../Assets/marcusj.jpg" alt="Marcus Johnson">
+                                <img src="../Assets/images/marcusj.jpg" alt="Marcus Johnson">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Marcus Johnson</div>
@@ -448,7 +485,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="../Assets/sophiachen.jpg" alt="Sophia Chen">
+                                <img src="../Assets/images/sophiachen.jpg" alt="Sophia Chen">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Sophia Chen</div>
@@ -473,7 +510,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="../Assets/robert.jpg" alt="Robert & Elizabeth Davis">
+                                <img src="../Assets/images/robert.jpg" alt="Robert & Elizabeth Davis">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">Robert & Elizabeth Davis</div>
@@ -498,7 +535,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="testimonial-author">
                             <div class="testimonial-avatar">
-                                <img src="../Assets/james.jpg" alt="James Wilson">
+                                <img src="../Assets/images/james.jpg" alt="James Wilson">
                             </div>
                             <div class="testimonial-info">
                                 <div class="testimonial-name">James Wilson</div>
@@ -541,15 +578,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     </section>
 
     
-    <?php include '../Components/footer.php'; ?>
+    <?php include '../Includes/footer.php'; ?>
     
 
 
 
-    <script src="buy.js"></script>
-    <script src="popover.js"></script>
-    <script src="buy-filter.js"></script>
-    <script src="testimonials.js"></script>
+    <script src="../js/buy.js"></script>
+    <script src="../js/popover.js"></script>
+    <script src="../js/buy-filter.js"></script>
+    <script src="../js/testimonials.js"></script>
 
 </body>
 

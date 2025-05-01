@@ -2,8 +2,7 @@
     ini_set('display_errors', 1);
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
-    include_once '../php/db_conn.php';
-
+    include_once '../db_conn.php';
     session_start();
 
 
@@ -63,7 +62,7 @@
         }
 
         if (!$fail) {
-            header("Location: ../Profile/Profile.php");
+            header("Location: ../pages/Profile.php");
             exit;
         }
     }

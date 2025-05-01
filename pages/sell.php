@@ -5,7 +5,7 @@ session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-   header("Location: ../Login_Page/index.php");  // Redirect if not logged in
+   header("Location: ./login.php");  // Redirect if not logged in
   exit();
 }
 $stmt = $conn->prepare("SELECT * from listings WHERE property_status = 'sold'");
@@ -21,17 +21,16 @@ $result = $stmt->get_result();
   <title>SELL</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet"/>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
-  <link rel="stylesheet" href="sell.css" />
-  <link rel="stylesheet" href="sell-carousel.css">
-  <link rel="stylesheet" href="sell-form.css">
+  <link rel="stylesheet" href="../styles/sell.css" />
+  <link rel="stylesheet" href="../styles/sell-carousel.css">
+  <link rel="stylesheet" href="../styles/sell-form.css">
 </head>
-
 <body>
 
 <!-- Loader -->
-<?php include '../Components/loader.php'; ?>
+<?php include '../Includes/loader.php'; ?>
 <!-- Navbar -->
-<?php include '../Components/navbar.php'; ?>
+<?php include '../Includes/navbar.php'; ?>
 
 <!-- SELL BANNER -->
 BANNER
@@ -553,13 +552,13 @@ FAQ
 </section>
 
 <!-- FOOTER -->
-<?php include '../Components/footer.php'; ?>
+<?php include '../Includes/footer.php'; ?>
 
 
 
-<script src="sell.js"></script>
-<script src="sell-form.js"></script>
-<script src="sell-carousel.js"></script>
+<script src="../js/sell.js"></script>
+<script src="../js/sell-form.js"></script>
+<script src="../js/sell-carousel.js"></script>
 
 </body>
 </html>

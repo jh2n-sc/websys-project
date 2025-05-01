@@ -1,0 +1,315 @@
+:root {
+    --text-color: #333;
+    --primary-color: #000;
+    --secondary-color: #333;
+    --accent-color: #2b9348;
+    --light-gray: #f8f9fa;
+    --medium-gray: #6c757d;
+    --dark-gray: #666;
+    --shadow-sm: 0 3px 8px rgba(0,0,0,0.1);
+    --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+    --border-radius: 8px;
+    --transition: all 0.25s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    line-height: 1.5;
+}
+
+body {
+    background-color: #fff;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    width: min(90%, 1200px);
+    margin: 2rem auto;
+    padding: 0 1rem;
+    flex: 1;
+}
+
+/* Profile Section */
+.profile-header {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    transition: var(--transition);
+}
+
+.profile-header:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
+
+.profile-image {
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #eee;
+    box-shadow: var(--shadow-sm);
+    border: 3px solid #fff;
+}
+
+.profile-info {
+    flex: 1;
+    min-width: 0; /* Prevent flex overflow */
+}
+
+.profile-info h1 {
+    margin-bottom: 0.75rem;
+    font-size: clamp(1.5rem, 2vw, 1.8rem);
+    font-weight: 700;
+    color: var(--text-color);
+    line-height: 1.2;
+}
+
+.profile-details {
+    color: var(--dark-gray);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.profile-details p {
+    margin-bottom: 0.5rem;
+}
+
+.profile-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+}
+
+.profile-actions a {
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: var(--border-radius);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+    display: inline-flex;
+    align-items: center;
+}
+
+.profile-actions a:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+/* Listings Section */
+.listings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.listings-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.btn {
+    padding: 0.625rem 1.125rem;
+    background-color: var(--primary-color);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.95rem;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.listings-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.listing-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.listing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.listing-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.listing-card:hover .listing-image {
+    transform: scale(1.03);
+}
+
+.listing-details {
+    padding: 1.25rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.listing-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.listing-type {
+    color: var(--medium-gray);
+    font-size: 0.85rem;
+}
+
+.listing-price {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+.listing-location {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+.listing-description {
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.listing-actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1rem;
+}
+
+.listing-footer {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--medium-gray);
+    border-top: 1px solid #eee;
+    margin-top: auto;
+}
+
+.no-listings {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+    color: var(--medium-gray);
+    margin: 2rem 0;
+}
+
+.no-listings h3 {
+    margin-bottom: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.no-listings p {
+    margin-bottom: 1.25rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 1.5rem;
+        gap: 1.5rem;
+    }
+    
+    .profile-info {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .profile-actions {
+        justify-content: center;
+    }
+    
+    .listings-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .listing-image {
+        height: 180px;
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}

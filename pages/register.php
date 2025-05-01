@@ -1,26 +1,28 @@
-<?php
-session_start();
-// Check if the user is logged in
-if (isset($_SESSION['user_id'])) {
-  header("Location: ../Profile/Profile.php");
-  exit();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>REGISTER</title>
+  <link rel="stylesheet" href="../styles/login.css">
 </head>
 <body>
   <div class="container">
-    <form action="auth.php" method="post" class="card">
-      <h2>Login</h2>
+    <form action="../php/register_acc.php" method="post" class="card">
+      <h2>Sign Up</h2>
 
       <div class="input-group">
         <input type="text" name="username" id="username" required>
-        <label for="username">Email or Username</label>
+        <label for="username">Username</label>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="firstname" id="firstname" required>
+        <label for="firstname">First Name</label>
+      </div>
+
+      <div class="input-group">
+        <input type="text" name="lastname" id="lastname" required>
+        <label for="lastname">Last Name</label>
       </div>
 
       <div class="input-group">
@@ -29,8 +31,8 @@ if (isset($_SESSION['user_id'])) {
         <span class="toggle" onclick="togglePassword()">👁</span>
       </div>
 
-      <button type="submit">Login</button>
-      <p>Don't have an account? <a href="register.html">Sign Up</a></p>
+      <button type="submit">Register</button>
+      <p>Already have an account? <a href="login.php">Login</a></p>
     </form>
   </div>
 
@@ -42,5 +44,3 @@ if (isset($_SESSION['user_id'])) {
   </script>
 </body>
 </html>
-
-

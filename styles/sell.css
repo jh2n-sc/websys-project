@@ -1,0 +1,81 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  }
+  
+  html {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+}
+
+  body {
+  background-color: #fff;
+  min-height: 100vh;
+  min-height: 100dvh;
+  }
+
+/*  Sell Banner */
+.banner {
+  background: linear-gradient(135deg, #e8f0ff, #ffffff);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.banner h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1a1a1a;
+}
+
+.banner p {
+  font-size: 1.2rem;
+  color: #444;
+}
+
+/* --- FAQ Section --- */
+.faq-section {
+  padding: 3rem 2rem;
+  background-color: #fff;
+}
+
+.faq-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+}
+
+.faq-item {
+  max-width: 800px;
+  margin: 0 auto 1.5rem;
+  background-color: #fafafa;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+.faq-item h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.faq-item p {
+  color: #555;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 768px) {
+  .property-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+
+  .contact-form {
+    padding: 0 1rem;
+  }
+}

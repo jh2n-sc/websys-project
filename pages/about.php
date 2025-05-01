@@ -6,14 +6,15 @@
   <title>ABOUT</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="about.css" />
+  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <link rel="stylesheet" href="../styles/about.css" />
 </head>
 <body>
 
   <!-- Loader -->
-  <?php include '../Components/loader.php'; ?>
+  <?php include '../Includes/loader.php'; ?>
   <!-- NAV -->
-  <?php include '../Components/navbar.php'; ?>
+  <?php include '../Includes/navbar.php'; ?>
 
 
   <!-- About Section -->
@@ -29,12 +30,13 @@
     </div>
   </div>
   
+  
   <!-- Team Section -->
   <div class="team-section">
     <h2>Meet Our Team</h2>
     <div class="team-grid">
       <div class="team-member">
-        <img src="../Assets/Jerve.jpg" alt="Jerve" class="member-photo">
+        <img src="../Assets/images/Jerve.jpg" alt="Jerve" class="member-photo">
         <div class="member-name">Sean Jerve Rebancos</div>
         <div class="member-title">Student</div>
         <div class="member-location">Daraga, Albay</div>
@@ -46,13 +48,13 @@
         <div class="member-location">Legazpi City</div>
       </div>
       <div class="team-member">
-        <img src="../Assets/kiel.jpg" alt="Kiel" class="member-photo">
+        <img src="../Assets/images/Kiel.jpg" alt="Kiel" class="member-photo">
         <div class="member-name">Kiel Hedrix Relos</div>
         <div class="member-title">Student</div>
         <div class="member-location">Legazpi City</div>
       </div>
       <div class="team-member">
-        <img src="../Assets/Kevin.jpg" alt="Kevin" class="member-photo">
+        <img src="../Assets/images/Kevin.jpg" alt="Kevin" class="member-photo">
         <div class="member-name">John Kevin Tamayo</div>
         <div class="member-title">Student</div>
         <div class="member-location">Mayon, Daraga Albay</div>
@@ -77,15 +79,15 @@
       <div class="tech-item"><i class="devicon-php-plain colored"></i></div>
       <div class="tech-item"><i class="devicon-javascript-plain colored"></i></div>
       <div class="tech-item"><i class="devicon-css3-plain colored"></i></div>
-      <div class="tech-item"><i class="devicon-mysql-original colored"></i></div>
+      <div class="tech-item"><i class="devicon-mysql-original colored"></i></i></div>
       <div class="tech-item"><i class="devicon-apache-plain colored"></i></div>
     </div>
   </div>
 
-  <?php include '../Components/footer.php'; ?>
+  <?php include '../Includes/footer.php'; ?>
 
   
-  <script src="about.js"></script>
+  <script src="../js/about.js"></script>
 
 </body>
 </html>

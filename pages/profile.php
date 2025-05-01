@@ -9,7 +9,7 @@ include_once '../php/db_conn.php';
 session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ../Login_Page/index.php");  // Redirect if not 
+    header("Location: ./login.php");  // Redirect if not 
     die();
 }
 
@@ -35,20 +35,19 @@ try {
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROFILE - <?php echo htmlspecialchars($user['username']); ?></title>
+    <title>PROFILE - <?php echo htmlspecialchars($user['account']); ?></title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../styles/profile.css">
 </head>
 
 <!-- Loader -->
-<?php include '../Components/loader.php'; ?>
+<?php include '../Includes/loader.php'; ?>
 <!-- Navbar -->
-<?php include '../Components/navbar.php'; ?>
+<?php include '../Includes/navbar.php'; ?>
 
 <body>
     <div class="container">
@@ -86,7 +85,6 @@ try {
         <!-- Listings Section -->
         <div class="listings-header">
             <h2>My Listings</h2>
-            <a href="create_listing.php" class="btn">Create New Listing</a>
         </div>
 
         <?php if ($result->num_rows > 0): ?>
@@ -132,7 +130,7 @@ try {
 
     </div>
 
-    <?php include '../Components/footer.php'; ?>
+    <?php include '../Includes/footer.php'; ?>
 
 
     <script>
