@@ -1,5 +1,4 @@
- /* CSS Variables */
- :root {
+:root {
     --primary: #000000;
     --primary-dark: #000000;
     --secondary: #000000;
@@ -14,7 +13,6 @@
     --transition: all 0.3s ease;
 }
 
-/* FAQ Section Styling */
 .faq-section {
     position: relative;
     padding: 100px 20px;
@@ -65,7 +63,6 @@
     align-items: start;
 }
 
-/* FAQ Categories */
 .faq-categories {
     background-color: var(--bg-white);
     border-radius: 12px;
@@ -121,11 +118,13 @@
     color: white;
 }
 
-/* FAQ Questions */
 .faq-questions {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: 16px;
+}
+.faq-questions.active {
+display: block;
 }
 
 .faq-item {
@@ -199,10 +198,14 @@
 }
 
 .faq-answer p {
-    color: var(--text-medium);
     font-size: 15px;
     line-height: 1.7;
     margin-bottom: 15px;
+}
+
+.faq-answer p strong {
+    color: var(--text-dark);
+    font-weight: 600;
 }
 
 .faq-answer ul {
@@ -222,7 +225,6 @@
     font-weight: 600;
 }
 
-/* Search and CTA */
 .faq-search {
     display: flex;
     max-width: 500px;
@@ -334,7 +336,6 @@
     transform: translateY(-2px);
 }
 
-/* Responsive Styles */
 @media (max-width: 1024px) {
     .faq-layout {
         grid-template-columns: 220px 1fr;

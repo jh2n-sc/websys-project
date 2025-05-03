@@ -1,4 +1,4 @@
-<?php 
+<?php
 $host = 'localhost';
 $pass = '';
 $dbname = 'project_db';
@@ -10,6 +10,3 @@ $conn = new mysqli($host, $user, $pass, $dbname);
 if ($conn->connect_error) {
     die("Connection error!!!" . $conn->connect_error);
 }
-
-
-?>

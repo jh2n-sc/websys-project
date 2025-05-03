@@ -1,73 +1,85 @@
 <?php
 include "../php/db_conn.php";
 
+// Initialize $result to null
+$result = null;
+
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
-    $sql = "SELECT * FROM listings l 
-            JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id 
-            WHERE l.property_status != 'sold'";
+    // Filtering logic
+    $sql = "SELECT l.*, p.bed_no, p.bath_no
+            FROM listings l
+            LEFT JOIN property_more_details p ON l.listing_id = p.ref_listing_id
+            WHERE 1=1 "; // Start with a condition that is always true
 
     $types = "";
     $params = [];
 
-    if (isset($_GET['search'])) {
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
         $searchStr = $_GET['search'];
-        $sql .= " AND (property_name LIKE ? OR property_location LIKE ? OR property_description LIKE ?)";
+        $sql .= " AND (l.property_name LIKE ? OR l.property_location LIKE ? OR l.property_description LIKE ?)";
         $types .= "sss";
         $params[] = "%" . $searchStr . "%";
         $params[] = "%" . $searchStr . "%";
         $params[] = "%" . $searchStr . "%";
     }
 
-    if (isset($_GET['price_min']) && isset($_GET['price_max'])) {
+    if (isset($_GET['price_min']) && !empty($_GET['price_min']) && isset($_GET['price_max']) && !empty($_GET['price_max'])) {
         $priceMin = $_GET['price_min'];
         $priceMax = $_GET['price_max'];
-        $sql .= " AND price BETWEEN ? AND ?";
+        $sql .= " AND l.price BETWEEN ? AND ?";
         $types .= "dd";
         $params[] = $priceMin;
         $params[] = $priceMax;
     }
 
-    if (isset($_GET['property_type'])) {
-        $propertyType = $_GET['property_type'];
-        $sql .= " AND property_description IN (" . implode(',', array_fill(0, count($propertyType), '?')) . ")";
-        $types .= str_repeat('s', count($propertyType));
-        $params = array_merge($params, $propertyType);
+    if (isset($_GET['property_type']) && is_array($_GET['property_type']) && !empty($_GET['property_type'])) {
+        $placeholders = implode(',', array_fill(0, count($_GET['property_type']), '?'));
+        $sql .= " AND l.property_description IN (" . $placeholders . ")";
+        $types .= str_repeat('s', count($_GET['property_type']));
+        $params = array_merge($params, $_GET['property_type']);
     }
 
-    if (isset($_GET['features'])) {
-        $features = $_GET['features'];
-        $sql .= " AND property_details IN (" . implode(',', array_fill(0, count($features), '?')) . ")";
-        $types .= str_repeat('s', count($features));
-        $params = array_merge($params, $features);
+    if (isset($_GET['features']) && is_array($_GET['features']) && !empty($_GET['features'])) {
+        $placeholders = implode(',', array_fill(0, count($_GET['features']), '?'));
+        $sql .= " AND p.property_details IN (" . $placeholders . ")";
+        $types .= str_repeat('s', count($_GET['features']));
+        $params = array_merge($params, $_GET['features']);
     }
 
-    if (isset($_GET['bedrooms'])) {
+    if (isset($_GET['bedrooms']) && !empty($_GET['bedrooms']) && $_GET['bedrooms'] != 'Any') {
         $bedrooms = $_GET['bedrooms'];
-        $sql .= " AND bed_no = ?";
-        $types .= "s";
-        $params[] = $bedrooms;
+        $sql .= " AND p.bed_no >= ?";
+        $types .= "i";
+        $params[] = intval(str_replace('+', '', $bedrooms));
     }
-    if (isset($_GET['bathrooms'])) {
+
+    if (isset($_GET['bathrooms']) && !empty($_GET['bathrooms']) && $_GET['bathrooms'] != 'Any') {
         $bathrooms = $_GET['bathrooms'];
-        $sql .= " AND bath_no = ?";
-        $types .= "s";
-        $params[] = $bathrooms;
+        $sql .= " AND p.bath_no >= ?";
+        $types .= "i";
+        $params[] = intval(str_replace('+', '', $bathrooms));
     }
 
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param($types, ...$params);
-    $stmt->execute();
-    $result = $stmt->get_result();
-}
-else {
-    $sql = "SELECT * FROM listings l  JOIN property_more_details prm ON prm.ref_listing_id = l.listing_id 
-    WHERE l.property_status != 'sold'
-    ORDER BY listing_date DESC";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    $result = $stmt->get_result();
-}
+    $sql .= " AND l.property_status != 'sold'"; // Ensure we only get non-sold properties for filtering
 
+    $stmt = $conn->prepare($sql);
+    if (!empty($types)) {
+        $stmt->bind_param($types, ...$params);
+    }
+    $stmt->execute();
+    $result = $stmt->get_result();
+} else {
+    // Fetch all non-'sold' properties for initial display
+    $sql_initial = "SELECT l.*, p.bed_no, p.bath_no
+                    FROM listings l
+                    LEFT JOIN property_more_details p ON l.listing_id = p.ref_listing_id
+                    WHERE l.property_status != 'sold'
+                    ORDER BY l.listing_date DESC";
+    $result = $conn->query($sql_initial);
+    if (!$result) {
+        die("Error fetching initial listings: " . $conn->error);
+    }
+}
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['buy'])) {
@@ -77,7 +89,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->bind_param('i', $id);
         $stmt->execute();
 
-        // 👇 clear Post
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     }
@@ -86,12 +97,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BUY</title>
+    <title>Kabalayan - Buy </title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/buy.css">
     <link rel="stylesheet" href="../styles/buy-listing.css">
     <link rel="stylesheet" href="../styles/popover.css">
@@ -100,31 +113,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 </head>
 
 <body>
-    <!-- Loader -->
+    <!-- LOADER -->
     <?php include '../Includes/loader.php'; ?>
-    <!-- Navbar -->
+    <!-- NAVBAR -->
     <?php include '../Includes/navbar.php'; ?>
 
-
-
-    
     <!-- BANNER -->
-    <section class="banner">
-        <div class="banner-content">
+    <section class="intro-image">
+        <div class="overlay"></div>
+        <div class="header-container">
+            <span class="pre-heading">Exclusive Listings</span>
             <h1 class="banner-title">
-                <span class="white-text">FIND YOUR DREAM</span> <span class="yellow-text">PROPERTY IN //NAME//</span>
+                FIND YOUR<br>DREAM <span class="highlight">PROPERTY</span>
             </h1>
-            <p class="banner-subtitle">Explore the best homes, apartments, and properties tailored to your needs in PILIPINS!</p>
-            <a href="#property-listings" class="cta-button">Explore Listings</a>
+        </div>
+        <div class="info-container">
+            <div class="intro-content">
+                <p>Explore the finest selection of premium homes, apartments, and properties tailored to exceed your expectations in the Philippines.</p>
+                <a href="#property-listings" class="cta-button">Discover Properties</a>
+            </div>
         </div>
     </section>
-    
-    
-    
-    
-    
+
     <!-- LISTINGS TITLE -->
-    <section class="listing-title">
+    <section id="property-listings" class="listing-title">
         <h2 class="section-heading">Discover Your Ideal Property</h2>
         <p class="section-description">From luxury apartments to cozy homes, browse our diverse listings that cater to all your needs and preferences. Your perfect property is just a few clicks away.</p>
     </section>
@@ -135,7 +147,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <h3>Filter Properties</h3>
                 <button id="clear-filters" class="clear-filters-btn">Clear All</button>
             </div>
-        
+
             <div class="filter-section">
                 <div class="search-container">
                     <input type="text" id="property-search" placeholder="Search locations, addresses...">
@@ -211,133 +223,75 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div class="filter-section">
-                <h4 class="filter-title">Home Features</h4>
-                <div class="checkbox-group">
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="features" value="pool">
-                        <span class="checkbox-custom"></span>
-                        Swimming Pool
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="features" value="garage">
-                        <span class="checkbox-custom"></span>
-                        Garage
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="features" value="garden">
-                        <span class="checkbox-custom"></span>
-                        Garden
-                    </label>
-                    <label class="checkbox-label">
-                        <input type="checkbox" name="features" value="aircon">
-                        <span class="checkbox-custom"></span>
-                        Air Conditioning
-                    </label>
-                </div>
-            </div>
-
             <button class="apply-filters-btn">Apply Filters</button>
+
         </aside>
 
 
 
         <main class="container">
-    <section>
-        <div class="section-header">
-            <h2>Homes around ₱resyong pang masa</h2>
-            <a href="#" class="view-all">View all in San Antonio, TX</a>
-        </div>
+            <section>
+                <div class="section-header">
+                    <h2>Properties in Albay</h2>
+                    <a href="#" class="view-all">Discover your dream home in Bicol's most beautiful province! </a>
+                </div>
 
-        <div class="property-grid">
-            <?php
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-            ?>
-                <div class="property-card" onclick="showPropertyDetails(
-                    '<?php echo $row['listing_id']; ?>',
-                    '<?php echo addslashes($row['property_name']); ?>',
-                    '<?php echo $row['price']; ?>',
-                    '<?php echo $row['bed_no']; ?>',
-                    '<?php echo $row['bath_no']; ?>',
-                    '<?php echo addslashes($row['property_dimension']); ?>',
-                    '<?php echo addslashes($row['property_location']); ?>',
-                    '<?php echo addslashes(date('F j, Y', strtotime($row['listing_date']))); ?>',
-                    '<?php echo addslashes($row['property_description']); ?>',
-                    '../php/image.php?listing_id=<?php echo $row['listing_id']; ?>'
+                <div class="property-grid">
+                    <?php
+                    if ($result && $result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                    ?>
+                            <div class="property-card" onclick="showPropertyDetails(
+                '<?php echo $row['listing_id']; ?>',
+                '<?php echo addslashes($row['property_name']); ?>',
+                '<?php echo $row['price']; ?>',
+                '<?php echo $row['bed_no']; ?>',
+                '<?php echo $row['bath_no']; ?>',
+                '<?php echo addslashes($row['property_dimension']); ?>',
+                '<?php echo addslashes($row['property_location']); ?>',
+                '<?php echo addslashes(date('F j, Y', strtotime($row['listing_date']))); ?>',
+                '<?php echo addslashes($row['property_description']); ?>',
+                '<?php echo addslashes($row['property_type']); ?>', 
+                '../php/image.php?listing_id=<?php echo $row['listing_id']; ?>'
                 )">
-                    <div class="property-image">
-                        <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
-                        <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
-                        <button class="favorite-btn" aria-label="Add to favorites">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="property-details">
-                        <div class="property-type">
-                            <div class="property-type-indicator"></div>
-                            <span><?php echo $row["property_description"]; ?></span>
-                        </div>
-                        <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
-                        <div class="property-specs">
-                            <span><?php echo $row["bed_no"]; ?> bed</span>
-                            <span><?php echo $row["bath_no"]; ?> bath</span>
-                            <span><?php echo $row["property_dimension"]; ?> m²</span>
-                        </div>
-                        <div class="property-address"><?php echo $row["property_name"]; ?></div>
-                        <div class="property-location"><?php echo $row["property_location"]; ?></div>
-                    </div>
-                </div>
-            <?php
-                }
-            }
-            ?>
 
-            <!-- Static property card -->
-            <!-- <div class="property-card" onclick="showPropertyDetails(
-                '0',
-                '10434 Sun Ml',
-                '330000',
-                '4',
-                '2.5',
-                '2,545',
-                'San Antonio, TX 78254',
-                '3 hours ago',
-                'Single-Family Home',
-                'https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80'
-            )">
-                <div class="property-image">
-                    <img src="https://images.unsplash.com/photo-1600566753104-685f4f24cb4d?auto=format&fit=crop&w=1950&q=80" alt="House in San Antonio">
-                    <div class="new-badge">New - 3 hours ago</div>
-                    <button class="favorite-btn" aria-label="Add to favorites">
-                        <i class="far fa-heart"></i>
-                    </button>
+                                <div class="property-image">
+                                    <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
+                                    <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
+                                    <button class="favorite-btn" aria-label="Add to favorites">
+                                        <i class="far fa-heart"></i>
+                                    </button>
+                                </div>
+                                <div class="property-details">
+                                    <div class="property-type">
+                                        <div class="property-type-indicator"></div>
+                                        <span><?php echo $row["property_description"]; ?></span>
+                                    </div>
+                                    <div class="property-price">₱<?php echo number_format($row["price"], 2); ?></div>
+                                    <div class="property-specs">
+                                        <span><?php echo $row["bed_no"]; ?> bed</span>
+                                        <span><?php echo $row["bath_no"]; ?> bath</span>
+                                        <span><?php echo $row["property_dimension"]; ?> m²</span>
+                                    </div>
+                                    <div class="property-address"><?php echo $row["property_name"]; ?></div>
+                                    <div class="property-location"><?php echo $row["property_location"]; ?></div>
+                                </div>
+                            </div>
+                    <?php
+                        }
+                    } else {
+                        echo "<p>No properties found.</p>";
+                    }
+                    ?>
                 </div>
-                <div class="property-details">
-                    <div class="property-type">
-                        <div class="property-type-indicator"></div>
-                        <span>Single-Family Home</span>
-                    </div>
-                    <div class="property-price">₱3,330,000</div>
-                    <div class="property-specs">
-                        <span>4 bed</span>
-                        <span>2.5 bath</span>
-                        <span>2,545 sqft</span>
-                    </div>
-                    <div class="property-address">10434 Sun Ml</div>
-                    <div class="property-location">San Antonio, TX 78254</div>
-                </div>
-            </div> -->
-        </div>
-    </section>
-</main>
+            </section>
+        </main>
 
-
-        <!-- Property Popover  -->
+        <!-- PROPERTY POPOVER  -->
         <div id="property-popover" class="popover-overlay">
-
             <div class="popover-content">
-            <button class="close-popover">&times;</button>                <div class="popover-header">
+                <button class="close-popover">&times;</button>
+                <div class="popover-header">
                     <h2>Property Details</h2>
                 </div>
                 <div class="popover-body">
@@ -350,13 +304,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="property-price" id="popover-property-price"></div>
                         <div class="property-specs">
-
                             <span id="popover-property-beds"></span>
                             <span id="popover-property-baths"></span>
                             <span id="popover-property-size"></span>
                         </div>
                         <div class="property-address" id="popover-property-address"></div>
                         <div class="property-location" id="popover-property-location"></div>
+
+                        <div class="property-description" id="popover-property-details-description"></div>
+
                         <div class="listing-date">Listed on: <span id="popover-listing-date"></span></div>
 
                         <form action="" method="POST" class>
@@ -373,20 +329,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
                             </button>
                         </div>
-                        
+
                         <div class="fake-message-form">
                             <textarea placeholder="Your message"></textarea>
                             <button type="button" onclick="handleFakeAction('message')">Send Message</button>
                         </div>
 
-
-
-
                         <div id="wishlist-confirmation" class="mini-popover">
                             <i class="fa-solid fa-heart wishlist-popover-icon"></i>
                             <p>Added to your wishlist!</p>
                         </div>
-
 
                         <div id="buy-confirmation" class="mini-popover"></div>
 
@@ -394,16 +346,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <i class="fas fa-check-circle wishlist-popover-icon"></i>
                             <p>Message sent!</p>
                         </div>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- CONTACT -->
     <?php include '../Includes/contact.php'; ?>
 
-    <!-- Testimonial -->
+    <!-- TESTIMONIAL -->
     <section class="testimonial-section" id="testimonialSection">
         <div class="testimonial-bg-pattern"></div>
 
@@ -558,7 +510,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="testimonial-progress-bar" id="progressBar"></div>
                 </div>
 
-                <!-- Prev Button -->
                 <div class="testimonial-navigation">
                     <div class="testimonial-nav-btn prev" id="prevBtn" aria-label="Previous testimonial">
                         <button">
@@ -566,7 +517,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </button>
                     </div>
 
-                    <!-- Next Button -->
                     <div class="testimonial-nav-btn next" id="nextBtn" aria-label="Next testimonial">
                         <button">
                             <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
@@ -577,11 +527,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
     </section>
 
-    
+    <!-- TOP-BUTTON -->
+    <?php include '../Includes/top-button.php'; ?>
+
+    <!-- FOOTER -->
     <?php include '../Includes/footer.php'; ?>
-    
-
-
 
     <script src="../js/buy.js"></script>
     <script src="../js/popover.js"></script>

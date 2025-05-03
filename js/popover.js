@@ -1,6 +1,6 @@
 // -------------------- Popover --------------------
 // Show property details in popover
-function showPropertyDetails(id, name, price, beds, baths, size, location, date, type, imageUrl) {
+function showPropertyDetails(id, name, price, beds, baths, size, location, date, type, propertyType, imageUrl) {
     
     // Update popover content
     document.getElementById('property-ID').value = id;
@@ -8,11 +8,21 @@ function showPropertyDetails(id, name, price, beds, baths, size, location, date,
     document.getElementById('popover-property-price').textContent = '₱' + parseFloat(price).toLocaleString();
     document.getElementById('popover-property-beds').textContent = beds + ' bed';
     document.getElementById('popover-property-baths').textContent = baths + ' bath';
-    document.getElementById('popover-property-size').textContent = size;
+    document.getElementById('popover-property-size').textContent = size + ' m²';
     document.getElementById('popover-property-address').textContent = name;
     document.getElementById('popover-property-location').textContent = location;
     document.getElementById('popover-listing-date').textContent = date;
     document.getElementById('popover-property-image').src = imageUrl;
+
+    console.log("Property Type (full):", propertyType);
+    
+    // Add the property type description
+    if (propertyType && propertyType !== 'NULL') {
+        document.getElementById('popover-property-details-description').textContent = propertyType;
+        document.getElementById('popover-property-details-description').style.display = 'block';
+    } else {
+        document.getElementById('popover-property-details-description').style.display = 'none';
+    }
     
     // Show the popover
     document.getElementById('property-popover').style.display = 'flex';

@@ -33,6 +33,34 @@ body {
     flex-direction: column;
 }
 
+  .profile-image-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 20px;
+    border: 3px solid #000;
+    position: relative;
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.initials-circle {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    background-color: #000;
+    color: white;
+    font-size: 40px;
+}
+
 .container {
     width: min(90%, 1200px);
     margin: 2rem auto;
@@ -40,7 +68,6 @@ body {
     flex: 1;
 }
 
-/* Profile Section */
 .profile-header {
     background-color: #fff;
     padding: 2rem;
@@ -71,7 +98,7 @@ body {
 
 .profile-info {
     flex: 1;
-    min-width: 0; /* Prevent flex overflow */
+    min-width: 0;
 }
 
 .profile-info h1 {
@@ -118,7 +145,6 @@ body {
     box-shadow: var(--shadow-sm);
 }
 
-/* Listings Section */
 .listings-header {
     display: flex;
     justify-content: space-between;
@@ -267,7 +293,6 @@ body {
     margin-bottom: 1.25rem;
 }
 
-/* Responsive Design */
 @media (max-width: 768px) {
     .profile-header {
         flex-direction: column;
@@ -296,7 +321,6 @@ body {
     }
 }
 
-/* Custom Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
 }

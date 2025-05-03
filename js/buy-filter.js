@@ -152,8 +152,7 @@ function convertToFloat(value) {
 }
 
   
-  // Example of how to use the function:
-   // This will log an array of the values of the checked checkboxes
+  
 // clear filters 
 function setupClearFilters() {
     const clearButton = document.getElementById('clear-filters');

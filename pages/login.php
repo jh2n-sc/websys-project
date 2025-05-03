@@ -8,23 +8,29 @@ if (isset($_SESSION['user_id'])) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kabalayan - Log In</title>
+  <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../styles/login.css">
 </head>
+
 <body>
+
+<!-- LOGIN -->
   <div class="container">
     <form action="../php/auth.php" method="post" class="card">
       <h2>Login</h2>
 
       <div class="input-group">
-        <input type="text" name="username" id="username" required>
+        <input type="text" name="username" id="username" placeholder=" " required>
         <label for="username">Email or Username</label>
       </div>
 
       <div class="input-group">
-        <input type="password" name="password" id="password" required>
+        <input type="password" name="password" id="password" placeholder=" " required>
         <label for="password">Password</label>
         <span class="toggle" onclick="togglePassword()">👁</span>
       </div>
@@ -41,6 +47,5 @@ if (isset($_SESSION['user_id'])) {
     }
   </script>
 </body>
+
 </html>
-
-

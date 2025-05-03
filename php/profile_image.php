@@ -9,11 +9,10 @@ if (isset($_GET['account_id'])) {
     $result = $statement->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        header("Content-type: image/jpeg"); 
+        header("Content-type: image/jpeg");
         echo $row["photo"];
     } else {
         echo 'image not found';
     }
     exit;
 }
-?>

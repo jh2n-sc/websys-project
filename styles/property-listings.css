@@ -130,7 +130,6 @@
   font-size: 0.75rem;
 }
 
-/* Navigation buttons */
 .nav-btn {
   background: white;
   border: none;
@@ -170,7 +169,6 @@
   right: 20%;
 }
 
-/* Indicators */
 .carousel-indicators {
   display: flex;
   justify-content: center;

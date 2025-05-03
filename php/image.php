@@ -8,11 +8,10 @@ if (isset($_GET['listing_id'])) {
     $result = $statement->get_result();
 
     if ($row = $result->fetch_assoc()) {
-        header("Content-type: image/jpeg"); 
+        header("Content-type: image/jpeg");
         echo $row["property_photo"];
     } else {
         echo "No image found.";
     }
     exit;
 }
-?>

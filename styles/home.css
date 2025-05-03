@@ -16,7 +16,6 @@ min-height: 100vh;
 min-height: 100dvh;
 }
 
-/* NAV */
 header {
     display: flex;
     justify-content: space-between;
@@ -131,44 +130,45 @@ nav ul li a.active {
     }
 }
 
-/* HERO & SEARCH */
 .hero {
-padding: 80px 50px 40px 50px;
-display: flex;
-justify-content: space-between;
-align-items: flex-start;
+    padding: 80px 50px 40px 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
 }
 
 .hero-text {
-max-width: 50%;
+    max-width: 50%;
 }
 
 .hero-text h1 {
-font-size: 48px;
-line-height: 1.2;
-font-weight: 600;
+    font-size: 48px;
+    line-height: 1.2;
+    font-weight: 600;
 }
 
 .hero-info {
-text-align: right;
-font-size: 12px;
-color: #888;
-max-width: 40%;
+    text-align: right;
+    font-size: 12px;
+    color: #888;
+    max-width: 40%;
 }
 
 .hero-info p {
-margin-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .image-banner {
     position: relative;
-    background-size: auto;
+    background-size: cover; 
     background-position: center;
     height: 65vh;
     overflow: hidden;
     border-radius: 16px;
-    margin: 40px 40px;
+    margin: 40px;
     padding: 80px 50px 40px 50px;
+    display: flex; 
+    align-items: center; 
 }
 
 .search-bar {
@@ -180,11 +180,12 @@ margin-bottom: 10px;
     flex-wrap: wrap;
     justify-content: center;
     background-color: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(1px);      padding: 20px;
+    backdrop-filter: blur(1px);
+    padding: 20px;
     gap: 15px;
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    width: calc(100% - 40px);
+    width: calc(100% - 80px); 
     max-width: 90vw;
     align-items: flex-start;
 }
@@ -193,11 +194,11 @@ margin-bottom: 10px;
     display: flex;
     flex-direction: column;
     flex: 1;
-    min-width: 180px;
+    min-width: 150px;
 }
 
 .input-group label {
-    font-size: 102px;
+    font-size: 12px;
     font-weight: 600;
     color: white;
     margin-bottom: 6px;
@@ -206,7 +207,7 @@ margin-bottom: 10px;
 .search-bar input,
 .search-bar select {
     width: 100%;
-    padding: 14px 16px;
+    padding: 12px 14px; 
     font-size: 14px;
     border-radius: 8px;
     border: 1px solid #ddd;
@@ -215,66 +216,79 @@ margin-bottom: 10px;
 }
 
 .search-bar button {
-    padding: 14px 30px;
+    padding: 12px 25px; 
     background-color: white;
     color: black;
     font-size: 14px;
     border-radius: 8px;
     border: none;
     cursor: pointer;
-    align-self: end;
-    transition: background-color 0.3s ease;
-    transition: ease-in-out 0.1s;
+    align-self: flex-end;
+    transition: background-color 0.3s ease, transform 0.1s ease-in-out;
 }
 
 .search-bar button:hover {
     background-color: black;
     color: white;
-    scale: 1.1;
+    transform: scale(1.05);
 }
 
-.form-row {
-    display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
-    }
-    
-    .input-group {
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    }
-    
-    .input-group label {
-    font-size: 14px;
-    margin-bottom: 8px;
-    color: #ccc;
-    }
-    
-
 @media screen and (max-width: 1024px) {
+    .hero {
+        padding: 60px 30px 30px 30px;
+        flex-direction: column; 
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-text {
+        max-width: 80%;
+        margin-bottom: 30px;
+    }
+
+    .hero-text h1 {
+        font-size: 36px;
+    }
+
+    .hero-info {
+        text-align: center;
+        max-width: 80%;
+    }
+
+    .image-banner {
+        height: 60vh;
+        margin: 30px;
+        padding: 60px 30px 30px 30px;
+    }
+
+    .search-bar {
+        width: calc(100% - 60px);
+    }
+
     .input-group {
-        min-width: 10%;
+        min-width: calc(50% - 10px); 
     }
 }
 
 @media screen and (max-width: 768px) {
     .image-banner {
-        background-size: cover;
         height: 50dvh;
+        margin: 20px;
+        padding: 40px 20px 20px 20px;
     }
-    
+
     .search-bar {
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto auto;
         width: calc(100% - 40px);
+        gap: 10px; 
     }
-    
+
     .input-group {
-        min-width: 10%;
+        min-width: 100%; 
     }
-    
+
     .search-bar button {
         grid-column: 1 / -1;
         width: 100%;
@@ -283,31 +297,43 @@ margin-bottom: 10px;
 }
 
 @media screen and (max-width: 480px) {
-.image-banner {
-    background-size: cover;
-    height: 70dvh;
+    .hero {
+        padding: 40px 20px 20px 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 28px;
+    }
+
+    .hero-info {
+        font-size: 10px;
+    }
+
+    .image-banner {
+        height: 70dvh;
+        margin: 15px;
+        padding: 30px 15px 15px 15px;
+    }
+
+    .search-bar {
+        flex-direction: column; 
+        width: calc(100% - 30px);
+        gap: 10px;
+    }
+
+    .input-group {
+        width: 100%;
+        min-width: auto; 
+    }
+
+    .search-bar button {
+        width: 100%;
+        margin-top: 10px;
+        padding: 10px 20px;
+        font-size: 12px;
+    }
 }
 
-.search-bar {
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 40px);
-}
-
-.input-group {
-    min-width: 10%;
-    width: 100%;
-}
-
-.search-bar button {
-    width: 100%;
-    margin-top: 10px;
-}
-}
-/* HERO */
-
-
-/* INTRO */
 .intro-image {
     margin: 0;
     padding: 0;
@@ -397,25 +423,38 @@ margin-bottom: 10px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
 }
 
+
 .cta-button {
-    display: inline-block;
-    padding: 14px 32px;
-    background: linear-gradient(to right, #ffffff, #f0f0f0);
-    color: #333;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 2rem;
+    background-color: #000;
+    color: #fff; 
     text-decoration: none;
-    font-size: 17px;
-    font-weight: 600;
-    border-radius: 3px;
+    border-radius: 4px;
+    font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-}
+    border: 1px solid white;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
 .cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-    background: linear-gradient(to right, #f0f0f0, #ffffff);
+background-color: #fff;
+color: #000;
+transform: translateY(-2px);
+box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.cta-button svg {
+transition: transform 0.3s ease;
+stroke-width: 2px; 
+}
+
+.cta-button:hover svg {
+transform: translateX(3px); 
 }
 
 @keyframes slideInLeft {
@@ -516,3 +555,123 @@ font-size: 36px;
 max-width: 100%;
 }
 }
+
+
+/* Popover Styles */
+.cta-sent-popover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cta-sent-popover.active {
+    opacity: 1;
+    display: flex;
+}
+
+.popover-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 400px;
+    text-align: center;
+    position: relative;
+    animation: popIn 0.3s ease-out;
+}
+
+@keyframes popIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.success-icon {
+    margin-bottom: 20px;
+}
+
+.success-icon svg {
+    color: #4CAF50;
+}
+
+.popover-content h3 {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.popover-content p {
+    margin-bottom: 20px;
+    color: #666;
+}
+
+.popover-close-btn {
+    background: #000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.popover-close-btn:hover {
+    background: #333;
+}
+
+.footer {
+    background-color: #fff;
+    padding: 40px 50px;
+    border-top: 1px solid #eee;
+    }
+    
+    .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    }
+    
+    .footer-left {
+    font-size: 12px;
+    }
+    
+    .footer-center {
+    display: flex;
+    gap: 20px;
+    }
+    
+    .footer-center a {
+    font-size: 14px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    color: #000;
+    }
+    
+    .footer-center a:hover {
+    color: #888;
+    }
+    
+    .footer-right a {
+    font-size: 16px;
+    margin-left: 15px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    color: #000;
+    }
+    
+    .footer-right a:hover {
+    color: #888;
+    }
