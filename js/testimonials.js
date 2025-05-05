@@ -1,5 +1,5 @@
   // -------------------- Testimonials --------------------
-document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', function() {
     // Elements
     const testimonialSection = document.getElementById('testimonialSection');
     const testimonialItems = document.querySelectorAll('.testimonial-item');

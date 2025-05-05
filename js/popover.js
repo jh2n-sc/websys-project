@@ -13,8 +13,6 @@ function showPropertyDetails(id, name, price, beds, baths, size, location, date,
     document.getElementById('popover-property-location').textContent = location;
     document.getElementById('popover-listing-date').textContent = date;
     document.getElementById('popover-property-image').src = imageUrl;
-
-    console.log("Property Type (full):", propertyType);
     
     // Add the property type description
     if (propertyType && propertyType !== 'NULL') {

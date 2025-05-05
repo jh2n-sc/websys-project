@@ -26,7 +26,7 @@ if (isset($_SESSION['user_id'])) {
 
       <div class="input-group">
         <input type="text" name="username" id="username" placeholder=" " required>
-        <label for="username">Email or Username</label>
+        <label for="username">Username</label>
       </div>
 
       <div class="input-group">

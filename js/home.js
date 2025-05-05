@@ -2,56 +2,98 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize FAQ functionality
     initFAQ();
-    
+
     // Initialize navigation highlighting
     initNavHighlighting();
-    
+
     // Initialize form submission handling
     initFormHandling();
-    
+
     // Initialize sidebar functionality
     initSidebar();
 });
 
-// Sidebar functionality
 function initSidebar() {
+
     const openButton = document.getElementById('open-sidebar-button');
     const navbar = document.getElementById('navbar');
+    const closeButton = document.getElementById('close-sidebar-button');
+    const body = document.body;
 
-    function handleResize() {
-        if (window.innerWidth <= 768) {
-            navbar.classList.remove('show');
-            openButton.setAttribute('aria-expanded', 'false');
-            if (!navbar.hasAttribute('inert')) {
-                navbar.setAttribute('inert', '');
-            }
-        } else {
-            if (navbar.hasAttribute('inert')) {
-                navbar.removeAttribute('inert');
-            }
+
+    function openSidebar() {
+        if (navbar) {
+            navbar.classList.add('show');
+            navbar.removeAttribute('inert');
+        }
+        if (body) {
+            body.classList.add('sidebar-open');
+        }
+        if (openButton) {
+            openButton.setAttribute('aria-expanded', 'true');
         }
     }
 
-    function openSidebar() {
-        navbar.classList.add('show');
-        openButton.setAttribute('aria-expanded', 'true');
-        navbar.removeAttribute('inert');
-    }
-
     function closeSidebar() {
-        navbar.classList.remove('show');
-        openButton.setAttribute('aria-expanded', 'false');
-        navbar.setAttribute('inert', '');
+        if (navbar) {
+            navbar.classList.remove('show');
+            navbar.setAttribute('inert', '');
+        }
+        if (body) {
+            body.classList.remove('sidebar-open');
+        }
+        if (openButton) {
+            openButton.setAttribute('aria-expanded', 'false');
+        }
     }
 
-    // Initialize
-    window.addEventListener('resize', handleResize);
-    handleResize();
-
-    // Add click event to open button if it exists
+    // Add click event listeners with null checks
     if (openButton) {
-        openButton.addEventListener('click', openSidebar);
+        openButton.addEventListener('click', function(e) { 
+            e.preventDefault();
+            e.stopPropagation();
+            openSidebar();
+        });
+    } else {
+        console.error("Open button not found for event listener");
     }
+
+    if (closeButton) {
+        closeButton.addEventListener('click', function(e) { 
+            e.preventDefault();
+            e.stopPropagation();
+            closeSidebar();
+        });
+    } else {
+        console.error("Close button not found for event listener");
+    }
+
+    // Close when clicking outside - 
+    document.addEventListener('click', function(e) {
+        if (!navbar || !navbar.classList.contains('show')) return; // Exit if nav
+
+        const isClickInsideNavbar = navbar.contains(e.target);
+        const isClickOnOpenButton = e.target === openButton;
+        const isClickInsideSidebarToggle = isClickInsideNavbar || isClickOnOpenButton;
+
+
+        if (!isClickInsideSidebarToggle) {
+            closeSidebar();
+        }
+    });
+
+    // Handle window resize 
+    function handleResize() {
+        if (window.innerWidth <= 768) {
+            closeSidebar();
+        } else {
+            openSidebar();
+        }
+    }
+
+    // Initialize resize event listener
+    window.addEventListener('resize', handleResize);
+    handleResize(); // Initial check on load
 }
 
 // FAQ functionality

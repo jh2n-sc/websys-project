@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     if (!$fail) {
-        header("Location: ../pages/Profile.php");
+        header("Location: ../pages/profile.php");
         exit;
     }
 }

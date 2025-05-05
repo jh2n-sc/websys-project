@@ -127,7 +127,7 @@
             document.getElementById('page-loader').style.opacity = '0';
             setTimeout(function() {
                 document.getElementById('page-loader').style.display = 'none';
-            }, 600);
-        }, 1500);
+            }, 500);
+        }, 500);
     });
 </script>

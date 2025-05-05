@@ -25,7 +25,7 @@
         <nav id="navbar" class="navbar">
             <ul>
                 <li>
-                    <button id="close-sidebar-button" onclick="closeSidebar()" aria-label="close sidebar">
+                    <button id="close-sidebar-button" aria-label="close sidebar">
                         <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
                             fill="#c9c9c9">
                             <path
@@ -42,7 +42,7 @@
 
         <div class="header-actions">
             <a href="./pages/profile.php">Profile</a>
-            <button id="open-sidebar-button" onclick="openSidebar()" aria-label="open sidebar" aria-expanded="false"
+            <button id="open-sidebar-button" aria-label="open sidebar" aria-expanded="false"
                 aria-controls="navbar">
                 <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
                     fill="#c9c9c9">
@@ -75,26 +75,27 @@
                 <select id="property-type">
                     <option>Property Type</option>
                     <option>House</option>
-                    <option>Apartment</option>
-                    <option>Villa</option>
+                    <option>Townhouse</option>
+                    <option>Condo</option>
+                    <option>Land</option>
                 </select>
             </div>
 
             <div class="input-group">
                 <select id="price">
                     <option>Price</option>
-                    <option>₱100K - ₱200K</option>
-                    <option>₱200K - ₱500K</option>
-                    <option>₱500K+</option>
+                    <option>₱1,000,000 - ₱2,000,000</option>
+                    <option>₱2,000,000 - ₱3,000,000</option>
+                    <option>₱3,000,000+</option>
                 </select>
             </div>
 
             <div class="input-group">
                 <select id="cities">
                     <option>All Cities</option>
-                    <option>Kanto 10</option>
-                    <option>Baranggay Lovestories</option>
-                    <option>Sitio Pa</option>
+                    <option>Daraga</option>
+                    <option>Legazpi City</option>
+                    <option>Tabaco City</option>
                 </select>
             </div>
 
@@ -124,8 +125,7 @@
     <!-- LISTINGS -->
     <section id="listings" class="property-listings" aria-label="Property listings carousel">
         <h1>Explore Our Property Listings</h1>
-        <p class="subtitle">From cozy apartments to spacious family homes, our diverse listings cater to various needs and preferences.</p>
-
+        <p class="subtitle">From cozy Condos to spacious family homes, our diverse listings cater to various needs and preferences.Land
         <div class="location-selector" role="button" tabindex="0">
             <i class="fas fa-location-dot" aria-hidden="true"></i>
             <p>Bicol, Albay</p>
@@ -164,8 +164,8 @@
                     </div>
                 </div>
                 <div class="listing-item" role="listitem">
-                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1950&q=80" alt="Luxury apartment in Tabaco Bayview Condos">
-                    <div class="listing-details">
+                    <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1950&q=80" alt="Luxury Condo in Tabaco Bayview Condos">
+                    <div class="listing-detaLand
                         <h3 class="listing-name">Tabaco Bayview Condos</h3>
                         <div class="listing-location">
                             <i class="fas fa-location-dot" aria-hidden="true"></i>
@@ -575,7 +575,6 @@
     </footer>
 
     <script src="./js/home.js"></script>
-    <script src="./js/nav.js"></script>
     <script src="./js/property-listings.js"></script>
 
 </body>

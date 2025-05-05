@@ -119,11 +119,11 @@ if ($stmt->execute()) {
                 --transition: all 0.3s ease;
             }
 
-            body {
+                  body {
                 font-family: Inter, sans-serif;
                 background: linear-gradient(-45deg, black, white, black, white);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
+                background-size: 400% 400%;
+                animation: gradientBG 10s ease infinite;
 
                 color: var(--text-dark);
                 line-height: 1.6;
@@ -136,10 +136,10 @@ if ($stmt->execute()) {
             }
 
               @keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
 
             .success-container {
                 background-color: var(--bg-white);
