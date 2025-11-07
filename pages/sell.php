@@ -1,15 +1,29 @@
 <?php
-include_once '../php/db_conn.php';
-session_start();
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/ErrorHandler.php';
+require_once __DIR__ . '/../includes/Database.php';
+require_once __DIR__ . '/../includes/Utils.php';
 
-// Check if the user is logged in
+// Require authentication
 if (!isset($_SESSION['user_id'])) {
-  header("Location: ./login.php");  // Redirect if not logged in
+  header("Location: ./login.php");
   exit();
 }
-$stmt = $conn->prepare("SELECT * from listings WHERE property_status = 'sold'");
-$stmt->execute();
-$result = $stmt->get_result();
+
+$pdo = Database::getInstance()->getConnection();
+$soldListings = [];
+// CSRF token for upload form
+$csrf = Utils::generateCSRFToken();
+// Flash message (from uploads or other actions)
+$flash = Utils::getFlashMessage();
+try {
+  $stmt = $pdo->prepare("SELECT * FROM listings WHERE property_status = 'sold' ORDER BY listing_date DESC");
+  $stmt->execute();
+  $soldListings = $stmt->fetchAll();
+} catch (Throwable $e) {
+  error_log('sell.php query error: ' . $e->getMessage());
+  $soldListings = [];
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +33,7 @@ $result = $stmt->get_result();
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kabalayan - Sell </title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../styles/theme.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../styles/sell.css" />
@@ -33,6 +47,14 @@ $result = $stmt->get_result();
   <?php include '../Includes/loader.php'; ?>
   <!-- NAVBAR -->
   <?php include '../Includes/navbar.php'; ?>
+
+  <?php if ($flash): ?>
+    <div class="container" style="margin-top:16px;">
+      <div class="alert" style="padding:10px;border-radius:6px; color: <?php echo $flash['type']==='success'?'#0a7d2b':'#b00020'; ?>;">
+        <?php echo htmlspecialchars($flash['message']); ?>
+      </div>
+    </div>
+  <?php endif; ?>
 
   <!-- BANNER -->
   <section class="intro-image">
@@ -130,6 +152,7 @@ $result = $stmt->get_result();
         </div>
 
         <form class="contact-form" id="propertyForm" method="POST" action="../php/upload.php" enctype="multipart/form-data">
+          <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf); ?>" />
           <div class="form-row">
             <div class="form-group">
               <label class="required-label">Property Location</label>
@@ -588,6 +611,7 @@ $result = $stmt->get_result();
   <?php include '../Includes/footer.php'; ?>
 
 
+  <script src="../js/theme.js"></script>
   <script src="../js/sell.js"></script>
   <script src="../js/sell-form.js"></script>
   <script src="../js/sell-carousel.js"></script>

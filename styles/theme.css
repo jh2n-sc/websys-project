@@ -1,0 +1,196 @@
+/* Global theme, typography, and glassmorphism utilities */
+
+:root {
+	--font-sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+	--bg-color: #ffffff;
+	--text-color: #111111;
+	--muted-text-color: #666666;
+	--border-color: #e5e7eb;
+	--surface-color: rgba(255, 255, 255, 0.7);
+	--accent-color: #111111;
+	/* Text color that sits on top of accent backgrounds */
+	--on-accent-color: #ffffff;
+	--link-color: #0f62fe;
+	--link-hover: #0b4ad6;
+	/* Buttons: white in light theme */
+	--button-bg: #ffffff;
+	--button-text: #0b0b0b;
+	--input-bg: #ffffff;
+	--input-text: #111111;
+	--input-placeholder: #8a8a8a;
+	--highlight: #ffd700;
+	--highlight-bg: rgba(255, 215, 0, 0.3);
+	--shadow-color: 0, 0, 0; /* used with rgba */
+}
+
+html, body {
+	font-family: var(--font-sans);
+	color: var(--text-color);
+	background-color: var(--bg-color);
+}
+
+/* Smooth theme transition (respect reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  html, body, header, footer, .card, .container, .navbar, .glass, .glass-soft,
+  input, select, textarea, button, .btn, .listing-card, .profile-header, .popover-content,
+  .filters-sidebar, .faq-item, .sold-card {
+    transition: color 200ms ease, background-color 200ms ease, border-color 200ms ease,
+                fill 200ms ease, stroke 200ms ease, box-shadow 200ms ease;
+  }
+}
+
+/* Global element defaults to respect theme */
+a {
+    color: var(--link-color);
+}
+a:hover {
+    color: var(--link-hover);
+}
+
+button,
+.btn,
+input[type="submit"],
+input[type="button"],
+input[type="reset"] {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--border-color);
+}
+
+input,
+select,
+textarea {
+    background-color: var(--input-bg);
+    color: var(--input-text);
+    border: 1px solid var(--border-color);
+}
+input::placeholder, textarea::placeholder { color: var(--input-placeholder); }
+
+.card,
+.glass,
+.glass-soft,
+header,
+footer,
+.navbar,
+.container {
+    color: var(--text-color);
+}
+
+/* Dark mode */
+[data-theme="dark"] {
+	--bg-color: #0b0b0b;
+	--text-color: #e5e5e5;
+	--muted-text-color: #a3a3a3;
+	--border-color: #2a2a2a;
+	--surface-color: rgba(20, 20, 20, 0.6);
+	--accent-color: #ffffff;
+	--on-accent-color: #0b0b0b;
+	--link-color: #8ab4ff;
+	--link-hover: #a7c3ff;
+	/* Buttons: black in dark theme */
+	--button-bg: #0b0b0b;
+	--button-text: #e5e5e5;
+	--input-bg: #111111;
+	--input-text: #e5e5e5;
+	--input-placeholder: #8a8a8a;
+	--highlight: #ffd54f;
+	--highlight-bg: rgba(255, 213, 79, 0.28);
+}
+
+/* Glassmorphism utilities */
+.glass {
+	background: var(--surface-color);
+	backdrop-filter: blur(10px);
+	-webkit-backdrop-filter: blur(10px);
+	border: 1px solid var(--border-color);
+	box-shadow: 0 10px 30px rgba(var(--shadow-color), 0.08);
+}
+
+.glass-soft {
+	background: var(--surface-color);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	border: 1px solid var(--border-color);
+}
+
+/* Subtle defaults for common existing elements without changing layout */
+header,
+footer {
+	color: var(--text-color);
+}
+
+/* Buttons and links inherit in both themes */
+a, button {
+	color: inherit;
+}
+
+/* Global buttons (shared across pages) */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: var(--accent-color);
+    color: var(--on-accent-color);
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: var(--on-accent-color);
+    color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(var(--shadow-color), 0.15);
+}
+
+.btn-outline {
+    background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
+}
+
+.btn-outline:hover {
+    background-color: var(--accent-color);
+    color: var(--on-accent-color);
+    transform: translateY(-2px);
+}
+
+/* Utility to force fully rounded pill buttons */
+.btn-pill {
+    border-radius: 9999px !important;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+}
+
+/* Theme toggle button (floating, non-intrusive) */
+.theme-toggle {
+	position: fixed;
+	bottom: 16px;
+	right: 16px;
+	z-index: 1000;
+	border: 1px solid var(--border-color);
+	background: var(--surface-color);
+	backdrop-filter: blur(8px);
+	-webkit-backdrop-filter: blur(8px);
+	color: var(--text-color);
+	border-radius: 9999px;
+	padding: 10px 12px;
+	cursor: pointer;
+	box-shadow: 0 6px 20px rgba(var(--shadow-color), 0.18);
+}
+
+.theme-toggle:focus {
+	outline: 2px solid var(--border-color);
+	outline-offset: 2px;
+}
+
+

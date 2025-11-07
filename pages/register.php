@@ -1,10 +1,17 @@
-</html><!DOCTYPE html>
+<?php
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/ErrorHandler.php';
+require_once __DIR__ . '/../includes/Utils.php';
+$csrf = Utils::generateCSRFToken();
+?>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kabalayan - Register</title>
+  <link rel="stylesheet" href="../styles/theme.css">
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../styles/login.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,6 +23,7 @@
   <div class="container">
     <form action="../php/register_acc.php" method="post" class="card register-card" enctype="multipart/form-data" id="registerForm">
       <h2>Sign Up</h2>
+      <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($csrf); ?>" />
 
       <div class="card-content">
         <div class="input-group">
@@ -200,6 +208,7 @@
     });
   </script>
 
+  <script src="../js/theme.js"></script>
 </body>
 
 </html>

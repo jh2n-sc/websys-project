@@ -1,3 +1,7 @@
+<?php
+require_once __DIR__ . '/config/config.php';
+require_once __DIR__ . '/includes/ErrorHandler.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,7 +9,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kabalayan - Home</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="./styles/theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./styles/home.css">
@@ -17,41 +22,7 @@
     <!-- LOADER -->
     <?php include './Includes/loader.php'; ?>
     <!-- NAVBAR -->
-    <header>
-        <div class="logo">
-            KABALAYAN
-        </div>
-
-        <nav id="navbar" class="navbar">
-            <ul>
-                <li>
-                    <button id="close-sidebar-button" aria-label="close sidebar">
-                        <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
-                            fill="#c9c9c9">
-                            <path
-                                d="m480-444.62-209.69 209.7q-7.23 7.23-17.5 7.42-10.27.19-17.89-7.42-7.61-7.62-7.61-17.7 0-10.07 7.61-17.69L444.62-480l-209.7-209.69q-7.23-7.23-7.42-17.5-.19-10.27 7.42-17.89 7.62-7.61 17.7-7.61 10.07 0 17.69 7.61L480-515.38l209.69-209.7q7.23-7.23 17.5-7.42 10.27-.19 17.89 7.42 7.61 7.62 7.61 17.7 0 10.07-7.61 17.69L515.38-480l209.7 209.69q7.23 7.23 7.42 17.5.19 10.27-7.42 17.89-7.62 7.61-17.7 7.61-10.07 0-17.69-7.61L480-444.62Z" />
-                        </svg>
-                    </button>
-                </li>
-                <li><a href="./index.php">Home</a></li>
-                <li><a href="./pages/buy.php">Buy</a></li>
-                <li><a href="./pages/sell.php">Sell</a></li>
-                <li><a href="./pages/about.php">About Us</a></li>
-            </ul>
-        </nav>
-
-        <div class="header-actions">
-            <a href="./pages/profile.php">Profile</a>
-            <button id="open-sidebar-button" aria-label="open sidebar" aria-expanded="false"
-                aria-controls="navbar">
-                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
-                    fill="#c9c9c9">
-                    <path
-                        d="M165.13-254.62q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.86q7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.87q-7.22 7.12-17.9 7.12H165.13Zm0-200.25q-10.68 0-17.9-7.27-7.23-7.26-7.23-17.99 0-10.74 7.23-17.87 7.22-7.13 17.9-7.13h629.74q10.68 0 17.9 7.27 7.23 7.26 7.23 17.99 0 10.74-7.23 17.87-7.22 7.13-17.9 7.13H165.13Zm0-200.26q-10.68 0-17.9-7.26-7.23-7.26-7.23-18t7.23-17.87q7.22-7.12 17.9-7.12h629.74q10.68 0 17.9 7.26 7.23 7.26 7.23 18t-7.23 17.86q-7.22 7.13-17.9 7.13H165.13Z" />
-                </svg>
-            </button>
-        </div>
-    </header>
+    <?php include './Includes/navbar.php'; ?>
 
     <section class="hero">
         <div class="hero-text">
@@ -103,29 +74,13 @@
         </div>
     </div>
 
-    <!-- INTRO -->
-    <section class="intro-image">
-        <div class="overlay"></div>
-
-        <div class="header-container">
-            <span class="pre-heading">Welcome to</span>
-            <h1>KABALAYAN</h1>
-        </div>
-
-        <div class="info-container">
-            <div class="intro-content">
-                <p>Discover the lifestyle and luxury that we offer, with bespoke properties designed for comfort,
-                    elegance, and modern living in Albay's prime locations.</p>
-                <a href="#listings" class="cta-button">Explore Our Properties</a>
-            </div>
-        </div>
-    </section>
+    
 
 
     <!-- LISTINGS -->
     <section id="listings" class="property-listings" aria-label="Property listings carousel">
         <h1>Explore Our Property Listings</h1>
-        <p class="subtitle">From cozy Condos to spacious family homes, our diverse listings cater to various needs and preferences.Land
+        <p class="subtitle">From cozy Condos to spacious family homes, our diverse listings cater to various needs and preferences.</p>
         <div class="location-selector" role="button" tabindex="0">
             <i class="fas fa-location-dot" aria-hidden="true"></i>
             <p>Bicol, Albay</p>
@@ -165,7 +120,7 @@
                 </div>
                 <div class="listing-item" role="listitem">
                     <img src="https://images.unsplash.com/photo-1600607688969-a5bfcd646154?auto=format&fit=crop&w=1950&q=80" alt="Luxury Condo in Tabaco Bayview Condos">
-                    <div class="listing-detaLand
+                    <div class="listing-details">
                         <h3 class="listing-name">Tabaco Bayview Condos</h3>
                         <div class="listing-location">
                             <i class="fas fa-location-dot" aria-hidden="true"></i>
@@ -556,25 +511,14 @@
 
 
     <?php include './Includes/top-button.php'; ?>
+    <?php include './Includes/footer.php'; ?>
 
-    <footer class="footer">
-        <div class="footer-container">
-            <div class="footer-left">©2025 KABALAYAN. ALL RIGHTS RESERVED</div>
-            <div class="footer-center">
-                <a href="./index.php">Home</a>
-                <a href="./pages/buy.php">Buy</a>
-                <a href="./pages/sell.php">Sell</a>
-                <a href="./pages/about.php">About Us</a>
-            </div>
-            <div class="footer-right">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
-
+    <script src="./js/theme.js"></script>
+    <script src="./js/loader.js"></script>
+    <script src="./js/navbar.js"></script>
+    <script src="./js/faq.js"></script>
     <script src="./js/home.js"></script>
+    <script src="./js/top-button.js"></script>
     <script src="./js/property-listings.js"></script>
 
 </body>

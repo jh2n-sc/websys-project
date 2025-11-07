@@ -1,13 +1,12 @@
 <?php
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/ErrorHandler.php';
+require_once __DIR__ . '/../includes/Auth.php';
 
-session_start();
-
-if (isset($_GET['logout'])) {
-
-    if ($_GET['logout'] = 1) {
-        session_unset();
-        session_destroy();
-        header('Location: ../pages/login.php');
-        exit;
-    }
+if (isset($_GET['logout']) && $_GET['logout'] == 1) {
+    $auth = new Auth();
+    $auth->logout();
 }
+
+header('Location: ../pages/login.php');
+exit;

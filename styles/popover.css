@@ -6,13 +6,15 @@
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
+    z-index: 4000; /* above navbar (which is 2000) */
     align-items: center;
     justify-content: center;
 }
 
 .popover-content {
-    background-color: white;
+    background-color: var(--surface-color);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-radius: 12px;
     width: 95%;
     max-width: 1000px;
@@ -42,7 +44,7 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    color: #666;
+    color: var(--muted-text-color);
     transition: color 0.2s;
     z-index: 2;
     width: 32px;
@@ -54,18 +56,18 @@
 }
 
 .close-popover:hover {
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(0, 0, 0, 0.08);
 }
 
 .popover-header {
     padding: 24px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--border-color);
 }
 
 .popover-header h2 {
     margin: 0;
     font-size: 20px;
-    color: #222;
+    color: var(--text-color);
     font-weight: 600;
 }
 
@@ -89,14 +91,14 @@
 
 .popover-details {
     font-size: 16px;
-    color: #555;
+    color: var(--muted-text-color);
 }
 
 
 .property-price {
     font-size: 28px;
     font-weight: 700;
-    color: #111;
+    color: var(--text-color);
     margin-bottom: 14px;
     text-align: left;
 }
@@ -116,7 +118,7 @@
 .property-address,
 .property-location {
     font-weight: 500;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 6px;
     text-align: left;
 }
@@ -126,17 +128,17 @@
     margin: 10px 0;
     font-size: 15px;
     line-height: 1.5;
-    color: #333;
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
+    color: var(--text-color);
+    border-top: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
 }
 
 .listing-date {
-    color: #666;
+    color: var(--muted-text-color);
     font-size: 14px;
     margin-top: 16px;
     padding-top: 16px;
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     text-align: left;
 }
 
@@ -149,8 +151,8 @@
 .property-actions button {
     flex: 1;
     padding: 12px 20px;
-    border: none;
-    border-radius: 10px;
+    border: 2px solid #ffffff;
+    border-radius: 9999px;
     font-weight: 600;
     cursor: pointer;
     font-size: 16px;
@@ -160,19 +162,14 @@
     gap: 10px;
     transition: all 0.3s ease;
     box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    background-color: #0b0b0b; /* black base */
+    color: #ffffff; /* white text */
 }
 
-.wishlist-btn {
-    background-color: #f7f7f7;
-    color: #333;
-}
-
-.wishlist-btn:hover {
-    background-color: #eee;
-}
+/* Removed specific wishlist overrides to use unified style */
 
 .wishlist-btn .heart-icon {
-    color: #888;
+    color: currentColor; /* inherit from button text to match invert */
     font-size: 18px;
     transition: color 0.3s ease;
 }
@@ -181,17 +178,15 @@
     color: #e63946;
 }
 
-.buy-btn {
-    background-color: #0071e3;
-    color: white;
-}
-
-.buy-btn:hover {
-    background-color: #005bb5;
+/* Unified hover for all popover buttons */
+.property-actions button:hover {
+    background-color: #ffffff; /* invert */
+    color: #0b0b0b;
+    border-color: #ffffff;
 }
 
 .fake-message-form {
-    border-top: 1px solid #eee;
+    border-top: 1px solid var(--border-color);
     padding-top: 24px;
     text-align: left;
 }
@@ -200,7 +195,7 @@
     font-size: 17px;
     margin-bottom: 12px;
     font-weight: 600;
-    color: #333;
+    color: var(--text-color);
     text-align: left;
 }
 
@@ -210,18 +205,26 @@
     width: 100%;
     padding: 10px 14px;
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
     font-size: 14px;
     margin-bottom: 12px;
-    background-color: #f9f9f9;
-    color: #888;
+    background-color: var(--bg-color);
+    color: var(--muted-text-color);
     text-align: left;
 }
 
+/* Unify 'Send Message' button with popover action buttons */
 .fake-message-form button {
-    background-color: #0071e3;
-    color: white;
+    border: 2px solid #ffffff;
+    border-radius: 9999px;
+    background-color: #0b0b0b;
+    color: #ffffff;
     text-align: center;
+}
+.fake-message-form button:hover {
+    background-color: #ffffff;
+    color: #0b0b0b;
+    border-color: #ffffff;
 }
 
 .mini-popover {
@@ -230,7 +233,9 @@
     top: 18%;
     left: 50%;
     transform: translateX(-50%);
-    background-color: white;
+    background-color: var(--surface-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     padding: 26px 36px;
     border-radius: 12px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
@@ -250,7 +255,7 @@
     margin: 0;
     font-size: 16px;
     font-weight: 500;
-    color: #333;
+    color: var(--text-color);
     text-align: center;
 }
 

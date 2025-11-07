@@ -6,20 +6,20 @@
 .listing-title h2 {
     font-size: 36px;
     font-weight: 700;
-    color: #333;
+    color: var(--text-color);
     margin-bottom: 20px;
 }
 
 .section-heading {
     font-size: 2.5rem;
     font-weight: 600;
-    color: #333333;
+    color: var(--text-color);
     margin-bottom: 1rem;
 }
 
 .section-description {
     font-size: 1.2rem;
-    color: #666666;
+    color: var(--muted-text-color);
     max-width: 900px;
     margin: 0 auto;
 }
@@ -56,11 +56,11 @@
     font-size: 28px;
     font-weight: 700;
     margin-bottom: 5px;
-    color: #222;
+    color: var(--text-color);
 }    
 
 .view-all {
-    color: #333;
+    color: var(--text-color);
     text-decoration: none;
     font-size: 14px;
     font-weight: 500;
@@ -79,17 +79,20 @@
 
 .property-card {
     cursor: pointer;
-    background: white;
-    border-radius: 8px; 
+    background: var(--surface-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid var(--border-color);
+    border-radius: 16px; 
     overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(var(--shadow-color), 0.1);
     transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
   }
 
 .property-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 30px rgba(var(--shadow-color), 0.15);
 }    
 
 .property-image {
@@ -114,8 +117,8 @@
     position: absolute;
     top: 15px;
     left: 15px;
-    background-color: #2563eb;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--on-accent-color);
     padding: 6px 12px;
     border-radius: 20px;
     font-size: 12px;
@@ -127,7 +130,7 @@
     position: absolute;
     top: 15px;
     right: 15px;
-    background-color: white;
+    background-color: var(--bg-color);
     border: none;
     width: 36px;
     height: 36px;
@@ -136,13 +139,18 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(var(--shadow-color), 0.1);
     z-index: 2;
-}    
+  }
+
+.favorite-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--on-accent-color);
+}
 
 .favorite-btn i {
     font-size: 18px;
-    color: #888;
+    color: var(--muted-text-color);
     transition: color 0.2s;
 }    
 
@@ -176,7 +184,7 @@
     font-size: 22px;
     font-weight: 700;
     margin-bottom: 12px;
-    color: #111;
+    color: var(--text-color);
 }    
 
 .property-specs {
@@ -184,12 +192,12 @@
     gap: 15px;
     margin-bottom: 15px;
     font-size: 14px;
-    color: #555;
+    color: var(--muted-text-color);
 }    
 
 .property-address {
     font-size: 14px;
-    color: #666;
+    color: var(--muted-text-color);
     margin-bottom: 5px;
     white-space: nowrap;
     overflow: hidden;
@@ -198,13 +206,13 @@
 
 .property-location {
     font-size: 13px;
-    color: #888;
+    color: var(--muted-text-color);
 }    
 
 .banner-section {
     position: relative;
     padding: 120px 0;
-    color: #333;
+    color: var(--text-color);
     overflow: hidden;
 }    
 
@@ -234,7 +242,7 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     font-weight: 600;
-    color: #666;
+    color: var(--muted-text-color);
     margin-bottom: 15px;
     display: inline-block;
     position: relative;
@@ -245,7 +253,7 @@
     position: absolute;
     width: 40px;
     height: 1px;
-    background-color: #333;
+    background-color: var(--text-color);
     top: 50%;
     right: -55px;
 }    
@@ -255,7 +263,7 @@
     font-weight: 700;
     line-height: 1.2;
     margin-bottom: 25px;
-    background: linear-gradient(to right, #333, #666);
+    background: linear-gradient(to right, var(--text-color), var(--muted-text-color));
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -264,7 +272,7 @@
 .banner-subtext {
     font-size: 18px;
     line-height: 1.8;
-    color: #555;
+    color: var(--muted-text-color);
     max-width: 700px;
     margin: 0 auto;
 }    

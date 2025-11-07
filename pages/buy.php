@@ -1,94 +1,80 @@
 <?php
-include "../php/db_conn.php";
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/ErrorHandler.php';
+require_once __DIR__ . '/../includes/Database.php';
 
-// Initialize $result to null
-$result = null;
+$pdo = Database::getInstance()->getConnection();
+$rows = [];
 
-if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
-    // Filtering logic
-    $sql = "SELECT l.*, p.bed_no, p.bath_no
-            FROM listings l
-            LEFT JOIN property_more_details p ON l.listing_id = p.ref_listing_id
-            WHERE 1=1 "; // Start with a condition that is always true
+try {
+    if ($_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
+        $sql = "SELECT l.*, p.bed_no, p.bath_no
+                FROM listings l
+                LEFT JOIN property_more_details p ON l.listing_id = p.ref_listing_id
+                WHERE 1=1";
+        $params = [];
 
-    $types = "";
-    $params = [];
+        if (!empty($_GET['search'])) {
+            $sql .= " AND (l.property_name LIKE ? OR l.property_location LIKE ? OR l.property_description LIKE ?)";
+            $search = '%' . $_GET['search'] . '%';
+            array_push($params, $search, $search, $search);
+        }
 
-    if (isset($_GET['search']) && !empty($_GET['search'])) {
-        $searchStr = $_GET['search'];
-        $sql .= " AND (l.property_name LIKE ? OR l.property_location LIKE ? OR l.property_description LIKE ?)";
-        $types .= "sss";
-        $params[] = "%" . $searchStr . "%";
-        $params[] = "%" . $searchStr . "%";
-        $params[] = "%" . $searchStr . "%";
+        if (!empty($_GET['price_min']) && !empty($_GET['price_max'])) {
+            $sql .= " AND l.price BETWEEN ? AND ?";
+            array_push($params, (float)$_GET['price_min'], (float)$_GET['price_max']);
+        }
+
+        if (!empty($_GET['property_type']) && is_array($_GET['property_type'])) {
+            $in = implode(',', array_fill(0, count($_GET['property_type']), '?'));
+            $sql .= " AND l.property_description IN ($in)";
+            foreach ($_GET['property_type'] as $pt) { $params[] = $pt; }
+        }
+
+        if (!empty($_GET['features']) && is_array($_GET['features'])) {
+            $in = implode(',', array_fill(0, count($_GET['features']), '?'));
+            $sql .= " AND p.property_details IN ($in)";
+            foreach ($_GET['features'] as $f) { $params[] = $f; }
+        }
+
+        if (!empty($_GET['bedrooms']) && $_GET['bedrooms'] !== 'Any') {
+            $sql .= " AND CAST(p.bed_no AS SIGNED) >= ?";
+            $params[] = (int)str_replace('+', '', $_GET['bedrooms']);
+        }
+
+        if (!empty($_GET['bathrooms']) && $_GET['bathrooms'] !== 'Any') {
+            $sql .= " AND CAST(p.bath_no AS SIGNED) >= ?";
+            $params[] = (int)str_replace('+', '', $_GET['bathrooms']);
+        }
+
+        $sql .= " AND (l.property_status IS NULL OR l.property_status != 'sold')";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute($params);
+        $rows = $stmt->fetchAll();
+    } else {
+        $stmt = $pdo->prepare("SELECT l.*, p.bed_no, p.bath_no
+                               FROM listings l
+                               LEFT JOIN property_more_details p ON l.listing_id = p.ref_listing_id
+                               WHERE l.property_status IS NULL OR l.property_status != 'sold'
+                               ORDER BY l.listing_date DESC");
+        $stmt->execute();
+        $rows = $stmt->fetchAll();
     }
-
-    if (isset($_GET['price_min']) && !empty($_GET['price_min']) && isset($_GET['price_max']) && !empty($_GET['price_max'])) {
-        $priceMin = $_GET['price_min'];
-        $priceMax = $_GET['price_max'];
-        $sql .= " AND l.price BETWEEN ? AND ?";
-        $types .= "dd";
-        $params[] = $priceMin;
-        $params[] = $priceMax;
-    }
-
-    if (isset($_GET['property_type']) && is_array($_GET['property_type']) && !empty($_GET['property_type'])) {
-        $placeholders = implode(',', array_fill(0, count($_GET['property_type']), '?'));
-        $sql .= " AND l.property_description IN (" . $placeholders . ")";
-        $types .= str_repeat('s', count($_GET['property_type']));
-        $params = array_merge($params, $_GET['property_type']);
-    }
-
-    if (isset($_GET['features']) && is_array($_GET['features']) && !empty($_GET['features'])) {
-        $placeholders = implode(',', array_fill(0, count($_GET['features']), '?'));
-        $sql .= " AND p.property_details IN (" . $placeholders . ")";
-        $types .= str_repeat('s', count($_GET['features']));
-        $params = array_merge($params, $_GET['features']);
-    }
-
-    if (isset($_GET['bedrooms']) && !empty($_GET['bedrooms']) && $_GET['bedrooms'] != 'Any') {
-        $bedrooms = $_GET['bedrooms'];
-        $sql .= " AND p.bed_no >= ?";
-        $types .= "i";
-        $params[] = intval(str_replace('+', '', $bedrooms));
-    }
-
-    if (isset($_GET['bathrooms']) && !empty($_GET['bathrooms']) && $_GET['bathrooms'] != 'Any') {
-        $bathrooms = $_GET['bathrooms'];
-        $sql .= " AND p.bath_no >= ?";
-        $types .= "i";
-        $params[] = intval(str_replace('+', '', $bathrooms));
-    }
-
-    $sql .= " AND l.property_status != 'sold'"; // Ensure we only get non-sold properties for filtering
-
-    $stmt = $conn->prepare($sql);
-    if (!empty($types)) {
-        $stmt->bind_param($types, ...$params);
-    }
-    $stmt->execute();
-    $result = $stmt->get_result();
-} else {
-    // Fetch all non-'sold' properties for initial display
-    $sql_initial = "SELECT l.*, p.bed_no, p.bath_no
-                    FROM listings l
-                    LEFT JOIN property_more_details p ON l.listing_id = p.ref_listing_id
-                    WHERE l.property_status != 'sold'
-                    ORDER BY l.listing_date DESC";
-    $result = $conn->query($sql_initial);
-    if (!$result) {
-        die("Error fetching initial listings: " . $conn->error);
-    }
+} catch (Throwable $e) {
+    error_log('buy.php error: ' . $e->getMessage());
+    $rows = [];
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['buy'])) {
-        $id = (int) $_POST['property_ID'];
-        $sql = "UPDATE listings SET property_status = 'sold' WHERE listing_id = ?";
-        $stmt = $conn->prepare($sql);
-        $stmt->bind_param('i', $id);
-        $stmt->execute();
-
+        try {
+            $id = (int) ($_POST['property_ID'] ?? 0);
+            $stmt = $pdo->prepare("UPDATE listings SET property_status = 'sold' WHERE listing_id = ?");
+            $stmt->execute([$id]);
+        } catch (Throwable $e) {
+            error_log('buy.php mark sold error: ' . $e->getMessage());
+        }
         header("Location: " . $_SERVER['PHP_SELF']);
         exit();
     }
@@ -102,14 +88,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kabalayan - Buy </title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/theme.css?v=2025-11-07-01">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="../styles/buy.css">
-    <link rel="stylesheet" href="../styles/buy-listing.css">
-    <link rel="stylesheet" href="../styles/popover.css">
-    <link rel="stylesheet" href="../styles/buy-filter.css">
-    <link rel="stylesheet" href="../styles/testimonials.css">
+    <link rel="stylesheet" href="../styles/buy.css?v=2025-11-07-01">
+    <link rel="stylesheet" href="../styles/buy-listing.css?v=2025-11-07-01">
+    <link rel="stylesheet" href="../styles/popover.css?v=2025-11-07-01">
+    <link rel="stylesheet" href="../styles/buy-filter.css?v=2025-11-07-01">
+    <link rel="stylesheet" href="../styles/testimonials.css?v=2025-11-07-01">
 </head>
 
 <body>
@@ -130,7 +116,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <div class="info-container">
             <div class="intro-content">
                 <p>Explore the finest selection of premium homes, apartments, and properties tailored to exceed your expectations in the Philippines.</p>
-                <a href="#property-listings" class="cta-button">Discover Properties</a>
+                <a href="#property-listings" class="btn btn-outline btn-pill">Discover Properties</a>
             </div>
         </div>
     </section>
@@ -237,10 +223,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
 
                 <div class="property-grid">
-                    <?php
-                    if ($result && $result->num_rows > 0) {
-                        while ($row = $result->fetch_assoc()) {
-                    ?>
+                    <?php if (!empty($rows)): ?>
+                        <?php foreach ($rows as $row): ?>
                             <div class="property-card" onclick="showPropertyDetails(
                 '<?php echo $row['listing_id']; ?>',
                 '<?php echo addslashes($row['property_name']); ?>',
@@ -258,7 +242,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <div class="property-image">
                                     <img src="../php/image.php?listing_id=<?php echo $row["listing_id"]; ?>" alt="<?php echo $row["property_name"]; ?>">
                                     <div class="new-badge">Listed on <?php echo date("F j, Y", strtotime($row["listing_date"])); ?></div>
-                                    <button class="favorite-btn" aria-label="Add to favorites">
+                        <button class="favorite-btn" aria-label="Add to favorites" type="button">
                                         <i class="far fa-heart"></i>
                                     </button>
                                 </div>
@@ -273,16 +257,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                         <span><?php echo $row["bath_no"]; ?> bath</span>
                                         <span><?php echo $row["property_dimension"]; ?> m²</span>
                                     </div>
-                                    <div class="property-address"><?php echo $row["property_name"]; ?></div>
-                                    <div class="property-location"><?php echo $row["property_location"]; ?></div>
+                                    <div class="property-address">&nbsp;<?php echo htmlspecialchars($row["property_name"]); ?></div>
+                                    <div class="property-location"><?php echo htmlspecialchars($row["property_location"] ?? ''); ?></div>
                                 </div>
                             </div>
-                    <?php
-                        }
-                    } else {
-                        echo "<p>No properties found.</p>";
-                    }
-                    ?>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <p>No properties found.</p>
+                    <?php endif; ?>
                 </div>
             </section>
         </main>
@@ -315,24 +297,24 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                         <div class="listing-date">Listed on: <span id="popover-listing-date"></span></div>
 
-                        <form action="" method="POST" class>
+                        <form action="" method="POST" class="buy-form">
                             <input type="text" name="property_ID" style="display: none; visibility: hidden;" id="property-ID" value="100">
                             <div class="property-actions">
-                                <button type="submit" name="buy" class="buy-btn" onclick="handleBuyAction(this)">
+                                <button type="submit" name="buy" class="btn btn-outline btn-pill buy-btn" onclick="handleBuyAction(this)">
                                     <i class="fa-solid fa-cart-shopping"></i> Buy
                                 </button>
                             </div>
                         </form>
 
                         <div class="property-actions">
-                            <button type="button" class="wishlist-btn" onclick="handleFakeAction('wishlist', this)">
+                            <button type="button" class="btn btn-outline btn-pill wishlist-btn" onclick="handleFakeAction('wishlist', this)">
                                 <i class="fa-regular fa-heart heart-icon"></i> Add to Wishlist
                             </button>
                         </div>
 
                         <div class="fake-message-form">
                             <textarea placeholder="Your message"></textarea>
-                            <button type="button" onclick="handleFakeAction('message')">Send Message</button>
+                            <button type="button" class="btn btn-outline btn-pill" onclick="handleFakeAction('message')">Send Message</button>
                         </div>
 
                         <div id="wishlist-confirmation" class="mini-popover">
@@ -505,34 +487,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </div>
 
-            <div class="testimonial-bottom">
-                <div class="testimonial-progress">
-                    <div class="testimonial-progress-bar" id="progressBar"></div>
+            <div class="testimonial-controls-header">
+                <div class="testimonial-progress-line">
+                    <div class="testimonial-progress">
+                        <div class="testimonial-progress-bar" id="progressBar"></div>
+                    </div>
                 </div>
-
                 <div class="testimonial-navigation">
-                    <div class="testimonial-nav-btn prev" id="prevBtn" aria-label="Previous testimonial">
-                        <button">
-                            <span aria-hidden="true"><i class="fa-solid fa-angle-left"></i></span>
-                            </button>
-                    </div>
-
-                    <div class="testimonial-nav-btn next" id="nextBtn" aria-label="Next testimonial">
-                        <button">
-                            <span aria-hidden="true"><i class="fa-solid fa-angle-right"></i></span>
-                            </button>
-                    </div>
+                    <button type="button" class="testimonial-nav-btn prev" id="prevBtn" aria-label="Previous testimonial">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button type="button" class="testimonial-nav-btn next" id="nextBtn" aria-label="Next testimonial">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- TOP-BUTTON -->
     <?php include '../Includes/top-button.php'; ?>
 
     <!-- FOOTER -->
     <?php include '../Includes/footer.php'; ?>
 
+    <script src="../js/theme.js"></script>
     <script src="../js/buy.js"></script>
     <script src="../js/popover.js"></script>
     <script src="../js/buy-filter.js"></script>

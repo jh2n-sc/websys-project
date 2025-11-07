@@ -1,13 +1,13 @@
 :root {
-    --primary: #000000;
-    --primary-dark: #000000;
-    --secondary: #000000;
-    --text-dark: #2d3b45;
-    --text-medium: #5d6974;
-    --bg-white: #ffffff;
-    --bg-light: #f7f9fc;
-    --bg-accent: #EFF3FF;
-    --border: #e5e8ed;
+    --primary: var(--accent-color);
+    --primary-dark: var(--accent-color);
+    --secondary: var(--text-color);
+    --text-dark: var(--text-color);
+    --text-medium: var(--muted-text-color);
+    --bg-white: var(--bg-color);
+    --bg-light: rgba(0,0,0,0.03);
+    --bg-accent: rgba(0,0,0,0.06);
+    --border: var(--border-color);
     --shadow-sm: 0 20px 80px rgba(0, 0, 0, 0.05);
     --shadow-md: 0 5px 15px rgba(0, 0, 0, 0.08);
     --transition: all 0.3s ease;
@@ -64,7 +64,9 @@
 }
 
 .faq-categories {
-    background-color: var(--bg-white);
+    background-color: var(--surface-color);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     border-radius: 12px;
     box-shadow: var(--shadow-md);
     overflow: hidden;
@@ -115,7 +117,7 @@
 
 .faq-category.active .faq-category-icon {
     background-color: var(--primary);
-    color: white;
+    color: var(--on-accent-color);
 }
 
 .faq-questions {
@@ -128,7 +130,9 @@ display: block;
 }
 
 .faq-item {
-    background-color: var(--bg-white);
+    background-color: var(--surface-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
     overflow: hidden;
     box-shadow: var(--shadow-sm);
@@ -181,7 +185,7 @@ display: block;
 
 .faq-item.active .faq-indicator {
     background-color: var(--primary);
-    color: white;
+    color: var(--on-accent-color);
     transform: rotate(180deg);
 }
 
@@ -258,7 +262,9 @@ display: block;
 
 .faq-cta {
     margin-top: 50px;
-    background-color: var(--bg-white);
+    background-color: var(--surface-color);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border-radius: 12px;
     padding: 35px;
     text-align: center;
@@ -315,14 +321,15 @@ display: block;
 
 .btn-primary {
     background-color: var(--primary);
-    color: white;
+    color: var(--on-accent-color);
     border: none;
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-dark);
+    background-color: var(--on-accent-color);
+    color: var(--primary);
     transform: translateY(-2px);
-    box-shadow: 0 8px 15px rgba(42, 65, 232, 0.2);
+    box-shadow: 0 6px 12px rgba(var(--shadow-color), 0.15);
 }
 
 .btn-outline {
@@ -332,7 +339,8 @@ display: block;
 }
 
 .btn-outline:hover {
-    background-color: var(--bg-accent);
+    background-color: var(--primary);
+    color: var(--on-accent-color);
     transform: translateY(-2px);
 }
 

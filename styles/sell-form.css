@@ -10,13 +10,13 @@
 }
 
 .page-title h1 {
-  color: black;
+  color: var(--text-color);
   font-size: 2.5rem;
   margin-bottom: 0.5rem;
 }
 
 .page-title p {
-  color: #666;
+  color: var(--muted-text-color);
   font-size: 1.1rem;
 }
 
@@ -29,7 +29,9 @@
 
 .how-to-sell {
   padding: 2rem;
-  background: white;
+  background: var(--surface-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
@@ -40,13 +42,13 @@
 }
 
 .how-to-sell-header h2 {
-  color: black;
+  color: var(--text-color);
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
 .how-to-sell-header p {
-  color: #666;
+  color: var(--muted-text-color);
   max-width: 500px;
   margin: 0 auto;
 }
@@ -58,7 +60,7 @@
 }
 
 .step-card {
-  background: #f9f9f9;
+  background: var(--surface-color);
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
   padding: 1.5rem;
@@ -79,8 +81,8 @@
   justify-content: center;
   width: 60px;
   height: 60px;
-  background: black;
-  color: white;
+  background: var(--accent-color);
+  color: var(--on-accent-color);
   border-radius: 50%;
   font-size: 1.5rem;
   font-weight: bold;
@@ -90,23 +92,23 @@
 .step-content h3 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
-  color: #333;
+  color: var(--text-color);
 }
 
 .step-content p {
-  color: #666;
+  color: var(--muted-text-color);
 }
 
 .benefits {
   margin-top: 3rem;
-  background: #f9f9f9;
+  background: var(--surface-color);
   padding: 2rem;
   border-radius: 12px;
-  border-left: 4px solid black;
+  border-left: 4px solid var(--accent-color);
 }
 
 .benefits h3 {
-  color: black;
+  color: var(--text-color);
   margin-bottom: 1.5rem;
   font-size: 1.4rem;
 }
@@ -124,10 +126,10 @@
 }
 
 .benefit-icon {
-  background: rgba(0, 119, 204, 0.1);
+  background: rgba(0, 0, 0, 0.08);
   padding: 0.5rem;
   border-radius: 50%;
-  color: black;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -135,7 +137,9 @@
 }
 
 .listing-form-section {
-  background: white;
+  background: var(--surface-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 2rem;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -147,13 +151,13 @@
 }
 
 .form-header h2 {
-  color: black;
+  color: var(--text-color);
   font-size: 2rem;
   margin-bottom: 0.5rem;
 }
 
 .form-header p {
-  color: #666;
+  color: var(--muted-text-color);
 }
 
 .contact-form {
@@ -183,7 +187,7 @@
 
 .form-group label {
   font-weight: 500;
-  color: #555;
+  color: var(--muted-text-color);
   font-size: 0.9rem;
   display: flex;
   align-items: center;
@@ -201,16 +205,16 @@
   padding: 0.85rem;
   font-size: 1rem;
   border-radius: 8px;
-  border: 1px solid #ddd;
+  border: 1px solid var(--border-color);
   outline: none;
   transition: all 0.3s ease;
-  background: white;
+  background: var(--bg-color);
 }
 
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
-  border-color: black;
+  border-color: var(--accent-color);
   box-shadow: 0 0 0 3px rgba(0, 119, 204, 0.1);
 }
 
@@ -233,8 +237,8 @@
 }
 
 .property-type-option {
-  background: white;
-  border: 1px solid #ddd;
+  background: var(--bg-color);
+  border: 1px solid var(--border-color);
   padding: 0.6rem 1rem;
   border-radius: 8px;
   cursor: pointer;
@@ -246,18 +250,18 @@
 }
 
 .property-type-option:hover {
-  border-color: black;
+  border-color: var(--accent-color);
 }
 
 .property-type-option.selected {
-  background: rgba(0, 119, 204, 0.1);
-  border-color: #666;
-  color: black;
+  background: rgba(0, 0, 0, 0.08);
+  border-color: var(--accent-color);
+  color: var(--text-color);
   font-weight: 500;
 }
 
 .upload-area {
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--border-color);
   padding: 1.5rem;
   text-align: center;
   border-radius: 8px;
@@ -266,34 +270,34 @@
 }
 
 .upload-area:hover {
-  border-color: black;
-  background: rgba(0, 119, 204, 0.05);
+  border-color: var(--accent-color);
+  background: rgba(0, 0, 0, 0.05);
 }
 
 .upload-area.dragover {
-  border-color: black;
-  background: rgba(0, 119, 204, 0.1);
+  border-color: var(--accent-color);
+  background: rgba(0, 0, 0, 0.08);
 }
 
 .upload-icon {
   font-size: 1.8rem;
-  color: black;
+  color: var(--text-color);
   margin-bottom: 0.75rem;
 }
 
 .upload-text {
-  color: #666;
+  color: var(--muted-text-color);
   font-size: 0.9rem;
 }
 
 .upload-text span {
-  color: black;
+  color: var(--text-color);
   font-weight: 500;
 }
 
 .contact-form button {
-  background-color: #666;
-  color: white;
+  background-color: var(--accent-color);
+  color: var(--on-accent-color);
   padding: 1rem;
   font-size: 1rem;
   border: none;
@@ -309,7 +313,7 @@
 }
 
 .contact-form button:hover {
-  background-color: black;
+  background-color: rgba(0,0,0,0.85);
   transform: translateY(-2px);
   box-shadow: 0 5px 15px rgba(0, 119, 204, 0.3);
 }
@@ -333,7 +337,7 @@
   height: 80px;
   border-radius: 8px;
   object-fit: cover;
-  border: 2px solid #eee;
+  border: 2px solid var(--border-color);
 }
 
 @media (max-width: 1024px) {
@@ -358,7 +362,9 @@
   top: 18%;
   left: 50%;
   transform: translateX(-50%);
-  background-color: white;
+  background-color: var(--surface-color);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   padding: 26px 36px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
@@ -385,7 +391,7 @@
   margin: 0;
   font-size: 16px;
   font-weight: 500;
-  color: #333;
+  color: var(--text-color);
 }
 
 .wishlist-popover-icon {

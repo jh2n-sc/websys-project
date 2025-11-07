@@ -1,0 +1,8 @@
+[06-Nov-2025 12:27:03 Europe/Berlin] Register error: SQLSTATE[42S02]: Base table or view not found: 1146 Table 'project_db.accounts' doesn't exist
+[06-Nov-2025 12:48:38 Europe/Berlin] Auth error: Invalid credentials
+[06-Nov-2025 12:48:54 Europe/Berlin] Auth error: Invalid credentials
+[06-Nov-2025 12:50:46 Europe/Berlin] Auth error: Invalid credentials
+[06-Nov-2025 12:51:05 Europe/Berlin] Auth error: Invalid credentials
+[07-Nov-2025 05:06:56 Europe/Berlin] Auth error: Invalid credentials
+[07-Nov-2025 05:07:19 Europe/Berlin] Auth error: Invalid credentials
+[07-Nov-2025 05:07:48 Europe/Berlin] Auth error: Invalid credentials

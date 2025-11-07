@@ -3,24 +3,28 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-include_once '../php/db_conn.php';
+require_once __DIR__ . '/../config/config.php';
+require_once __DIR__ . '/../includes/ErrorHandler.php';
+require_once __DIR__ . '/../includes/Database.php';
 
-session_start();
 // Check if the user is logged in
 if (!isset($_SESSION['user_id'])) {
-    header("Location: ./login.php");  // Redirect if not 
-    die();
+    header("Location: ./login.php");
+    exit;
 }
 
 $userId = (int)$_SESSION['user_id'];
 
+$pdo = Database::getInstance()->getConnection();
 try {
-    // Fetch complete user data including photo path
-    $userStmt = $conn->prepare("SELECT username, email, phone_number, photo FROM accounts WHERE account_id = ?");
-    $userStmt->bind_param('i', $userId);
-    $userStmt->execute();
-    $userResult = $userStmt->get_result();
-    $user = $userResult->fetch_assoc();
+    // Fetch complete user data including firstname/lastname and photo path
+    $userStmt = $pdo->prepare("SELECT username, email, phone_number, firstname, lastname, photo FROM accounts WHERE account_id = ?");
+    $userStmt->execute([$userId]);
+    $user = $userStmt->fetch();
+
+    if (!$user) {
+        throw new Exception('User not found');
+    }
 
     // Update session with fresh data
     $_SESSION['username'] = $user['username'];
@@ -29,12 +33,12 @@ try {
     $_SESSION['photo'] = $user['photo'];
 
     // Get user listings
-    $listingsStmt = $conn->prepare("SELECT * FROM listings WHERE seller_account_id = ? ORDER BY listing_date DESC");
-    $listingsStmt->bind_param('i', $userId);
-    $listingsStmt->execute();
-    $result = $listingsStmt->get_result();
-} catch (mysqli_sql_exception $e) {
-    die("Query failed: " . $e->getMessage());
+    $listingsStmt = $pdo->prepare("SELECT * FROM listings WHERE seller_account_id = ? ORDER BY listing_date DESC");
+    $listingsStmt->execute([$userId]);
+    $listings = $listingsStmt->fetchAll();
+} catch (Throwable $e) {
+    http_response_code(500);
+    die("An error occurred.");
 }
 ?>
 
@@ -45,7 +49,7 @@ try {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kabalayan - <?php echo htmlspecialchars($user['username']); ?></title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/theme.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="icon" href="../favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../styles/profile.css">
@@ -86,6 +90,7 @@ try {
 
                 </div>
                 <div class="profile-actions">
+                    <a href="./profile_edit.php" class="btn">Edit Profile</a>
                     <a href="../php/logout.php?logout=1" class="logout-btn">Logout</a>
                 </div>
             </div>
@@ -96,9 +101,9 @@ try {
             <h2>My Listings</h2>
         </div>
 
-        <?php if ($result->num_rows > 0): ?>
+        <?php if (!empty($listings)): ?>
             <div class="listings-container">
-                <?php while ($listing = $result->fetch_assoc()): ?>
+                <?php foreach ($listings as $listing): ?>
                     <div class="listing-card">
                         <?php if (!empty($listing['property_photo'])): ?>
                             <img src="../php/image.php?listing_id=<?php echo $listing['listing_id'] ?>" alt="<?php echo htmlspecialchars($listing['property_name']); ?>" class="listing-image">
@@ -110,7 +115,7 @@ try {
                         <div class="listing-details">
                             <h3 class="listing-title"><?php echo htmlspecialchars($listing['property_name']); ?></h3>
                             <p class="listing-type"><?php echo htmlspecialchars($listing['property_type']); ?> | Size: <?php echo htmlspecialchars($listing['property_dimension']); ?> m²</p>
-                            <p class="listing-price">$<?php echo number_format($listing['price'], 2); ?></p>
+                            <p class="listing-price">₱<?php echo number_format($listing['price'], 2); ?></p>
                             <?php if (isset($listing['property_description'])): ?>
                                 <p class="listing-description"><?php echo htmlspecialchars($listing['property_description']); ?></p>
                             <?php endif; ?>
@@ -124,7 +129,7 @@ try {
                             <?php endif; ?>
                         </div>
                     </div>
-                <?php endwhile; ?>
+                <?php endforeach; ?>
             </div>
         <?php else: ?>
             <div class="no-listings">
@@ -141,6 +146,7 @@ try {
     <!-- FOOTER -->
     <?php include '../Includes/footer.php'; ?>
 
+    <script src="../js/theme.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const deleteButtons = document.querySelectorAll('.delete-btn');

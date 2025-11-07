@@ -1,8 +1,11 @@
     <!-- NAVBAR -->
-    <header>
-    <div class="logo">
-        KABALAYAN
-    </div>
+    <header style="max-width: 1000px;">
+    <a href="/kabalayan/index.php" class="logo-link nav-icon" aria-label="Home">
+        <div class="logo">
+            <img src="/kabalayan/assets/logolightmode.png" alt="Kabalayan Logo" class="logo-image light-logo">
+            <img src="/kabalayan/assets/logodarkmode.png" alt="Kabalayan Logo" class="logo-image dark-logo" style="display: none;">
+        </div>
+    </a>
 
     <nav id="navbar" class="navbar">
         <ul>
@@ -15,15 +18,49 @@
                     </svg>
                 </button>
             </li>
-            <li><a href="../index.php">Home</a></li>
-            <li><a href="./buy.php">Buy</a></li>
-            <li><a href="./sell.php">Sell</a></li>
-            <li><a href="./about.php">About Us</a></li>
+            <li>
+                <a href="/kabalayan/pages/buy.php" class="nav-icon" aria-label="Buy">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+                    </svg>
+                    <span class="tooltip">Buy</span>
+                </a>
+            </li>
+            <li>
+                <a href="/kabalayan/pages/sell.php" class="nav-icon" aria-label="Sell">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2v20"></path>
+                        <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                    <span class="tooltip">Sell</span>
+                </a>
+            </li>
+            <li>
+                <a href="/kabalayan/pages/about.php" class="nav-icon" aria-label="About Us">
+                    <i class="fa-solid fa-question" style="font-size: 18px;"></i>
+                    <span class="tooltip">About Us</span>
+                </a>
+            </li>
         </ul>
     </nav>
 
     <div class="header-actions">
-        <a href="./profile.php">Profile</a>
+        <div class="nav-tooltip-container">
+            <button id="theme-toggle" class="nav-icon-button" aria-label="Toggle color theme">
+                <svg id="theme-icon" xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v1"/><path d="M12 20v1"/><path d="M3 12h1"/><path d="M20 12h1"/><path d="M5.6 5.6l.7.7"/><path d="M18.4 18.4l.7.7"/><path d="M5.6 18.4l.7-.7"/><path d="M18.4 5.6l.7-.7"/><circle cx="12" cy="12" r="4"/></svg>
+                <span class="tooltip" id="theme-tooltip">Dark Mode</span>
+            </button>
+        </div>
+        <div class="nav-tooltip-container">
+            <a href="/kabalayan/pages/profile.php" class="nav-icon-button profile-icon" aria-label="Profile">
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span class="tooltip">Profile</span>
+            </a>
+        </div>
         <button id="open-sidebar-button" aria-label="open sidebar" aria-expanded="false"
             aria-controls="navbar">
             <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 -960 960 960" width="40px"
@@ -36,18 +73,83 @@
 </header>
 
 <style>
-    /* NAV */
+    /* Logo Styling */
+    .logo-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-decoration: none;
+        height: 100%;
+        position: relative;
+        padding: 0 8px;
+    }
+    
+    .logo {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        font-weight: 600;
+        font-size: 18px;
+        position: relative;
+        width: 100%;
+    }
+    
+    .logo-image {
+        height: 24px;
+        width: auto;
+        transition: opacity 0.3s ease;
+        position: relative;
+        display: inline-block;
+    }
+    
+    [data-theme="dark"] .light-logo {
+        display: none;
+    }
+    
+    [data-theme="dark"] .dark-logo {
+        display: block !important;
+    }
+    
+    [data-theme="light"] .light-logo {
+        display: block !important;
+    }
+    
+    [data-theme="light"] .dark-logo {
+        display: none !important;
+    }
+    
+    /* NAV - Floating liquid-glass pill */
     header {
+        position: sticky;
+        top: 8px;
+        z-index: 2000;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        border-bottom: 1px solid #eee;
+        width: 400px;
+        max-width: 400px;
+        min-width: 400px;
+        padding: 6px 15px;
+        margin: 8px auto;
+        border: 2px solid #000000;
+        border-radius: 9999px;
+        background-color: var(--surface-color);
+        backdrop-filter: saturate(180%) blur(10px);
+        -webkit-backdrop-filter: saturate(180%) blur(10px);
+        box-shadow: 0 6px 20px rgba(var(--shadow-color), 0.1);
+        height: 48px;
     }
 
-    .logo {
-        margin-left: 50px;
-        font-weight: 600;
-        font-size: 20px;
+    /* Dark mode: white outline */
+    [data-theme="dark"] header {
+        border-color: #ffffff;
+    }
+
+    /* Ensure nav sits above any page overlays and remains clickable */
+    nav {
+        position: relative;
+        z-index: 3000;
     }
 
     nav ul {
@@ -61,41 +163,172 @@
 
     nav ul li a {
         text-decoration: none;
-        color: black;
+        color: var(--text-color);
         font-size: 14px;
-        padding: 1em 2em;
-        transition: background-color 150ms ease;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 36px;
+        width: 36px;
+        border-radius: 9999px;
+        transition: all 200ms ease;
+        pointer-events: auto;
+        position: relative;
+        z-index: 3001;
+    }
+    
+    /* Tooltip container */
+    .nav-tooltip-container {
+        position: relative;
+        display: inline-block;
+    }
+    
+    /* Tooltip styles */
+    .tooltip {
+        position: absolute;
+        bottom: -30px;
+        left: 50%;
+        transform: translateX(-50%) scale(0.9);
+        background-color: var(--accent-color);
+        color: var(--on-accent-color);
+        padding: 4px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.2s ease;
+        z-index: 1000;
+        pointer-events: none;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    
+    .tooltip::after {
+        content: '';
+        position: absolute;
+        top: -4px;
+        left: 50%;
+        transform: translateX(-50%) rotate(45deg);
+        width: 8px;
+        height: 8px;
+        background-color: var(--accent-color);
+    }
+    
+    /* Show tooltip on hover */
+    .nav-icon:hover .tooltip,
+    .nav-icon-button:hover .tooltip,
+    .nav-tooltip-container:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) scale(1);
+    }
+    
+    /* Hide default title tooltip */
+    .nav-icon[title] {
+        position: relative;
+    }
+    
+    .nav-icon[title]:hover::after,
+    .nav-icon[title]:focus::after {
+        display: none;
+    }
+    
+    /* Logo tooltip positioning */
+    .logo-link .tooltip {
+        left: 60px;
+        bottom: 50%;
+        transform: translateY(50%) scale(0.9);
+    }
+    
+    .logo-link:hover .tooltip {
+        transform: translateY(50%) scale(1);
+    }
+    
+    /* Adjust icon size and centering */
+    .nav-icon svg {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.2s ease;
+    }
+    
+    .nav-icon:hover svg {
+        transform: scale(1.1);
     }
 
     nav ul li a:hover {
-        background-color: #000;
-        color: white;
+        background-color: var(--accent-color);
+        color: var(--on-accent-color);
+    }
+    
+    /* Ensure tooltip stays visible on hover */
+    .nav-icon:hover .tooltip {
+        opacity: 1 !important;
+        visibility: visible !important;
     }
 
     nav ul li a.active {
-        background-color: black;
-        color: white;
+        /* Light mode default: black bg, white text */
+        background-color: #0b0b0b;
+        color: #ffffff;
+        border-color: #0b0b0b;
+    }
+
+    /* Dark mode: invert (white bg, black text) */
+    [data-theme="dark"] nav ul li a.active {
+        background-color: #ffffff !important;
+        color: #0b0b0b !important;
+        border-color: #ffffff !important;
     }
 
     .header-actions {
-        margin-right: 50px;
+        margin-right: 0;
         display: flex;
-        font-size: 14px;
         align-items: center;
+        gap: 8px;
+        margin-right: 10px;
     }
 
-    .header-actions a {
-        color: #000;
+    /* Style for both theme toggle and profile icon buttons */
+    .header-actions button,
+    .header-actions .profile-icon {
+        color: var(--text-color);
         text-decoration: none;
-        padding: 1em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 9999px;
+        transition: all 0.2s ease;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: none;
+        background: none;
+        cursor: pointer;
+    }
+    
+    /* Hover effect for both buttons */
+    .header-actions button:hover,
+    .header-actions .profile-icon:hover {
+        background-color: var(--accent-color);
+        color: var(--on-accent-color);
+        transform: translateY(-1px);
+    }
+    
+    /* Active state for better feedback */
+    .header-actions button:active,
+    .header-actions .profile-icon:active {
+        transform: translateY(0);
     }
 
     #open-sidebar-button {
         display: none;
         background: none;
         border: none;
-        padding: 1em;
+        padding: 0.5em; /* Reduced from 1em */
         cursor: pointer;
+        margin-left: 4px; /* Add some space between profile and menu button */
     }
 
     #close-sidebar-button {
@@ -108,7 +341,7 @@
 
     @media screen and (max-width: 768px) {
         .logo {
-            margin-left: 20px;
+            margin-left: 8px;
         }
 
         .header-actions {
@@ -129,9 +362,9 @@
             right: -100%;
             height: 100vh;
             width: min(15rem, 100%);
-            z-index: 10;
-            border-left: 1px solid black;
-            background-color: white;
+            z-index: 1100;
+            border-left: 1px solid var(--border-color);
+            background-color: var(--bg-color);
             transition: right 300ms ease-out;
         }
 
@@ -153,210 +386,4 @@
 </style>
 
 
-<script>
-   // Wait for DOM to be fully loaded
-document.addEventListener('DOMContentLoaded', function() {
-
-    // Initialize navigation highlighting
-    initNavHighlighting();
-
-    // Initialize sidebar functionality
-    initSidebar();
-});
-
-function initSidebar() {
-
-    const openButton = document.getElementById('open-sidebar-button');
-    const navbar = document.getElementById('navbar');
-    const closeButton = document.getElementById('close-sidebar-button');
-    const body = document.body;
-
-
-    function openSidebar() {
-        if (navbar) {
-            navbar.classList.add('show');
-            navbar.removeAttribute('inert');
-        }
-        if (body) {
-            body.classList.add('sidebar-open');
-        }
-        if (openButton) {
-            openButton.setAttribute('aria-expanded', 'true');
-        }
-    }
-
-    function closeSidebar() {
-        if (navbar) {
-            navbar.classList.remove('show');
-            navbar.setAttribute('inert', '');
-        }
-        if (body) {
-            body.classList.remove('sidebar-open');
-        }
-        if (openButton) {
-            openButton.setAttribute('aria-expanded', 'false');
-        }
-    }
-
-    // Add click event listeners with null checks
-    if (openButton) {
-        openButton.addEventListener('click', function(e) { 
-            e.preventDefault();
-            e.stopPropagation();
-            openSidebar();
-        });
-    } else {
-        console.error("Open button not found for event listener");
-    }
-
-    if (closeButton) {
-        closeButton.addEventListener('click', function(e) { 
-            e.preventDefault();
-            e.stopPropagation();
-            closeSidebar();
-        });
-    } else {
-        console.error("Close button not found for event listener");
-    }
-
-    // Close when clicking outside 
-    document.addEventListener('click', function(e) {
-        if (!navbar || !navbar.classList.contains('show')) return; // Exit if navbar doesn't exist or isn't shown
-
-        const isClickInsideNavbar = navbar.contains(e.target);
-        const isClickOnOpenButton = e.target === openButton;
-        const isClickInsideSidebarToggle = isClickInsideNavbar || isClickOnOpenButton;
-
-
-        if (!isClickInsideSidebarToggle) {
-            closeSidebar();
-        }
-    });
-
-    // Handle window resize
-    function handleResize() {
-        if (window.innerWidth <= 768) {
-            closeSidebar();
-        } else {
-            openSidebar();
-        }
-    }
-
-    // Initialize resize event listener
-    window.addEventListener('resize', handleResize);
-    handleResize(); // Initial check on load
-}
-
-// FAQ functionality
-function initFAQ() {
-    // Initially hide all question containers
-    const allQuestionsContainers = document.querySelectorAll('.faq-questions');
-    allQuestionsContainers.forEach(container => {
-        container.style.display = 'none';
-    });
-
-    // Buy Category
-    const buyingCategory = document.querySelector('.faq-category[data-category="buying"]');
-    if (buyingCategory) {
-        buyingCategory.classList.add('active');
-        const buyingQuestions = document.getElementById('buyingQuestions');
-        if (buyingQuestions) {
-            buyingQuestions.style.display = 'block';
-            buyingQuestions.classList.add('active');
-        }
-    }
-
-    // Handle FAQ item 
-    const faqItems = document.querySelectorAll('.faq-item');
-    faqItems.forEach(item => {
-        const question = item.querySelector('.faq-question');
-        if (question) {
-            question.addEventListener('click', () => {
-                item.classList.toggle('active');
-
-                const parentQuestions = item.closest('.faq-questions');
-                parentQuestions.querySelectorAll('.faq-item').forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                    }
-                });
-            });
-        }
-    });
-
-    // Handle category switching
-    const categories = document.querySelectorAll('.faq-category');
-    
-    categories.forEach(category => {
-        category.addEventListener('click', () => {
-            categories.forEach(cat => cat.classList.remove('active'));
-            
-            category.classList.add('active');
-            
-            allQuestionsContainers.forEach(q => {
-                q.style.display = 'none';
-                q.classList.remove('active');
-            });
-            
-            const categoryName = category.getAttribute('data-category');
-            const targetQuestions = document.getElementById(`${categoryName}Questions`);
-            if (targetQuestions) {
-                targetQuestions.style.display = 'block';
-                targetQuestions.classList.add('active');
-            }
-        });
-    });
-
-    // Handle search functionality
-    const searchInput = document.getElementById('faqSearch');
-    if (searchInput) {
-        searchInput.addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            let anyMatches = false;
-
-            const activeContainer = document.querySelector('.faq-questions.active');
-            
-            if (activeContainer) {
-                const items = activeContainer.querySelectorAll('.faq-item');
-                items.forEach(item => {
-                    const questionText = item.querySelector('.faq-question').textContent.toLowerCase();
-                    const answerText = item.querySelector('.faq-answer').textContent.toLowerCase();
-                    
-                    if (questionText.includes(searchTerm) || answerText.includes(searchTerm)) {
-                        item.style.display = 'block';
-                        anyMatches = true;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-                
-                const noResults = document.getElementById('noResults');
-                if (!anyMatches) {
-                    if (!noResults) {
-                        const noResultsMsg = document.createElement('div');
-                        noResultsMsg.id = 'noResults';
-                        noResultsMsg.textContent = 'No matching questions found.';
-                        activeContainer.appendChild(noResultsMsg);
-                    }
-                } else if (noResults) {
-                    noResults.remove();
-                }
-            }
-        });
-    }
-}
-
-// Initialize navigation highlighting
-function initNavHighlighting() {
-    const links = document.querySelectorAll('nav ul li a');
-    const currentPath = window.location.pathname.split('/').pop(); 
-
-    links.forEach(link => {
-        const href = link.getAttribute('href').split('/').pop();
-
-        if (href === currentPath || (href === '' && currentPath === 'home.html')) {
-            link.classList.add('active');
-        }
-    });
-}
-</script>
+<script src="/kabalayan/js/navbar.js"></script>

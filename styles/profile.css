@@ -1,14 +1,7 @@
 :root {
-    --text-color: #333;
-    --primary-color: #000;
-    --secondary-color: #333;
-    --accent-color: #2b9348;
-    --light-gray: #f8f9fa;
-    --medium-gray: #6c757d;
-    --dark-gray: #666;
-    --shadow-sm: 0 3px 8px rgba(0,0,0,0.1);
-    --shadow-md: 0 5px 15px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+    --shadow-sm: 0 3px 8px rgba(var(--shadow-color),0.1);
+    --shadow-md: 0 5px 15px rgba(var(--shadow-color),0.1);
+    --shadow-lg: 0 10px 25px rgba(var(--shadow-color),0.15);
     --border-radius: 8px;
     --transition: all 0.25s ease;
 }
@@ -20,26 +13,26 @@
 }
 
 html {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-sans);
     color: var(--text-color);
     line-height: 1.5;
 }
 
 body {
-    background-color: #fff;
+    background-color: var(--bg-color);
     min-height: 100vh;
     min-height: 100dvh;
     display: flex;
     flex-direction: column;
 }
 
-  .profile-image-container {
+.profile-image-container {
     width: 120px;
     height: 120px;
     border-radius: 50%;
     overflow: hidden;
     margin: 0 auto 20px;
-    border: 3px solid #000;
+    border: 3px solid var(--accent-color);
     position: relative;
 }
 
@@ -56,8 +49,8 @@ body {
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    background-color: #000;
-    color: white;
+    background-color: var(--accent-color);
+    color: var(--button-text);
     font-size: 40px;
 }
 
@@ -69,7 +62,7 @@ body {
 }
 
 .profile-header {
-    background-color: #fff;
+    background-color: var(--surface-color);
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
@@ -91,9 +84,9 @@ body {
     min-width: 120px;
     border-radius: 50%;
     object-fit: cover;
-    background-color: #eee;
+    background-color: var(--input-bg);
     box-shadow: var(--shadow-sm);
-    border: 3px solid #fff;
+    border: 3px solid var(--bg-color);
 }
 
 .profile-info {
@@ -110,7 +103,7 @@ body {
 }
 
 .profile-details {
-    color: var(--dark-gray);
+    color: var(--muted-text-color);
     margin-bottom: 1rem;
     font-size: 0.95rem;
 }
@@ -129,8 +122,8 @@ body {
 .profile-actions a {
     text-decoration: none;
     padding: 0.5rem 1rem;
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border-radius: var(--border-radius);
     font-size: 0.9rem;
     font-weight: 500;
@@ -140,7 +133,7 @@ body {
 }
 
 .profile-actions a:hover {
-    background-color: var(--secondary-color);
+    filter: brightness(0.95);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
@@ -162,11 +155,11 @@ body {
 
 .btn {
     padding: 0.625rem 1.125rem;
-    background-color: var(--primary-color);
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     text-decoration: none;
     border-radius: var(--border-radius);
-    border: none;
+    border: 1px solid var(--border-color);
     cursor: pointer;
     font-weight: 500;
     font-size: 0.95rem;
@@ -175,7 +168,7 @@ body {
 }
 
 .btn:hover {
-    background-color: var(--secondary-color);
+    filter: brightness(0.95);
     transform: translateY(-2px);
     box-shadow: var(--shadow-sm);
 }
@@ -188,7 +181,7 @@ body {
 }
 
 .listing-card {
-    background-color: #fff;
+    background-color: var(--surface-color);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
     overflow: hidden;
@@ -201,13 +194,6 @@ body {
 .listing-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
-}
-
-.listing-image {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.4s ease;
 }
 
 .listing-card:hover .listing-image {
@@ -230,7 +216,7 @@ body {
 }
 
 .listing-type {
-    color: var(--medium-gray);
+    color: var(--muted-text-color);
     font-size: 0.85rem;
 }
 
@@ -242,12 +228,12 @@ body {
 }
 
 .listing-location {
-    color: var(--dark-gray);
+    color: var(--muted-text-color);
     font-size: 0.9rem;
 }
 
 .listing-description {
-    color: var(--dark-gray);
+    color: var(--muted-text-color);
     font-size: 0.9rem;
     margin: 0;
     display: -webkit-box;
@@ -265,22 +251,22 @@ body {
 
 .listing-footer {
     padding: 0.75rem 1.25rem;
-    background-color: var(--light-gray);
+    background-color: var(--surface-color);
     display: flex;
     justify-content: space-between;
     font-size: 0.8rem;
-    color: var(--medium-gray);
-    border-top: 1px solid #eee;
+    color: var(--muted-text-color);
+    border-top: 1px solid var(--border-color);
     margin-top: auto;
 }
 
 .no-listings {
-    background-color: #fff;
+    background-color: var(--surface-color);
     padding: 2rem;
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
     text-align: center;
-    color: var(--medium-gray);
+    color: var(--muted-text-color);
     margin: 2rem 0;
 }
 

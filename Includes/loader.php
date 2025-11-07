@@ -23,6 +23,14 @@
         justify-content: center;
         align-items: center;
         z-index: 9999;
+        opacity: 1;
+        transition: opacity 300ms ease;
+    }
+
+    /* Hidden state: visually invisible and non-interactive */
+    #page-loader.hidden {
+        opacity: 0;
+        pointer-events: none;
     }
 
     .loader-content {
@@ -122,12 +130,36 @@
 </style>
 
 <script>
-    window.addEventListener('load', function() {
-        setTimeout(function() {
-            document.getElementById('page-loader').style.opacity = '0';
-            setTimeout(function() {
-                document.getElementById('page-loader').style.display = 'none';
-            }, 500);
-        }, 500);
-    });
+    (function(){
+        var loader = document.getElementById('page-loader');
+        if (!loader) return;
+
+        function hideLoader() {
+            if (!loader || loader.classList.contains('hidden')) return;
+            // Make it non-interactive immediately
+            loader.classList.add('hidden');
+            // Remove from flow after transition
+            setTimeout(function(){
+                if (loader) loader.style.display = 'none';
+            }, 400);
+        }
+
+        // Hide as soon as DOM is interactive to avoid blocking clicks
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', function(){
+                // small delay for nicer fade
+                setTimeout(hideLoader, 200);
+            });
+        } else {
+            setTimeout(hideLoader, 200);
+        }
+
+        // Also hide on full load (in case DOMContentLoaded was missed)
+        window.addEventListener('load', function(){
+            hideLoader();
+        });
+
+        // Hard fallback: ensure it's gone after 3 seconds regardless
+        setTimeout(hideLoader, 3000);
+    })();
 </script>

@@ -5,9 +5,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Kabalayan - About Us</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/theme.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" type='text/css' href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  <!-- Use stable Devicon CSS from npm (icons for HTML/CSS/JS/Apache/MySQL) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/devicon@2.15.1/devicon.min.css" />
+  <!-- Fallback: Devicon from cdnjs -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/devicon/2.15.1/devicon.min.css" integrity="sha512-mQdHq6pP4Y+vQW+M8gkW4qQqY1dGqrM1R5XyH8lQq9vXJ+2e1r3v9wq7d3+KxVFDmWkSgkS9F8u7pQvYxHq6WQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="icon" href="../favicon.ico" type="image/x-icon">
   <link rel="stylesheet" href="../styles/about.css" />
 </head>
@@ -39,32 +42,8 @@
     <h2>Meet Our Team</h2>
     <div class="team-grid">
       <div class="team-member">
-        <img src="../Assets/images/Jerve.jpg" alt="Jerve" class="member-photo">
+        <img src="../Assets/images/Jerve.jpg" alt="Sean Jerve" class="member-photo">
         <div class="member-name">Sean Jerve Rebancos</div>
-        <div class="member-title">Student</div>
-        <div class="member-location">Daraga, Albay</div>
-      </div>
-      <div class="team-member">
-        <img src="../Assets/images/Jhan.jpg" alt="Jhan" class="member-photo">
-        <div class="member-name">Jhan Sabanal</div>
-        <div class="member-title">Student</div>
-        <div class="member-location">Legazpi City</div>
-      </div>
-      <div class="team-member">
-        <img src="../Assets/images/Kiel.jpg" alt="Kiel" class="member-photo">
-        <div class="member-name">Kiel Hedrix Relos</div>
-        <div class="member-title">Student</div>
-        <div class="member-location">Legazpi City</div>
-      </div>
-      <div class="team-member">
-        <img src="../Assets/images/Kevin.jpg" alt="Kevin" class="member-photo">
-        <div class="member-name">John Kevin Tamayo</div>
-        <div class="member-title">Student</div>
-        <div class="member-location">Daraga, Albay</div>
-      </div>
-      <div class="team-member">
-        <img src="../Assets/images/Carl.jpg" alt="Carl" class="member-photo">
-        <div class="member-name">Carl Poot</div>
         <div class="member-title">Student</div>
         <div class="member-location">Daraga, Albay</div>
       </div>
@@ -94,6 +73,7 @@
   <?php include '../Includes/footer.php'; ?>
 
 
+  <script src="../js/theme.js"></script>
   <script src="../js/about.js"></script>
 
 </body>
